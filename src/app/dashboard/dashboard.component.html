@@ -1,0 +1,9 @@
+<h2>Dashboard</h2>
+<div *ngIf="modules;else loading">
+  <ul>
+    <li *ngFor="let module of modules">
+      <label>{{module.id}}</label>: {{module.code}}
+    </li>
+  </ul>
+</div>
+<ng-template #loading>Loading Modules...</ng-template>
