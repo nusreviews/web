@@ -12,6 +12,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ModuleDetailComponent } from './module-detail/module-detail.component';
 
 import { StarRatingModule } from 'angular-star-rating';
+import { ReviewListItemComponent } from './review-list-item/review-list-item.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { StarRatingModule } from 'angular-star-rating';
     DashboardComponent,
     PageNotFoundComponent,
     ModuleDetailComponent,
+    ReviewListItemComponent,
   ],
   imports: [
     BrowserModule,
