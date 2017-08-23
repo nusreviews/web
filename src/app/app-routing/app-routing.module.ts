@@ -8,8 +8,9 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: '**', component: PageNotFoundComponent },
   { path: 'moduledetail/:id', component: ModuleDetailComponent },
+  { path: '**', component: PageNotFoundComponent },
+  
 ];
 
 @NgModule({
