@@ -9,12 +9,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ModuleService } from './module.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ModuleDetailComponent } from './module-detail/module-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     PageNotFoundComponent,
+    ModuleDetailComponent,
   ],
   imports: [
     BrowserModule,
