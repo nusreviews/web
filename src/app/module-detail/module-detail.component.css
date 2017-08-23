@@ -1,0 +1,38 @@
+.container {
+    text-align: center;
+}
+
+.module-code {
+    color: #000000;
+    left: .1em;
+}
+
+.module-name {
+    color: #000000;
+    left: .1em;
+}
+
+.verdict {
+    display: block;
+    color: #607D8B;
+    margin: 1em;
+}
+
+.ratings-bar {
+    display: block;
+    margin: auto;
+    width: 400px;
+    height: 25px;
+}
+
+.ratings-bar-recommend {
+    float: left;
+    height: 100%;
+    background-color: #5be75f
+}
+
+.ratings-bar-not-recommend {
+    float: right;
+    height: 100%;
+    background-color: #f35468
+}
