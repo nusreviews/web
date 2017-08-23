@@ -8,15 +8,22 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ModuleService } from './module.service';
+import { ReviewsService } from './reviews.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ModuleDetailComponent } from './module-detail/module-detail.component';
 
 import { StarRatingModule } from 'angular-star-rating';
+import { ReviewListItemComponent } from './review-list-item/review-list-item.component';
+import { ReviewListComponent } from './review-list/review-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     PageNotFoundComponent,
+    ModuleDetailComponent,
+    ReviewListItemComponent,
+    ReviewListComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +33,8 @@ import { StarRatingModule } from 'angular-star-rating';
     StarRatingModule.forRoot()
   ],
   providers: [
-    ModuleService
+    ModuleService,
+    ReviewsService,
   ],
   bootstrap: [AppComponent]
 })
