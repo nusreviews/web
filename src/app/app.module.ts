@@ -10,6 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ModuleService } from './module.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { StarRatingModule } from 'angular-star-rating';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    StarRatingModule.forRoot()
   ],
   providers: [
     ModuleService
