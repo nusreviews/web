@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { ModuleService } from './module.service';
+import { ReviewsService } from './reviews.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ModuleDetailComponent } from './module-detail/module-detail.component';
 
@@ -32,7 +33,8 @@ import { ReviewListComponent } from './review-list/review-list.component';
     StarRatingModule.forRoot()
   ],
   providers: [
-    ModuleService
+    ModuleService,
+    ReviewsService,
   ],
   bootstrap: [AppComponent]
 })

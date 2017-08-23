@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Review } from '../review';
+import { ReviewsService } from '../reviews.service';
 
 @Component({
   selector: 'app-review-list',
@@ -11,10 +12,10 @@ export class ReviewListComponent implements OnInit {
   reviews: Review[] = null;
   searchItem: string = "";
 
-  constructor(private reviewService: ReviewService) { }
+  constructor(private reviewsService: ReviewsService) { }
 
   ngOnInit(): void {
-    this.reviewService.getReviewsSlowly()
+    this.reviewsService.getReviewsSlowly()
       .then(reviews => this.reviews = reviews);
   }
 
