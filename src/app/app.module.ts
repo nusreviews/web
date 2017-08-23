@@ -10,6 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ModuleService } from './module.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ModuleCardComponent } from './module-card/module-card.component';
+import { HeaderBarComponent } from './header-bar/header-bar.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ModuleCardComponent } from './module-card/module-card.component';
     DashboardComponent,
     PageNotFoundComponent,
     ModuleCardComponent,
+    HeaderBarComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
