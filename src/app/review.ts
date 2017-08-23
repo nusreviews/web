@@ -1,5 +1,6 @@
 export class Review {
     id: number;
+    moduleId: number;
     author: string;
     comments: string;
     dateCreated: string;
