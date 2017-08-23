@@ -11,6 +11,8 @@ import { ModuleService } from './module.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ModuleDetailComponent } from './module-detail/module-detail.component';
 
+import { StarRatingModule } from 'angular-star-rating';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +25,7 @@ import { ModuleDetailComponent } from './module-detail/module-detail.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    StarRatingModule.forRoot()
   ],
   providers: [
     ModuleService
