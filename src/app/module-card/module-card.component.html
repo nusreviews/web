@@ -1,0 +1,23 @@
+<div *ngIf="module" class="module-card">
+  <div class="row">
+    <div class="sixcol">
+      <span>
+        <label class="badge">{{module.id}}</label><label class="text">{{module.code}}</label>
+        <span class="text">{{module.modName}}</span>
+      </span>
+    </div>
+    <div class="threecol">
+      <div>
+        <span><label class="badge">Last Reviewed</label><label class="text">{{module.lastReviewed}}</label></span>
+      </div>
+    </div>
+    <div class="threecol last">
+      <div>
+        <span><label class="badge">Verdict</label><label class="text">58% Recommended</label></span>
+      </div>
+    </div>
+  </div>
+  <!--<div class="row">
+    <button class="cta-button">RATE</button>
+  </div>-->
+</div>
