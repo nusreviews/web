@@ -1,4 +1,5 @@
 <div *ngIf="module">
+
   <div class="container">
       <h2 class="module-code">{{module.code}}</h2>
       <h2 class="module-name">{{module.modName}}</h2>
@@ -9,8 +10,18 @@
           <div class="ratings-bar-recommend" style="width: 68%"></div> <!-- Dynamically change the numbers for this width-->
           <div class="ratings-bar-not-recommend" style="width: 32%"></div>
       </div>
-      <div class="divider"></div>
   </div>
-  <label class="review-list-header">What Students Say</label>
+
+  <div class="divider"></div>
+  <label class="module-detail-section-header">MODULE INFO</label>
+  <p>This module is about teaching programming.</p>
+
+  <div class="divider"></div>
+  <label class="module-detail-section-header">WRITE A REVIEW</label>
+  <p>Review Card Here</p>
+
+  <div class="divider"></div>
+  <label class="module-detail-section-header">WHAT STUDENTS SAY</label>
   <app-review-list></app-review-list>
+
 </div>
