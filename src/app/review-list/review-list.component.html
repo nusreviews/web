@@ -1,5 +1,5 @@
 <div *ngIf="reviews;else loading">
-  <ul>
+  <ul class="review-list">
     <li *ngFor="let review of reviews">
         <app-review-list-item [review]="review"></app-review-list-item>
     </li>

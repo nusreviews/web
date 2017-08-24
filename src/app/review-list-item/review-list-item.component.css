@@ -1,0 +1,7 @@
+.review-card-container {
+    display: inline-block;
+    height: 8em;
+    width: 90%;
+    background-color: #fff000;
+    margin: 1em 0em 1em 0em; /* top right down left */
+}
