@@ -1,8 +1,10 @@
-<div *ngIf="reviews;else loading">
-  <ul class="review-list">
-    <li class="review-list-item" *ngFor="let review of reviews">
-        <app-review-list-item [review]="review"></app-review-list-item>
-    </li>
-  </ul>
+<div class="row">
+  <div *ngIf="reviews;else loading">
+    <ul class="review-list">
+      <li class="review-list-item" *ngFor="let review of reviews">
+          <app-review-list-item [review]="review"></app-review-list-item>
+      </li>
+    </ul>
+  </div>
 </div>
 <ng-template #loading>Loading Reviews...</ng-template>
