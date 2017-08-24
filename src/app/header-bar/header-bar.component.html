@@ -1,0 +1,6 @@
+<div class="navbar">
+  <h1>{{appName}}</h1>
+  <nav *ngFor="let option of navOptions" class="nav-option-container">
+    <a routerLink={{option.link}} routerLinkActive="active" class="nav-option">{{option.name}}</a>
+  </nav>
+</div>

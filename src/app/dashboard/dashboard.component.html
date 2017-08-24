@@ -1,9 +1,20 @@
-<h2>Dashboard</h2>
-<div *ngIf="modules;else loading">
-  <ul>
-    <li *ngFor="let module of modules">
-      <label>{{module.id}}</label>: {{module.code}}
-    </li>
-  </ul>
+<div class="container">
+  <div class="row bottommargin">
+    <div class="twelvecol">
+      <h2>CS Modules</h2>
+      <span>Rate a module today!</span>
+      <div class="row top-margin">
+        <div *ngIf="modules;else loading">
+          <ul class="modules">
+            <li *ngFor="let module of modules" (click)="onSelect(module)" class="fit-height">
+              <span>
+                <app-module-card [module]="module"></app-module-card>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <ng-template #loading>Loading Modules...</ng-template>
