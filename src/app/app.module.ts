@@ -15,6 +15,9 @@ import { ModuleDetailComponent } from './module-detail/module-detail.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { ReviewListItemComponent } from './review-list-item/review-list-item.component';
 import { ReviewListComponent } from './review-list/review-list.component';
+import { ModuleReviewFormComponent } from './module-review-form/module-review-form.component';
+import { ModuleReviewFormHeaderComponent } from './module-review-form/module-review-form-header/module-review-form-header.component';
+import { ModuleReviewFormFooterComponent } from './module-review-form/module-review-form-footer/module-review-form-footer.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { ReviewListComponent } from './review-list/review-list.component';
     ModuleDetailComponent,
     ReviewListItemComponent,
     ReviewListComponent,
+    ModuleReviewFormComponent,
+    ModuleReviewFormHeaderComponent,
+    ModuleReviewFormFooterComponent,
   ],
   imports: [
     BrowserModule,

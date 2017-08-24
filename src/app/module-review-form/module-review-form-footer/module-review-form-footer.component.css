@@ -1,0 +1,15 @@
+:host {
+  border-top: 2px solid rgba(162, 205, 235, 1);
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  width: 100%;
+}
+
+.module-review-form-submit-button {
+  background: rgba(255, 225, 182, 1);
+  border: 2px solid rgba(229, 203, 164, 1);
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 8px;
+}

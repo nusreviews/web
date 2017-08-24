@@ -1,0 +1,27 @@
+:host {
+  background: rgba(187, 230, 255, 1);
+  border: 2px solid rgba(162, 205, 235, 1);
+  border-radius: 10px;
+  color: rgba(45, 56, 64, 1);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.module-review-form-container {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 20px;
+  width: 100%;
+}
+
+.module-review-input-container {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  min-width: 50%;
+}
+
+.module-review-input-item {
+  margin: 8px;
+}
