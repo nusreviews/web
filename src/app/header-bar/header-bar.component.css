@@ -1,4 +1,8 @@
-.navbar {
+.header-label {
+    padding-left: 0.5em;
+}
+
+/* .navbar {
     display: flex;
     position: fixed;
     z-index: 1000;
@@ -30,4 +34,4 @@
     color: #242729;
     text-decoration: none;
     outline: none;
-}
+} */
