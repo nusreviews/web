@@ -1,5 +1,5 @@
 .selected {
-	background-color: #CFD8DC !important;
+	background-color: #CFD8DC;
 	color: white;
 }
 .modules {
@@ -19,7 +19,7 @@
 	border-radius: 4px;
 }
 .modules li.selected:hover {
-	background-color: #DBF8FC !important;
+	background-color: #DBF8FC;
 	color: white;
 }
 .modules li:hover {
