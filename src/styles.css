@@ -2,3 +2,4 @@
 .top-padding {
     padding-top: 80px;
 }
+@import "~css-star-rating/dist/css/star-rating.min.css";

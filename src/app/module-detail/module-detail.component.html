@@ -1,0 +1,16 @@
+<div *ngIf="module">
+  <div class="container">
+      <h2 class="module-code">{{module.code}}</h2>
+      <h2 class="module-name">{{module.modName}}</h2>
+      <div>
+        <label class="verdict">68% Recommended</label>
+      </div>
+      <div class="ratings-bar">
+          <div class="ratings-bar-recommend" style="width: 68%"></div> <!-- Dynamically change the numbers for this width-->
+          <div class="ratings-bar-not-recommend" style="width: 32%"></div>
+      </div>
+      <div class="divider"></div>
+  </div>
+  <label class="review-list-header">What Students Say</label>
+  <app-review-list></app-review-list>
+</div>
