@@ -1,3 +1,7 @@
 .review-list {
     list-style: none;
 }
+
+.review-list-item {
+    margin: 0;
+}

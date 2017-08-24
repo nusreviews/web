@@ -1,7 +1,25 @@
-.review-card-container {
-    display: inline-block;
-    height: 8em;
-    width: 90%;
-    background-color: #fff000;
-    margin: 1em 0em 1em 0em; /* top right down left */
+.author-label {
+    font-weight: bold;
+}
+.green-text {
+    color: #2e7d32;
+}
+
+.red-text {
+    color: #c62828;
+}
+
+.comments-text {
+    font-size: 1.25em;
+}
+
+.ratings-container {
+    padding-top: 1.5em;
+    padding-bottom: 2em;
+}
+
+.verdict-label {
+    padding-top: 2em;
+    margin-bottom:0em;
+    font-weight: bold;
 }
