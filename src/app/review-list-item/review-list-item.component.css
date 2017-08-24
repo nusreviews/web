@@ -1,11 +1,11 @@
 .author-label {
     font-weight: bold;
 }
-.green-text {
-    color: #2e7d32;
+.recommend-text {
+    color: #64dd17;
 }
 
-.red-text {
+.not-recommend-text {
     color: #c62828;
 }
 
@@ -18,8 +18,15 @@
     padding-bottom: 2em;
 }
 
-.verdict-label {
-    padding-top: 2em;
-    margin-bottom:0em;
+.action-label {
     font-weight: bold;
+}
+
+.like-label {
+    float: right;
+}
+
+.date-label {
+    float: right;
+    font-style: italic;
 }
