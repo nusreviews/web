@@ -16,7 +16,7 @@
 }
 
 .verdict-label {
-    color: #607D8B;
+    color: #3DAD4D;
     margin: 1em;
     text-align: center;
     display: inline-block;
@@ -29,8 +29,8 @@
 .ratings-bar {
     display: block;
     margin: auto;
-    width: 400px;
-    height: 25px;
+    width: 50em;
+    height: 3em;
 }
 
 .ratings-bar-recommend {
@@ -56,4 +56,5 @@
 
 .module-detail-section-header {
     font-size: 1.5em;
+    color: #7D7D7D;
 }
