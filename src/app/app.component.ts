@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModuleReviewFormComponent } from './module-review-form/module-review-form.component';
+import { HeaderBarComponent } from './header-bar/header-bar.component';
 
 @Component({
   selector: 'app-root',
