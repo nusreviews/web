@@ -11,11 +11,19 @@
     text-align: center;
 }
 
-.verdict {
-    display: block;
+.verdict-container {
+    text-align: center;
+}
+
+.verdict-label {
     color: #607D8B;
     margin: 1em;
     text-align: center;
+    display: inline-block;
+}
+
+.verdict-image {
+    display: inline-block;
 }
 
 .ratings-bar {
