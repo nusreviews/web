@@ -1,9 +1,53 @@
 .module-card {
+	list-style-type: none;
+	padding: 1em;
+	height: 100%;
+}
+
+/* .module-card {
 	margin: 0.5em 0 0.5em 0;
 	list-style-type: none;
 	padding: 0 1em 0 1em;
 	width: 100%;
+} */
+
+.module-info-container {
+	text-align: left;
 }
+
+.module-code-label {
+	font-size: 1.5em;
+	font-weight: 400;
+}
+
+.module-name-label {
+	font-size: 1.5em;
+	font-weight: 300;
+	color: #37474f;
+}
+
+.verdict-container {
+	height: 100%;
+	padding: 1em;
+}
+
+.verdict-label {
+	text-align: center;
+	font-size: 2.2em;
+	font-weight: 400;
+	color: white;
+}
+
+.recommend-label {
+	text-align: center;
+	color: white;
+	font-weight: 100;
+	font-size: 1em;
+}
+
+
+
+
 .module-card li {
 	cursor: pointer;
 	position: relative;

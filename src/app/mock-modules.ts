@@ -8,7 +8,13 @@ export const MODULES: Module[] = [
     modCredits: 4, 
     professor: 'TAN SOON HUAT, GARY', 
     lastTaught: 'AY2016/2017 SEM 2', 
-    lastReviewed: '1/1/2017',
+    lastReviewed: '3/5/2017',
+    overallVerdict: 'recommend',
+    percentageRecommend: 58,
+    teachingRating: 3,
+    enjoyabilityRating: 3,
+    difficultyRating: 3,
+    workloadRating: 3
   },
   { 
     id: 2, 
@@ -17,7 +23,13 @@ export const MODULES: Module[] = [
     modCredits: 4, 
     professor: 'LOW KOK LIM', 
     lastTaught: 'AY2016/2017 SEM 2', 
-    lastReviewed: '1/1/2017',
+    lastReviewed: '31/8/2017',
+    overallVerdict: 'not-recommend',
+    percentageRecommend: 22,
+    teachingRating: 1,
+    enjoyabilityRating: 2,
+    difficultyRating: 4,
+    workloadRating: 4
   },
   { 
     id: 3, 
@@ -27,6 +39,12 @@ export const MODULES: Module[] = [
     professor: 'HENZ, MARTIN', 
     lastTaught: 'AY2016/2017 SEM 1', 
     lastReviewed: '1/1/2017', 
+    overallVerdict: 'recommend',
+    percentageRecommend: 82,
+    teachingRating: 4,
+    enjoyabilityRating: 4,
+    difficultyRating: 5,
+    workloadRating: 5
   },
   { 
     id: 4, 
@@ -35,7 +53,13 @@ export const MODULES: Module[] = [
     modCredits: 4, 
     professor: 'TAN TUCK CHOY, AARON', 
     lastTaught: 'AY2016/2017 SEM 2', 
-    lastReviewed: '1/1/2017',
+    lastReviewed: '24/7/2017',
+    overallVerdict: 'not-recommend',
+    percentageRecommend: 46,
+    teachingRating: 3,
+    enjoyabilityRating: 3,
+    difficultyRating: 3,
+    workloadRating: 3
   },
   { 
     id: 5, 
@@ -44,7 +68,13 @@ export const MODULES: Module[] = [
     modCredits: 4, 
     professor: 'CHONG KET FAH', 
     lastTaught: 'AY2016/2017 SEM 2', 
-    lastReviewed: '1/1/2017',
+    lastReviewed: '23/6/2017',
+    overallVerdict: 'recommend',
+    percentageRecommend: 74,
+    teachingRating: 4,
+    enjoyabilityRating: 4,
+    difficultyRating: 5,
+    workloadRating: 5
   },
   { 
     id: 6, 
@@ -53,7 +83,13 @@ export const MODULES: Module[] = [
     modCredits: 4, 
     professor: 'OOI WEI TSANG', 
     lastTaught: 'AY2016/2017 SEM 2', 
-    lastReviewed: '1/1/2017',
+    lastReviewed: '18/9/2017',
+    overallVerdict: 'recommend',
+    percentageRecommend: 93,
+    teachingRating: 5,
+    enjoyabilityRating: 5,
+    difficultyRating: 5,
+    workloadRating: 5
   },
   { 
     id: 7, 
@@ -62,7 +98,13 @@ export const MODULES: Module[] = [
     modCredits: 4, 
     professor: 'SOH SOON HONG, HAROLD', 
     lastTaught: 'AY2016/2017 SEM 2', 
-    lastReviewed: '1/1/2017',
+    lastReviewed: '27/10/2017',
+    overallVerdict: 'recommend',
+    percentageRecommend: 83,
+    teachingRating: 4,
+    enjoyabilityRating: 4,
+    difficultyRating: 4,
+    workloadRating: 4
   },
   { id: 8, 
     code: 'CS2100', 
@@ -71,6 +113,12 @@ export const MODULES: Module[] = [
     professor: 'WONG WENG FAI\nSUPPIAH, RAVI', 
     lastTaught: 'AY2016/2017 SEM 2', 
     lastReviewed: '1/1/2017',
+    overallVerdict: 'recommend',
+    percentageRecommend: 58,
+    teachingRating: 3,
+    enjoyabilityRating: 3,
+    difficultyRating: 3,
+    workloadRating: 3
   },
   { 
     id: 9, 
@@ -80,6 +128,12 @@ export const MODULES: Module[] = [
     professor: 'EXTERNAL', 
     lastTaught: 'NOT APPLICABLE', 
     lastReviewed: '1/1/2017',
+    overallVerdict: 'recommend',
+    percentageRecommend: 58,
+    teachingRating: 3,
+    enjoyabilityRating: 3,
+    difficultyRating: 3,
+    workloadRating: 3
   },
   { 
     id: 10, 
@@ -89,5 +143,11 @@ export const MODULES: Module[] = [
     professor: 'LEE MONG LI, JANICE\nBRESSAN, STEPHANE', 
     lastTaught: 'AY2016/2017 SEM 2', 
     lastReviewed: '1/1/2017',
+    overallVerdict: 'recommend',
+    percentageRecommend: 58,
+    teachingRating: 3,
+    enjoyabilityRating: 3,
+    difficultyRating: 3,
+    workloadRating: 3
   },
 ];

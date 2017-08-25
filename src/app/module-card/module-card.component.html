@@ -1,23 +1,52 @@
-<div *ngIf="module" class="module-card">
-  <div class="row">
-    <div class="sixcol">
-      <span>
-        <label class="badge">{{module.id}}</label><label class="text"><strong>{{module.code}}</strong></label>
-        <span class="text">{{module.modName}}</span>
-      </span>
-    </div>
-    <div class="threecol">
-      <div>
-        <span><label class="badge">Last Reviewed</label><label class="text">{{module.lastReviewed}}</label></span>
+<div *ngIf="module" class=" row module-card card grey lighten-5 valign-wrapper">
+      <div class="col s5 module-info-container">
+        <div class="row">
+          <h5 class="module-code-label">{{module.code}}</h5>
+        </div>
+        <div class="row">
+          <label class="module-name-label text-">{{module.modName}}</label>
+        </div>
       </div>
-    </div>
-    <div class="threecol last">
-      <div>
-        <span><label class="badge">Verdict</label><label class="text">58% Recommended</label></span>
+
+      <div class="col s5">
+          <div class="row">
+              <label>Last Reviewed On</label>
+          </div>
+        <div class="row">
+            <span>{{module.lastReviewed}}</span>
+        </div>
+        
       </div>
-    </div>
-  </div>
-  <!--<div class="row">
-    <button class="cta-button">RATE</button>
-  </div>-->
+      
+      <div class="col s2 card verdict-container" [ngClass]="module.percentageRecommend < 25 ? 'red darken-1' : module.percentageRecommend < 50 ? 'deep-orange darken-1' : module.percentageRecommend < 75 ? 'yellow darken-2' : 'green'">
+        <div class="row">
+            <label class="verdict-label">{{module.percentageRecommend}}%</label>
+        </div>
+        <div class="row">
+            <label class="recommend-label">Recommended</label>
+        </div>
+        
+      </div>
 </div>
+
+<!-- <div *ngIf="module" class="module-card">
+    <div class="row">
+      <div class="sixcol">
+        <span>
+          <label class="badge">{{module.id}}</label><label class="text"><strong>{{module.code}}</strong></label>
+          <span class="text">{{module.modName}}</span>
+        </span>
+      </div>
+      <div class="threecol">
+        <div>
+          <span><label class="badge">Last Reviewed</label><label class="text">{{module.lastReviewed}}</label></span>
+        </div>
+      </div>
+      <div class="threecol last">
+        <div>
+          <span><label class="badge">Verdict</label><label class="text">58% Recommended</label></span>
+        </div>
+      </div>
+    </div>
+  </div>-->
+  

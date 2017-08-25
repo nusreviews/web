@@ -13,17 +13,22 @@
 
 .verdict-container {
     text-align: center;
+    height: 100%;
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .verdict-label {
     color: #3DAD4D;
-    margin: 1em;
+    margin: auto;
     text-align: center;
     display: inline-block;
 }
 
 .verdict-image {
     display: inline-block;
+    height: 2.7em;
 }
 
 .ratings-bar {
