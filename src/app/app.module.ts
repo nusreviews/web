@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -36,7 +37,8 @@ import { ReviewListComponent } from './review-list/review-list.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     ModuleService,

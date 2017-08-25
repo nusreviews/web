@@ -1,1 +1,21 @@
-<div>Review #{{review.id}}</div>
+<div class="row">
+    <div class="card  grey lighten-4">
+        <div class="card-content">
+            <div class="card-title author-label">
+                {{review.author}} 
+                <span [ngClass]="review.isRecommend === true ?'recommend-text':'not-recommend-text'">{{review.isRecommend === true ? "recommends" : "does not recommend"}}</span>
+                this module
+            </div>
+            <div class="ratings-container">Ratings placeholder</div>
+            <p class="comments-text">{{review.comments}}</p>
+            <p class="date-label">Last updated on {{review.dateLastEdited}}</p>
+        </div> 
+        <div class="card-action">
+            <a class="action-label green-text text-darken-2" href="#">Helpful</a>
+            <a class="action-label red-text text-darken-3" href="#">Not Helpful</a>
+            <a class="like-label action-label blue-text text-darken-1" href="#">LIKE</a>
+        </div>
+    </div>
+</div>
+
+
