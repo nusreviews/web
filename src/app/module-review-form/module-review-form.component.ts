@@ -1,9 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { forEach } from 'lodash';
 
-import { ModuleReviewFormHeaderComponent } from './module-review-form-header/module-review-form-header.component';
-import { ModuleReviewFormFooterComponent } from './module-review-form-footer/module-review-form-footer.component';
-
 @Component({
   selector: 'module-review-form',
   templateUrl: './module-review-form.component.html',
@@ -16,6 +13,8 @@ export class ModuleReviewFormComponent implements OnInit {
   @ViewChild('module_enjoyability_rating') moduleEnjoyabilityRating;
   @ViewChild('overall_rating') overallRating;
   @ViewChild('comments') comments;
+
+  public moduleCode = "CS3216: Software Product Engineering for Digital Markets";
 
   constructor() { }
 

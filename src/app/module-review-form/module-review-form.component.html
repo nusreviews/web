@@ -1,32 +1,42 @@
-<module-review-form-header></module-review-form-header>
-<div class="module-review-form-container">
-  <div class="teaching-staff-quality-container module-review-input-container">
-    <span class="teaching-staff-quality-label module-review-input-item">
-      Quality of Teaching Staffs: 
+<mz-card [backgroundClass]="'grey lighten-4'">
+  <mz-card-title>
+    <span class="flow-text card-title center-align">
+      <strong>Write a review for {{moduleCode}}</strong>
     </span>
-    <star-rating-comp class="teaching-staff-quality-input module-review-input-item" [starType]="'svg'" [staticColor]="'ok'" #staff_quality_rating></star-rating-comp>
-  </div>
-  <div class="module-difficulty-level-container module-review-input-container">
-    <span class="module-difficulty-level-label module-review-input-item">
-      Difficulty Level of Module: 
-    </span>
-    <star-rating-comp class="module-difficulty-level-input module-review-input-item" [starType]="'svg'" [staticColor]="'ok'" #module_difficulty_rating></star-rating-comp>
-  </div>
-  <div class="module-enjoyability-level-container module-review-input-container">
-    <span class="module-enjoyability-level-label module-review-input-item">
-      Enjoyability Level of Module: 
-    </span>
-    <star-rating-comp class="module-enjoyability-level-input module-review-input-item" [starType]="'svg'" [staticColor]="'ok'" #module_enjoyability_rating></star-rating-comp>
-  </div>
-  <div class="module-overall-recommendation-container module-review-input-container">
-    <span class="module-overall-recommendation-label module-review-input-item">
-      Overall Recommendations: 
-    </span>
-    <star-rating-comp class="module-overall-recommendation-input module-review-input-item" [starType]="'svg'" [staticColor]="'ok'" #overall_rating></star-rating-comp>
-  </div>
-  <div class="module-comments-container module-review-input-container">
-    <label for="module-comments-input" class="module-review-input-item">Comments: </label>
-    <input name="module-comments-input" class="module-review-input-item" type="text" #comments>
-  </div>
-</div>
-<module-review-form-footer (onSubmit)="onSubmit()"></module-review-form-footer>
+  </mz-card-title>
+  <mz-card-content class="card-content">
+    <div class="valign-wrapper card-content-item">
+      <span class="flow-text card-content-item-label">
+        Quality of Teaching Staffs: 
+      </span>
+      <star-rating-comp class="card-content-item-rating" [starType]="'svg'" [staticColor]="'ok'" #staff_quality_rating></star-rating-comp>
+    </div>
+    <div class="row valign-wrapper card-content-item">
+      <span class="flow-text card-content-item-label">
+        Difficulty Level of Module: 
+      </span>
+      <star-rating-comp class="card-content-item-rating" [starType]="'svg'" [staticColor]="'ok'" #module_difficulty_rating></star-rating-comp>
+    </div>
+    <div class="row valign-wrapper card-content-item">
+      <span class="flow-text card-content-item-label">
+        Enjoyability Level of Module: 
+      </span>
+      <star-rating-comp class="col card-content-item-rating" [starType]="'svg'" [staticColor]="'ok'" #module_enjoyability_rating></star-rating-comp>
+    </div>
+    <div class="row valign-wrapper card-content-item">
+      <span class="flow-text card-content-item-label">
+        Overall Recommendations: 
+      </span>
+      <star-rating-comp class="card-content-item-rating"[starType]="'svg'" [staticColor]="'ok'" #overall_rating></star-rating-comp>
+    </div>
+    <div class="row card-content-item">
+      <label for="module-comments-input" class="flow-text col s12">Comments: </label>
+      <input name="module-comments-input" type="text" class="col s12" #comments>
+    </div>
+  </mz-card-content>
+  <mz-card-action class="card-action">
+    <button mz-button>
+      Submit
+    </button>
+  </mz-card-action>
+</mz-card>
