@@ -31,6 +31,14 @@
     height: 2.7em;
 }
 
+.thumbs-up-image {
+    content: url("../../assets/images/thumbs-up.png");
+}
+
+.thumbs-down-image {
+    content: url("../../assets/images/thumbs-down.png");
+}
+
 .ratings-bar {
     display: block;
     margin: auto;
