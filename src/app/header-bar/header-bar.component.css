@@ -2,6 +2,13 @@
     padding-left: 0.5em;
 }
 
+.logo-image {
+    height: 4em;
+    margin: auto;
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+}
+
 /* .navbar {
     display: flex;
     position: fixed;
