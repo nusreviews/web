@@ -13,14 +13,14 @@
               <label>Last Reviewed On</label>
           </div>
         <div class="row">
-            <span>29 Aug 2017</span>
+            <span>{{module.lastReviewed}}</span>
         </div>
         
       </div>
       
-      <div class="col s2 card green verdict-container">
+      <div class="col s2 card verdict-container" [ngClass]="module.percentageRecommend < 25 ? 'red darken-1' : module.percentageRecommend < 50 ? 'deep-orange darken-1' : module.percentageRecommend < 75 ? 'yellow darken-2' : 'green'">
         <div class="row">
-            <label class="verdict-label">82%</label>
+            <label class="verdict-label">{{module.percentageRecommend}}%</label>
         </div>
         <div class="row">
             <label class="recommend-label">Recommended</label>
