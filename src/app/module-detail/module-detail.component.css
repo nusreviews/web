@@ -1,28 +1,36 @@
-.container {
-    text-align: center;
-}
 
 .module-code {
     color: #000000;
     left: .1em;
+    text-align: center;
 }
 
 .module-name {
     color: #000000;
     left: .1em;
+    text-align: center;
 }
 
-.verdict {
-    display: block;
-    color: #607D8B;
+.verdict-container {
+    text-align: center;
+}
+
+.verdict-label {
+    color: #3DAD4D;
     margin: 1em;
+    text-align: center;
+    display: inline-block;
+}
+
+.verdict-image {
+    display: inline-block;
 }
 
 .ratings-bar {
     display: block;
     margin: auto;
-    width: 400px;
-    height: 25px;
+    width: 50em;
+    height: 3em;
 }
 
 .ratings-bar-recommend {
@@ -41,7 +49,12 @@
     margin-top: 2em;
     margin-bottom: 2em;
     display: block;
-    height: .1em;
+    height: 1px;
     width: 100%;
     background-color: #2d2a2b;
+}
+
+.module-detail-section-header {
+    font-size: 1.5em;
+    color: #7D7D7D;
 }

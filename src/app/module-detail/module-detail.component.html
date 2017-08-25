@@ -1,16 +1,28 @@
-<div *ngIf="module">
-  <div class="container">
-      <h2 class="module-code">{{module.code}}</h2>
-      <h2 class="module-name">{{module.modName}}</h2>
-      <div>
-        <label class="verdict">68% Recommended</label>
-      </div>
-      <div class="ratings-bar">
-          <div class="ratings-bar-recommend" style="width: 68%"></div> <!-- Dynamically change the numbers for this width-->
-          <div class="ratings-bar-not-recommend" style="width: 32%"></div>
-      </div>
-      <div class="divider"></div>
+<div class="container">
+    <div *ngIf="module">
+        <h2 class="module-code">{{module.code}}</h2>
+        <h2 class="module-name">{{module.modName}}</h2>
+        <div class="row verdict-container">
+          <h3 class="verdict-label">68% Recommended!</h3>
+          <!-- <img class="verdict-image responsive-img" src="../../images/thumbs-up.png"> -->
+        </div>
+        <div class="row ratings-bar">
+            <div materialize="tooltip" class="tooltipped ratings-bar-recommend" data-position="top" data-delay="30" data-tooltip="68% recommended!" style="width: 68%"></div> <!-- Dynamically change the numbers for this width-->
+            <div materialize="tooltip" class="tooltipped ratings-bar-not-recommend" data-position="bottom" data-delay="30" data-tooltip="32% not recommended!" style="width: 32%"></div>
+        </div>
+  
+    <div class="divider"></div>
+    <label class="module-detail-section-header">MODULE INFO</label>
+    <p>This module is about teaching programming.</p>
+  
+    <div class="divider"></div>
+    <label class="module-detail-section-header">WRITE A REVIEW</label>
+    <p>Review Card Here</p>
+  
+    <div class="divider"></div>
+    <label class="module-detail-section-header">WHAT STUDENTS SAY</label>
+    <app-review-list></app-review-list>
+  
   </div>
-  <label class="review-list-header">What Students Say</label>
-  <app-review-list></app-review-list>
 </div>
+

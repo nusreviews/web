@@ -1,0 +1,32 @@
+.author-label {
+    font-weight: bold;
+}
+.recommend-text {
+    color: #64dd17;
+}
+
+.not-recommend-text {
+    color: #c62828;
+}
+
+.comments-text {
+    font-size: 1.25em;
+}
+
+.ratings-container {
+    padding-top: 1.5em;
+    padding-bottom: 2em;
+}
+
+.action-label {
+    font-weight: bold;
+}
+
+.like-label {
+    float: right;
+}
+
+.date-label {
+    float: right;
+    font-style: italic;
+}
