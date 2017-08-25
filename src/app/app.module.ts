@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { StarRatingModule } from 'angular-star-rating';
 import { MaterializeModule } from 'ng2-materialize';
+import { FacebookModule } from 'ngx-facebook';
 
 import { ModuleService } from './module.service';
 import { ReviewsService } from './reviews.service';
@@ -45,9 +46,10 @@ import { TermsOfServicePageComponent } from './terms-of-service-page/terms-of-se
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     StarRatingModule.forRoot(),
     MaterializeModule.forRoot(),
-    BrowserAnimationsModule
+    FacebookModule.forRoot()
   ],
   providers: [
     ModuleService,

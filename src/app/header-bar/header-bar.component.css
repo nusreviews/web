@@ -9,6 +9,10 @@
     padding-top: 0.5em;
 }
 
+.fb-login {
+    padding: 0 15px;
+}
+
 /* .navbar {
     display: flex;
     position: fixed;

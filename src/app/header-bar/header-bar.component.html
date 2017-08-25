@@ -12,7 +12,18 @@
       <ul *ngFor="let option of navOptions" id="nav-mobile" class="right hide-on-med-and-down">
         <li><a routerLink={{option.link}}>{{option.name}}</a></li>
       </ul>
+      <div *ngIf="fbProfile;else login">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a class="right fb-login" (click)="logoutFromFacebook()">Logout</a></li>
+        </ul>
+      </div>
     </div>
 </nav>
 
 <router-outlet></router-outlet>
+
+<ng-template #login>
+  <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <li><a class="right fb-login" (click)="loginWithFacebook()">Login with FB</a></li>
+  </ul>
+</ng-template>
