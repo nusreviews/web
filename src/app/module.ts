@@ -6,4 +6,11 @@ export class Module {
     professor: string;
     lastTaught: string;
     lastReviewed: string;
+    overallVerdict: string; // recommend, not-recommend
+    percentageRecommend: number;
+    teachingRating: number;
+    enjoyabilityRating: number;
+    difficultyRating: number;
+    workloadRating: number;
+
 }
