@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import { ModuleService } from '../module.service';
+import { ModuleReviewFormComponent } from '../module-review-form/module-review-form.component';
 
 @Component({
   selector: 'app-module-detail',

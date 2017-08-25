@@ -1,0 +1,42 @@
+<mz-card [backgroundClass]="'grey lighten-4'">
+  <mz-card-title>
+    <span class="flow-text card-title ">
+      <strong>Write a review for </strong>{{moduleCode}}
+    </span>
+  </mz-card-title>
+  <mz-card-content class="card-content">
+    <div class="row valign-wrapper card-content-item">
+      <span class="flow-text col s5 push-s1">
+        Quality of Teaching Staffs: 
+      </span>
+      <star-rating-comp class="col s6" [starType]="'svg'" [staticColor]="'ok'" #staff_quality_rating></star-rating-comp>
+    </div>
+    <div class="row valign-wrapper card-content-item">
+      <span class="flow-text col s5 push-s1">
+        Difficulty Level of Module: 
+      </span>
+      <star-rating-comp class="col s6" [starType]="'svg'" [staticColor]="'ok'" #module_difficulty_rating></star-rating-comp>
+    </div>
+    <div class="row valign-wrapper card-content-item">
+      <span class="flow-text  col s5 push-s1">
+        Enjoyability Level of Module: 
+      </span>
+      <star-rating-comp class="col col s6" [starType]="'svg'" [staticColor]="'ok'" #module_enjoyability_rating></star-rating-comp>
+    </div>
+    <div class="row valign-wrapper card-content-item">
+      <span class="flow-text col s5 push-s1">
+        Overall Recommendations: 
+      </span>
+      <star-rating-comp class="col s6"[starType]="'svg'" [staticColor]="'ok'" #overall_rating></star-rating-comp>
+    </div>
+    <div class="row card-content-item">
+      <label for="module-comments-input" class="flow-text col s10 push-s1">Comments: </label>
+      <input name="module-comments-input" type="text" class="col s10 push-s1" #comments>
+    </div>
+  </mz-card-content>
+  <mz-card-action class="card-action">
+    <button mz-button (click)="onSubmit()">
+      Submit
+    </button>
+  </mz-card-action>
+</mz-card>

@@ -8,6 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+import { StarRatingModule } from 'angular-star-rating';
+import { MaterializeModule } from 'ng2-materialize';
+
 import { ModuleService } from './module.service';
 import { ReviewsService } from './reviews.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -16,9 +19,9 @@ import { HeaderBarComponent } from './header-bar/header-bar.component';
 import { AboutComponent } from './about/about.component';
 import { ModuleDetailComponent } from './module-detail/module-detail.component';
 
-import { StarRatingModule } from 'angular-star-rating';
 import { ReviewListItemComponent } from './review-list-item/review-list-item.component';
 import { ReviewListComponent } from './review-list/review-list.component';
+import { ModuleReviewFormComponent } from './module-review-form/module-review-form.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { ReviewListComponent } from './review-list/review-list.component';
     ModuleDetailComponent,
     ReviewListItemComponent,
     ReviewListComponent,
+    ModuleReviewFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,7 @@ import { ReviewListComponent } from './review-list/review-list.component';
     HttpModule,
     AppRoutingModule,
     StarRatingModule.forRoot(),
+    MaterializeModule.forRoot(),
     BrowserAnimationsModule
   ],
   providers: [
