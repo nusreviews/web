@@ -14,7 +14,7 @@ export class ModuleReviewFormComponent implements OnInit {
   @ViewChild('staff_quality_rating') staffQualityRating;
   @ViewChild('module_difficulty_rating') moduleDifficultyRating;
   @ViewChild('module_enjoyability_rating') moduleEnjoyabilityRating;
-  @ViewChild('overall_rating') overallRating;
+  @ViewChild('module_workload_rating') moduleWorkloadRating;
   @ViewChild('comments') comments;
 
   @Input() module: Module;
