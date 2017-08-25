@@ -1,5 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+
 import { forEach } from 'lodash';
+
+import { Module } from '../module';
 
 @Component({
   selector: 'module-review-form',
@@ -11,15 +14,14 @@ export class ModuleReviewFormComponent implements OnInit {
   @ViewChild('staff_quality_rating') staffQualityRating;
   @ViewChild('module_difficulty_rating') moduleDifficultyRating;
   @ViewChild('module_enjoyability_rating') moduleEnjoyabilityRating;
-  @ViewChild('overall_rating') overallRating;
+  @ViewChild('module_workload_rating') moduleWorkloadRating;
   @ViewChild('comments') comments;
 
-  public moduleCode = "CS3216: Software Product Engineering for Digital Markets";
+  @Input() module: Module;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit() {
     var unfilledRatingNames = [];

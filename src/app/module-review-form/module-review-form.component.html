@@ -1,7 +1,7 @@
 <mz-card [backgroundClass]="'grey lighten-4'">
   <mz-card-title>
-    <span class="flow-text card-title ">
-      <strong>Write a review for </strong>{{moduleCode}}
+    <span class="flow-text card-title center-align">
+      <strong>Write a review for </strong>{{module.code}}: {{module.modName}}
     </span>
   </mz-card-title>
   <mz-card-content class="card-content">
@@ -25,9 +25,9 @@
     </div>
     <div class="row valign-wrapper card-content-item">
       <span class="flow-text col s5 push-s1">
-        Overall Recommendations: 
+        Workload of Module: 
       </span>
-      <star-rating-comp class="col s6"[starType]="'svg'" [staticColor]="'ok'" #overall_rating></star-rating-comp>
+      <star-rating-comp class="col s6"[starType]="'svg'" [staticColor]="'ok'" #module_workload_rating></star-rating-comp>
     </div>
     <div class="row card-content-item">
       <label for="module-comments-input" class="flow-text col s10 push-s1">Comments: </label>
