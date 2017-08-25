@@ -13,11 +13,19 @@ export class HeaderBarComponent implements OnInit {
   navOptions: NavOption[] = [
     {
       name: "Modules",
-      link: "/dashboard",
+      link: "/dashboard"
     },
     {
       name: "About",
-      link: "/about",
+      link: "/about"
+    }, 
+    {
+      name: "Privacy", 
+      link: "/privacy"
+    },
+    {
+      name: "Terms", 
+      link: "/tos"
     }
   ];
 
