@@ -7,8 +7,8 @@
                 <img class="verdict-image responsive-img" src="../../assets/images/thumbs-up.png">          
         </div>
         <div class="row ratings-bar">
-            <div materialize="tooltip" class="tooltipped ratings-bar-recommend" data-position="bottom" data-delay="30" data-tooltip="68% recommended!" style="width: 68%"></div> <!-- Dynamically change the numbers for this width-->
-            <div materialize="tooltip" class="tooltipped ratings-bar-not-recommend" data-position="bottom" data-delay="30" data-tooltip="32% not recommended!" style="width: 32%"></div>
+            <div materialize="tooltip" class="tooltipped ratings-bar-recommend" [attr.data-tooltip]="module.percentageRecommend + '% recommended'" data-position="bottom" data-delay="30" data-tooltip=" recommended!" [ngStyle]="{'width.%': module.percentageRecommend}"></div> <!-- Dynamically change the numbers for this width-->
+            <div materialize="tooltip" class="tooltipped ratings-bar-not-recommend" data-position="bottom" data-delay="30" [attr.data-tooltip]="100 - module.percentageRecommend + '% not recommended'" [ngStyle]="{'width.%': (100 - module.percentageRecommend)}"></div>
         </div>
   
     <div class="divider"></div>
