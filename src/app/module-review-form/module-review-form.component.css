@@ -5,32 +5,14 @@
   padding: 0;
 }
 
-.card-content .row{
-  margin: 15px;
-}
-
-.card-content-item {
-  align-items: center;
-  display: flex;
-  flex-flow: row wrap;
-  margin: 12px;
-  justify-content: center;
-}
-
-.card-content-item input {
-  padding: 0;
-  margin: 0 0.75rem;
-}
-
-.card-content-item-label, 
-.card-content-item-rating {
-  min-width: 50%;
-}
-
 .card-title {
   padding: 12px;
 }
 
-.row {
-  margin: 0;
+.row .col.s5 {
+  margin-left: 0;
+}
+
+.row .col{
+  padding: 0;
 }
