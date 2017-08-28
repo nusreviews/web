@@ -1,3 +1,9 @@
-<p>
-  like-button works!
-</p>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<a class="btn-flat" (click)="onClick()">
+  <i class="material-icons left icon-pink">{{iconName}}</i>
+  {{numLikes}} Likes
+</a>
+
