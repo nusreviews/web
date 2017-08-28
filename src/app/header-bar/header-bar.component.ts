@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavOption } from '../navOption';
+import { UserLoginComponent } from '../user-login/user-login.component';
 
 @Component({
   selector: 'app-header-bar',
@@ -8,9 +9,9 @@ import { NavOption } from '../navOption';
 })
 export class HeaderBarComponent implements OnInit {
 
-  appName: string = "NUS REVIEWS";
+  public appName: string = "NUS REVIEWS";
 
-  navOptions: NavOption[] = [
+  public navOptions: NavOption[] = [
     {
       name: "Modules",
       link: "/dashboard"
@@ -28,8 +29,6 @@ export class HeaderBarComponent implements OnInit {
       link: "/tos"
     }
   ];
-
-  constructor() { }
 
   ngOnInit() {
   }
