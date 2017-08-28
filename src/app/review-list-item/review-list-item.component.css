@@ -2,11 +2,15 @@
     font-weight: bold;
 }
 .recommend-text {
-    color: #64dd17;
+    color: #4caf50; /* Materialize Green */
 }
 
 .not-recommend-text {
-    color: #c62828;
+    color: #e53935; /* Materialize Red Darken-1 */
+}
+
+.comments-container {
+    margin: 2em 0em 2em 0em;
 }
 
 .comments-text {
@@ -14,8 +18,7 @@
 }
 
 .ratings-container {
-    padding-top: 1.5em;
-    padding-bottom: 2em;
+    margin: 2em 0em 2em 0em;
 }
 
 .action-label {
@@ -26,7 +29,11 @@
     float: right;
 }
 
+.date-container {
+    margin: 1em 0em 1em 0em;
+    text-align: right;
+}
+
 .date-label {
-    float: right;
-    font-style: italic;
+    font-style: italic; 
 }
