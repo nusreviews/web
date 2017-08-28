@@ -25,6 +25,7 @@ import { ReviewListComponent } from './review-list/review-list.component';
 import { ModuleReviewFormComponent } from './module-review-form/module-review-form.component';
 import { PrivacyPageComponent } from './privacy-page/privacy-page.component';
 import { TermsOfServicePageComponent } from './terms-of-service-page/terms-of-service-page.component';
+import { UserLoginComponent } from './user-login/user-login.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { TermsOfServicePageComponent } from './terms-of-service-page/terms-of-se
     ModuleReviewFormComponent,
     PrivacyPageComponent,
     TermsOfServicePageComponent,
+    UserLoginComponent,
   ],
   imports: [
     BrowserModule,
