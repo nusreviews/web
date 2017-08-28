@@ -3,7 +3,8 @@
 }
 
 .container {
-	margin: 2em;
+	margin: auto;
+	margin-top: 4em;
 	width: 100%;
 	text-align: center;
 }
