@@ -20,7 +20,6 @@
 }
 
 .verdict-label {
-    color: #3DAD4D;
     margin: auto;
     text-align: center;
     display: inline-block;
@@ -49,13 +48,13 @@
 .ratings-bar-recommend {
     float: left;
     height: 100%;
-    background-color: #5be75f
+    background-color: #4caf50; /* Materialize Green */
 }
 
 .ratings-bar-not-recommend {
     float: right;
     height: 100%;
-    background-color: #f35468
+    background-color: #e53935; /* Materialize Red Darken-1 */
 }
 
 .divider {
