@@ -38,6 +38,11 @@
     font-style: italic; 
 }
 
-.test {
-    font-weight: bold;
+.rating-label {
+    font-size: 1.25em;
+    font-weight: 500;
+}
+
+.star-rating-container {
+    float: left;
 }
