@@ -9,7 +9,8 @@
     <div class="nav-wrapper yellow darken-2">
       <img class="logo-image responsive-img" src="../../assets/images/nusreviews_logo.png">          
       <a href="#" class="brand-logo header-label">NUSReviews</a>
-      <ul *ngFor="let option of navOptions" id="nav-mobile" class="right hide-on-med-and-down">
+      <user-login class="right"></user-login>
+      <ul *ngFor="let option of navOptions" class="right hide-on-med-and-down nav-mobile">
         <li><a routerLink={{option.link}}>{{option.name}}</a></li>
       </ul>
     </div>
