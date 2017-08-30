@@ -26,6 +26,7 @@ import { ModuleReviewFormComponent } from './module-review-form/module-review-fo
 import { PrivacyPageComponent } from './privacy-page/privacy-page.component';
 import { TermsOfServicePageComponent } from './terms-of-service-page/terms-of-service-page.component';
 import { UserLoginComponent } from './user-login/user-login.component';
+import { LikeButtonComponent } from './like-button/like-button.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { UserLoginComponent } from './user-login/user-login.component';
     PrivacyPageComponent,
     TermsOfServicePageComponent,
     UserLoginComponent,
+    LikeButtonComponent,
   ],
   imports: [
     BrowserModule,
