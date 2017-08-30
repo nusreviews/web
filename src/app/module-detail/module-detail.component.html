@@ -6,10 +6,6 @@
                 <h3 class=" verdict-label" [ngClass]="module.percentageRecommend < 50 ? 'red-text' : 'green-text'">{{module.percentageRecommend}}%</h3>
                 <img class="verdict-image responsive-img" [ngClass]="module.percentageRecommend < 50 ? 'thumbs-down-image' : 'thumbs-up-image'">          
         </div>
-        <!-- <div class="row ratings-bar">
-            <div materialize="tooltip" class="tooltipped ratings-bar-recommend green lighten-1" [attr.data-tooltip]="module.percentageRecommend + '% recommended'" data-position="bottom" data-delay="30" data-tooltip=" recommended!" [ngStyle]="{'width.%': module.percentageRecommend}"></div>
-            <div materialize="tooltip" class="tooltipped ratings-bar-not-recommend red lighten-1" data-position="bottom" data-delay="30" [attr.data-tooltip]="100 - module.percentageRecommend + '% not recommended'" [ngStyle]="{'width.%': (100 - module.percentageRecommend)}"></div>
-        </div> -->
   
     <div class="divider"></div>
     <label class="module-detail-section-header">MODULE INFO</label>
