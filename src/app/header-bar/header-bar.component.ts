@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavOption } from '../navOption';
+import { UserLoginComponent } from '../user-login/user-login.component';
 
 @Component({
   selector: 'app-header-bar',
@@ -8,20 +9,26 @@ import { NavOption } from '../navOption';
 })
 export class HeaderBarComponent implements OnInit {
 
-  appName: string = "NUS REVIEWS";
+  public appName: string = "NUS REVIEWS";
 
-  navOptions: NavOption[] = [
+  public navOptions: NavOption[] = [
     {
       name: "Modules",
-      link: "/dashboard",
+      link: "/dashboard"
     },
     {
       name: "About",
-      link: "/about",
+      link: "/about"
+    }, 
+    {
+      name: "Privacy", 
+      link: "/privacy"
+    },
+    {
+      name: "Terms", 
+      link: "/tos"
     }
   ];
-
-  constructor() { }
 
   ngOnInit() {
   }

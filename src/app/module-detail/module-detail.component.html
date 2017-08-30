@@ -3,12 +3,27 @@
         <h2 class="module-code">{{module.code}}</h2>
         <h2 class="module-name">{{module.modName}}</h2>
         <div class="row verdict-container center-align">
-                <h3 class=" verdict-label">{{module.percentageRecommend}}%</h3>
-                <img class="verdict-image responsive-img" src="../../assets/images/thumbs-up.png">          
+                <h3 class=" verdict-label" [ngClass]="module.percentageRecommend < 50 ? 'red-text' : 'green-text'">{{module.percentageRecommend}}%</h3>
+                <img class="verdict-image responsive-img" [ngClass]="module.percentageRecommend < 50 ? 'thumbs-down-image' : 'thumbs-up-image'">          
         </div>
-        <div class="row ratings-bar">
-            <div materialize="tooltip" class="tooltipped ratings-bar-recommend" data-position="bottom" data-delay="30" data-tooltip="68% recommended!" style="width: 68%"></div> <!-- Dynamically change the numbers for this width-->
-            <div materialize="tooltip" class="tooltipped ratings-bar-not-recommend" data-position="bottom" data-delay="30" data-tooltip="32% not recommended!" style="width: 32%"></div>
+
+        <div class="row ratings-container center-align">
+            <div class="col m6 l3">
+                <star-rating-comp class="row star-rating-container" [readOnly]="true" [(rating)]="module.teachingRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+                <div class="row flow-text ratings-label ">Teaching Staff</div>
+            </div>
+            <div class="col m6 l3">
+                <star-rating-comp class="row star-rating-container" [readOnly]="true" [rating]="module.difficultyRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+                <div class="row flow-text ratings-label">Difficulty</div>
+            </div>
+            <div class="col m6 l3">
+                <star-rating-comp class="row star-rating-container" [readOnly]="true" [rating]="module.enjoyabilityRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+                <div class="row flow-text ratings-label ">Enjoyability</div>
+            </div>
+            <div class="col m6 l3">
+                <star-rating-comp class="row star-rating-container" [readOnly]="true" [rating]="module.workloadRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+                <div class="row flow-text ratings-label ">Workload</div>
+            </div>
         </div>
   
     <div class="divider"></div>

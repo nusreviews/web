@@ -20,7 +20,6 @@
 }
 
 .verdict-label {
-    color: #3DAD4D;
     margin: auto;
     text-align: center;
     display: inline-block;
@@ -31,23 +30,20 @@
     height: 2.7em;
 }
 
-.ratings-bar {
-    display: block;
-    margin: auto;
-    width: 50em;
-    height: 3em;
+.thumbs-up-image {
+    content: url("../../assets/images/thumbs-up.png");
 }
 
-.ratings-bar-recommend {
-    float: left;
-    height: 100%;
-    background-color: #5be75f
+.thumbs-down-image {
+    content: url("../../assets/images/thumbs-down.png");
 }
 
-.ratings-bar-not-recommend {
-    float: right;
-    height: 100%;
-    background-color: #f35468
+.ratings-container {
+    padding-bottom: 1em;
+}
+
+.ratings-label {
+    font-size: 1.25em;
 }
 
 .divider {
