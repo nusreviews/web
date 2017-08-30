@@ -30,6 +30,10 @@
     float: right;
 }
 
+.share-button-label {
+    font-weight: 500;
+}
+
 .date-container {
     margin: 1em 0em 1em 0em;
     text-align: right;
