@@ -1,0 +1,5 @@
+.temp-footer {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  padding: 25px 0;
+}
