@@ -1,0 +1,6 @@
+.footer {
+  align-items: center;
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  height: 100px;
+}
