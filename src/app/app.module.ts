@@ -17,6 +17,7 @@ import { ReviewsService } from './reviews.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ModuleCardComponent } from './module-card/module-card.component';
 import { HeaderBarComponent } from './header-bar/header-bar.component';
+import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import { AboutComponent } from './about/about.component';
 import { ModuleDetailComponent } from './module-detail/module-detail.component';
 
@@ -44,6 +45,7 @@ import { LikeButtonComponent } from './like-button/like-button.component';
     TermsOfServicePageComponent,
     UserLoginComponent,
     LikeButtonComponent,
+    FooterBarComponent
   ],
   imports: [
     BrowserModule,
