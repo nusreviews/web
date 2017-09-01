@@ -6,7 +6,7 @@
         <div *ngIf="reviews;else loading_reviews">
           <div *ngIf="reviews.length>0;else no_reviews">
             <li *ngFor="let review of reviews">
-              <app-review-list-item [review]="review"></app-review-list-item>
+              <app-review-list-item [review]="review" [showModName]="true"></app-review-list-item>
             </li>
           </div>
         </div>

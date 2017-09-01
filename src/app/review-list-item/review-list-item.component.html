@@ -1,17 +1,14 @@
 <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<div class="row">
+<div id="{{'review' + review.id}}" class="row">
     <div [ngClass]="review.isRecommend === true ?'card green lighten-5':'card red lighten-5'">
         <div class="card-content">
-            <div class="card-title author-label flow-text">
-                {{review.author}} 
-                <span [ngClass]="review.isRecommend === true ?'recommend-text':'not-recommend-text'">{{review.isRecommend === true ? "recommends" : "does not recommend"}}</span>
-                this module
-            </div>
-            <div *ngIf="review.moduleId" class="row card-content-item">
+            <div *ngIf="!showModName;else show_modName">
                 <div class="card-title author-label flow-text">
-                    <span class="rating-label flow-text col s6">Review of Module {{review.moduleId}}</span>
+                    {{review.author}} 
+                    <span [ngClass]="review.isRecommend === true ?'recommend-text':'not-recommend-text'">{{review.isRecommend === true ? "recommends" : "does not recommend"}}</span>
+                    this module
                 </div>
             </div>
             <div class="ratings-container">
@@ -55,4 +52,11 @@
     </div>
 </div>
 
-
+<ng-template #show_modName>
+    <div class="card-title author-label flow-text">
+        {{review.author}} 
+        <span [ngClass]="review.isRecommend === true ?'recommend-text':'not-recommend-text'">{{review.isRecommend === true ? "recommends" : "does not recommend"}}</span>
+        <!--<a [routerLink]="['/moduledetail', review.moduleId, 'true']">{{moduleName}}</a>-->
+        <a routerLink='/moduledetail/{{review.moduleId}}' fragment="{{'review' + review.id}}">{{moduleName}}</a>
+    </div>
+</ng-template>

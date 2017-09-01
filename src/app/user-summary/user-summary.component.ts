@@ -31,7 +31,7 @@ export class UserSummaryComponent implements OnInit {
       .subscribe(user => {
         this.user = user;
         this.reviewsService.getReviewsByUserId(this.user.id)
-          .then(reviews => this.reviews = reviews);
+          .then(reviews => this.reviews = reviews)
       });
     
   }

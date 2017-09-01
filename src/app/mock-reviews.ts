@@ -3,7 +3,7 @@ import { Review } from './review';
 export const REVIEWS: Review[] = [
     {
         id: 1,
-        moduleId: 0,
+        moduleId: 1,
         userId: '1',
         author: "Skylevis Sam",
         comments: "Enjoyable module, 10/10 would take again.",
@@ -17,7 +17,7 @@ export const REVIEWS: Review[] = [
     },
     {
         id: 2,
-        moduleId: 1,
+        moduleId: 2,
         author: "Tom Riddle",
         userId: '2',
         comments: "Bad module, 0/10 would not recommend.",
@@ -31,7 +31,7 @@ export const REVIEWS: Review[] = [
     },
     {
         id: 3,
-        moduleId: 2,
+        moduleId: 3,
         author: "Graham Number",
         userId: '3',
         comments: "The module is so-so.",
@@ -45,7 +45,7 @@ export const REVIEWS: Review[] = [
     },
     {
         id: 4,
-        moduleId: 3,
+        moduleId: 4,
         author: "Procrastination",
         userId: '5',
         comments: "",
@@ -59,7 +59,7 @@ export const REVIEWS: Review[] = [
     },
     {
         id: 5,
-        moduleId: 4,
+        moduleId: 5,
         author: "Just another user",
         userId: '6',
         comments: "",
@@ -73,7 +73,7 @@ export const REVIEWS: Review[] = [
     },
     {
         id: 6,
-        moduleId: 5,
+        moduleId: 6,
         author: "THe loNg WiNdED",
         userId: '7',
         comments: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of 'de Finibus Bonorum et Malorum' (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, 'Lorem ipsum dolor sit amet..', comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from 'de Finibus Bonorum et Malorum' by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
@@ -87,7 +87,7 @@ export const REVIEWS: Review[] = [
     },
     {
         id: 7,
-        moduleId: 6,
+        moduleId: 7,
         author: "Skylevis",
         userId: '1',
         comments: "so wow, much awesome",
