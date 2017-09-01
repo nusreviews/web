@@ -1,0 +1,12 @@
+<div class='container'>
+  <div class="row">
+    <div *ngIf="user;else no_such_user">
+      <ul class="modules">
+        <h2>{{user.username}}'s Profile</h2>
+        <li *ngFor="let module of modules" (click)="onSelect(module)" class="fit-height">
+          <app-module-card [module]="module"></app-module-card>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

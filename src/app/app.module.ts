@@ -14,6 +14,8 @@ import { FacebookModule } from 'ngx-facebook';
 
 import { ModuleService } from './module.service';
 import { ReviewsService } from './reviews.service';
+import { UserService } from './user.service';
+
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ModuleCardComponent } from './module-card/module-card.component';
 import { HeaderBarComponent } from './header-bar/header-bar.component';
@@ -28,6 +30,7 @@ import { PrivacyPageComponent } from './privacy-page/privacy-page.component';
 import { TermsOfServicePageComponent } from './terms-of-service-page/terms-of-service-page.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { LikeButtonComponent } from './like-button/like-button.component';
+import { UserSummaryComponent } from './user-summary/user-summary.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { LikeButtonComponent } from './like-button/like-button.component';
     TermsOfServicePageComponent,
     UserLoginComponent,
     LikeButtonComponent,
-    FooterBarComponent
+    FooterBarComponent,
+    UserSummaryComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,7 @@ import { LikeButtonComponent } from './like-button/like-button.component';
   providers: [
     ModuleService,
     ReviewsService,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })

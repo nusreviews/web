@@ -1,13 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable }    from '@angular/core';
+import { Headers, Http } from '@angular/http';
 import { Module } from './module';
 import { MODULES } from './mock-modules';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class ModuleService {
 
-  constructor() { }
+  constructor(private http: Http) { }
 
   getModules(): Promise<Module[]> {
+    this.http.get('https://api.nusreviews.com/getModulesFullAttribute')
+             .toPromise()
+             .then(response => console.log(response.json()))
+             .catch(this.handleError);
+
     return Promise.resolve(MODULES);
   }
   getModulesSlowly(): Promise<Module[]> {
@@ -21,5 +28,10 @@ export class ModuleService {
   }
   getModuleByCode(code: string): Promise<Module> {
       return this.getModules().then(modules => modules.find(module => module.code === name));
+  }
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 }
