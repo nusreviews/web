@@ -28,9 +28,12 @@ export class UserSummaryComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap
       .switchMap((params: ParamMap) => this.userService.getUserById(params.get('id')))
-      .subscribe(user => this.user = user);
-    this.reviewsService.getReviewsByUserId(this.user.id)
-      .then(reviews => this.reviews = reviews);
+      .subscribe(user => {
+        this.user = user;
+        this.reviewsService.getReviewsByUserId(this.user.id)
+          .then(reviews => this.reviews = reviews);
+      });
+    
   }
 
 }

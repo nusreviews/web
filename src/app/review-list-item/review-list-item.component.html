@@ -9,6 +9,11 @@
                 <span [ngClass]="review.isRecommend === true ?'recommend-text':'not-recommend-text'">{{review.isRecommend === true ? "recommends" : "does not recommend"}}</span>
                 this module
             </div>
+            <div *ngIf="review.moduleId" class="row card-content-item">
+                <div class="card-title author-label flow-text">
+                    <span class="rating-label flow-text col s6">Review of Module {{review.moduleId}}</span>
+                </div>
+            </div>
             <div class="ratings-container">
                 <div class="row card-content-item">
                     <div class="col s12 l6">
