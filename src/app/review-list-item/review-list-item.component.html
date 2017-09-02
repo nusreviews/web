@@ -15,22 +15,22 @@
                 <div class="row card-content-item">
                     <div class="col s12 l6">
                         <span class="rating-label flow-text col s6">Teaching Team</span>
-                        <star-rating-comp class="col s4 star-rating-container" [starType]="'svg'" [staticColor]="'ok'" #staff_quality_rating></star-rating-comp>
+                        <star-rating-comp class="col s4 star-rating-container" [readOnly]="true" [(rating)]="review.teachingTeamRating" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
                     </div>
 
                     <div class="col s12 l6">
                     <span class="rating-label flow-text col s6">Difficulty</span>
-                        <star-rating-comp class="col s4 star-rating-container" [starType]="'svg'" [staticColor]="'ok'" #difficulty_rating></star-rating-comp>
+                        <star-rating-comp class="col s4 star-rating-container" [readOnly]="true" [(rating)]="review.difficultyRating" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
                     </div>  
 
                     <div class="col s12 l6">
                         <span class="rating-label flow-text col s6">Enjoyability</span>
-                        <star-rating-comp class="col s4 star-rating-container" [starType]="'svg'" [staticColor]="'ok'" #enjoyability_rating></star-rating-comp>
+                        <star-rating-comp class="col s4 star-rating-container" [readOnly]="true" [(rating)]="review.enjoyabilityRating" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
                     </div>
 
                     <div class="col s12 l6">
                         <span class="rating-label flow-text col s6">Workload</span>
-                        <star-rating-comp class="col s4 star-rating-container" [starType]="'svg'" [staticColor]="'ok'" #workload_rating></star-rating-comp>
+                        <star-rating-comp class="col s4 star-rating-container" [readOnly]="true" [(rating)]="review.workloadRating" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
                     </div>       
                 </div>
             </div>
@@ -45,7 +45,9 @@
         <div class="card-action">
             <div class="row" style="margin-bottom: 0em">
                 <a class="col s6 l3 action-label" style="margin-right: 0em"><like-button></like-button></a>
-                <a class="col s6 l2 waves-effect btn-flat center-align" style="margin-right: 0em"><span class="blue-text lighten-1 test">Share</span></a>
+                <a class="col s6 l2 waves-effect btn-flat center-align" style="margin-right: 0em">
+                    <span class="blue-text lighten-1 share-button-label">Share</span>
+                </a>
             </div>
             
         </div>
