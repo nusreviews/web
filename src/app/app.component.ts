@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderBarComponent } from './header-bar/header-bar.component';
+import { FooterBarComponent } from './footer-bar/footer-bar.component';
 
 @Component({
   selector: 'app-root',

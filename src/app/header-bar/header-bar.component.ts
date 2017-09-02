@@ -3,7 +3,7 @@ import { NavOption } from '../navOption';
 import { UserLoginComponent } from '../user-login/user-login.component';
 
 @Component({
-  selector: 'app-header-bar',
+  selector: 'header-bar',
   templateUrl: './header-bar.component.html',
   styleUrls: ['./header-bar.component.css']
 })
