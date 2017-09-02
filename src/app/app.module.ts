@@ -14,6 +14,7 @@ import { FacebookModule } from 'ngx-facebook';
 
 import { ModuleService } from './module.service';
 import { ReviewsService } from './reviews.service';
+import { LoginService } from './login.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ModuleCardComponent } from './module-card/module-card.component';
 import { HeaderBarComponent } from './header-bar/header-bar.component';
@@ -60,6 +61,7 @@ import { LikeButtonComponent } from './like-button/like-button.component';
   providers: [
     ModuleService,
     ReviewsService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

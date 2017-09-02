@@ -1,6 +1,6 @@
-<div id="fb-login" (click)="toggleFacebookLogin()">
-  <div id="fb-login-content" *ngIf="fbProfile; else login">
-    Logout from {{fbProfile.name}}
+<div id="fb-login" (click)="loginService.toggleFacebookLogin()">
+  <div id="fb-login-content" *ngIf="loginService.getFacebookProfile(); else login">
+    Logout from {{loginService.getFacebookProfile().name}}
   </div>
 </div>
 
