@@ -59,7 +59,7 @@ export class LoginService {
   }
 
   _fetchFacebookProfile() {
-    this.fbService.api('/me?fields=id,email,name').then((res) => {
+    this.fbService.api('/me?fields=id,email,name,picture').then((res) => {
       this.fbProfile = res;
     }).catch((err) => {
       console.error(err);
