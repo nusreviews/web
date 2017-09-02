@@ -20,14 +20,11 @@ export class DashboardComponent implements OnInit {
   constructor(
     private moduleService: ModuleService,
     private router: Router,
-  ) { 
-  }
+  ) { }
 
   ngOnInit(): void {
     this.moduleService.getModulesSlowly()
       .then(modules => this.modules = modules);
-
-    (<any>window).dashboard = this; // Remove this when done
   }
 
   onSelect(module: Module): void {
