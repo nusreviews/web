@@ -46,16 +46,37 @@ export class Module {
         return Math.round(this.percentageRecommend);
     }
 
-    public static deserialiseJson(jsonObject: any) {
+    public static deserialiseJson(jsonObject: JSON) {
+        let avgTeaching = 0;
+        let avgEnjoyability = 0;
+        let avgDifficulty = 0;
+        let avgWorkload = 0;
+
+        if (jsonObject['avgTeaching']) {
+            avgTeaching = jsonObject['avgTeaching'];
+        }
+
+        if (jsonObject['avgEnjoyability']) {
+            avgEnjoyability = jsonObject['avgEnjoyability'];
+        }
+
+        if (jsonObject['avgDifficulty']) {
+            avgDifficulty = jsonObject['avgDifficulty'];
+        }
+
+        if (jsonObject['avgWorkload']) {
+            avgWorkload = jsonObject['avgWorkload'];
+        }
+
         let module = new Module(jsonObject['modId'],
                                 jsonObject['name'],
                                 jsonObject['description'],
                                 jsonObject['dateUpdated'],
                                 jsonObject['percentage'],
-                                jsonObject['avgTeaching'],
-                                jsonObject['avgEnjoyability'],
-                                jsonObject['avgDifficulty'],
-                                jsonObject['avgWorkload']);
+                                avgTeaching,
+                                avgEnjoyability,
+                                avgDifficulty,
+                                avgWorkload);
         
         return module;
     }

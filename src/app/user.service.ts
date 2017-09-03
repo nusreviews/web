@@ -18,7 +18,7 @@ export class UserService {
       setTimeout(() => resolve(this.getUsers()), 1000);
     });
   }
-  getUserById(id: string): Promise<User> {
+  getUserById(id: number): Promise<User> {
       return this.getUsers().then(users => users.find(user => user.id === id));
   }
   getModuleByUsername(username: string): Promise<User> {

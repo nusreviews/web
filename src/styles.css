@@ -2,4 +2,18 @@
 .top-padding {
     padding-top: 80px;
 }
+.loading-container {
+	position: relative;
+	height: 200px;
+	border-radius: 10px;
+}
+.empty-container {
+	padding: 2.5em;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+}
+.empty-container .vcenter {
+	position: relative;
+	top: 40%;
+}
 @import "~css-star-rating/dist/css/star-rating.min.css";

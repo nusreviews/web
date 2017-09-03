@@ -15,7 +15,7 @@
       </form>
     </div>
     <div class="row">
-      <div *ngIf="modules;else loading">
+      <div *ngIf="modules;">
         <div *ngIf="modules.length>0;else no_modules">
           <div infiniteScroll
           [infiniteScrollDistance]="2"
@@ -29,7 +29,14 @@
           </div>
         </div>
       </div>
+      <div class="loading-container">
+        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px', backdropBackgroundColour: 'rgba(55,55,55,0.3)', 
+        primaryColour: '#ccccff', secondaryColour: '#aaaaff', tertiaryColour: '#5555ff' }"></ngx-loading>
+      </div>
     </div>
 </div>
-<ng-template #loading>Loading Modules...</ng-template>
-<ng-template #no_modules>There are no such modules</ng-template>
+<ng-template #no_modules>
+  <div class="empty-container">
+    <span class="vcenter"><strong>There are no such modules</strong></span>
+  </div>
+</ng-template>

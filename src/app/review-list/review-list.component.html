@@ -9,5 +9,15 @@
     </div>
   </div>
 </div>
-<ng-template #loading>Loading Reviews...</ng-template>
-<ng-template #no_reviews>There are no reviews for this module yet!</ng-template>
+<ng-template #loading>
+  <div class="loading-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px', backdropBackgroundColour: 'rgba(55,55,55,0.3)', 
+    primaryColour: '#ccccff', secondaryColour: '#aaaaff', tertiaryColour: '#5555ff' }"></ngx-loading>
+  </div>  
+</ng-template>
+<ng-template #no_reviews>
+  <div class="row empty-container">
+    <img class="no-review-image responsive-img" src="../../assets/images/clipboard-greyscale.png"/>                   
+    <span class="flow-text no-review-text">There are no reviews for this module yet!</span>
+  </div>
+</ng-template>

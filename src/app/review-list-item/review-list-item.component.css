@@ -1,6 +1,7 @@
 .author-label {
     font-weight: bold;
     padding-bottom: 1.25em;
+    margin-left: .5em;
 }
 .recommend-text {
     color: #4caf50; /* Materialize Green */
@@ -16,6 +17,7 @@
 
 .comments-text {
     font-size: 1.25em;
+    margin-left: .5em;
 }
 
 .ratings-container {
