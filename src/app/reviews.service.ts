@@ -16,13 +16,15 @@ export class ReviewsService {
 	getReviews(modId: string, userId: string): Promise<Review[]> {
 		let url = 'https://api.nusreviews.com/getReviews?';
 		
-		if (modId == null) {
-			url = url + '&modId=' + modId;
+		if (modId != null) {
+			url = url + '&module=' + modId;
 		}
 		
-		if (userId == null) {
+		if (userId != null) {
 			url = url + '&likedBy=' + userId;
 		}
+
+		console.log(url);
 
 		return this.http.get(url)
         .toPromise()
@@ -32,7 +34,7 @@ export class ReviewsService {
                 let deserialisedReview = Review.deserialiseJson(x);
                 return deserialisedReview;
             });
-            //console.log(reviews);
+            console.log(reviews);
             return reviews;
         }) 
         .catch(this.handleError);
