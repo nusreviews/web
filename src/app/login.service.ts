@@ -7,7 +7,8 @@ import "rxjs/add/operator/toPromise";
 export class LoginService {
 
   public fbService: FacebookService;
-  public fbProfile: string = null;
+  public fbProfile: any = null;
+  public userProfile: any = null;
 
   public fbToken: any = null;
   public jwtToken: any = null;
@@ -39,15 +40,22 @@ export class LoginService {
     });
   }
 
-  getFacebookProfile() {
-    return this.fbProfile;
+  getProfile() {
+    if (this.userProfile === null || this.fbProfile === null) {
+      return null;
+    } else {
+      return {
+        nusreviews: this.userProfile,
+        facebook: this.fbProfile
+      };
+    }
   }
 
   toggleFacebookLogin() {
-    if (this.fbProfile === null) {
-      this._loginWithFacebook();
+    if (this.fbProfile === null || this.userProfile === null) {
+      this.loginWithFacebook();
     } else {
-      this._logoutFromFacebook();
+      this.logoutFromFacebook();
     }
   }
 
@@ -67,7 +75,7 @@ export class LoginService {
     }).toPromise();
   }
 
-  _loginWithFacebook() {
+  loginWithFacebook() {
     this.fbService.login(this.options).then((response: LoginResponse) => {
       this.fbToken = response.authResponse.accessToken;
       return this._fetchFacebookProfile();
@@ -76,17 +84,31 @@ export class LoginService {
     }).then((response) => {
       let jwtToken = response.json()["token"];
       this.jwtToken = jwtToken;
-      return jwtToken;
+      return this._fetchNusreviewsProfile();
+    }).then((response) => {
+      let responseJson = response.json();
+      this.userProfile = responseJson.user;
     }).catch((error: any) => {
       console.error(error);
+      this.logoutFromFacebook();
     });
   }
 
-  _logoutFromFacebook() {
+  logoutFromFacebook() {
     this.fbService.logout().then(() => {
       this.fbProfile = null;
+      this.userProfile = null;
       this.fbToken = null;
       this.jwtToken = null;
+    });
+  }
+
+  _fetchNusreviewsProfile() {
+    return this.secureApiGet("https://api.nusreviews.com/profile").then((res) => {
+      this.userProfile = res;
+      return this.userProfile;
+    }).catch((err) => {
+      console.error(err);
     });
   }
 
