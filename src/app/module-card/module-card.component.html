@@ -1,7 +1,7 @@
 <div *ngIf="module" class=" row module-card card grey lighten-3 valign-wrapper">
   <div class="col s5 module-info-container">
     <div class="row">
-      <h5 class="module-code-label">{{module.code}}</h5>
+      <h5 class="module-code-label">{{module.id}}</h5>
     </div>
     <div class="row">
       <label class="module-name-label text-">{{module.modName}}</label>
@@ -21,7 +21,7 @@
   
   <div class="col s2 card verdict-container" [ngClass]="module.percentageRecommend < 25 ? 'red darken-1' : module.percentageRecommend < 50 ? 'deep-orange darken-1' : module.percentageRecommend < 75 ? 'yellow darken-2' : 'green'">
     <div class="row">
-        <label class="verdict-label">{{module.percentageRecommend}}%</label>
+        <label class="verdict-label">{{module.percentageRecommend | roundWhole }}%</label>
     </div>
     <div class="row">
         <label class="recommend-label">Recommended</label>

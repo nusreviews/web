@@ -32,6 +32,7 @@ import { TermsOfServicePageComponent } from './terms-of-service-page/terms-of-se
 import { UserLoginComponent } from './user-login/user-login.component';
 import { LikeButtonComponent } from './like-button/like-button.component';
 import { UserSummaryComponent } from './user-summary/user-summary.component';
+import { RoundWholePipe } from './round-whole.pipe';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { UserSummaryComponent } from './user-summary/user-summary.component';
     UserLoginComponent,
     LikeButtonComponent,
     FooterBarComponent,
-    UserSummaryComponent
+    UserSummaryComponent,
+    RoundWholePipe
   ],
   imports: [
     BrowserModule,

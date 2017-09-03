@@ -1,10 +1,10 @@
 <div class="container">
     <div *ngIf="module">
-        <h2 class="module-code">{{module.code}}</h2>
+        <h2 class="module-code">{{module.id}}</h2>
         <h2 class="module-name">{{module.modName}}</h2>
         <div class="row verdict-container center-align">
-                <h3 class=" verdict-label" [ngClass]="module.percentageRecommend < 50 ? 'red-text' : 'green-text'">{{module.percentageRecommend}}%</h3>
-                <img class="verdict-image responsive-img" [ngClass]="module.percentageRecommend < 50 ? 'thumbs-down-image' : 'thumbs-up-image'">          
+                <h3 class=" verdict-label" [ngClass]="module.getRoundedPercentage() < 50 ? 'red-text' : 'green-text'">{{module.percentageRecommend | roundWhole}}%</h3>
+                <img class="verdict-image responsive-img" [ngClass]="module.getRoundedPercentage() < 50 ? 'thumbs-down-image' : 'thumbs-up-image'">          
         </div>
 
         <div class="row ratings-container center-align">
@@ -28,7 +28,7 @@
   
     <div class="divider"></div>
     <label class="module-detail-section-header">MODULE INFO</label>
-    <p>This module is about teaching programming.</p>
+    <p class="flow-text description-text">{{module.description}}</p>
   
     <div class="divider"></div>
     <label class="module-detail-section-header">WRITE A REVIEW</label>
