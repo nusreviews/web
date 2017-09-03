@@ -3,7 +3,7 @@ import { Module } from './module'
 export const MODULES: Module[] = [
   //{ 
   //   id: 1, 
-  //   code: 'CS1010', 
+  //   code: 'CS1010',
   //   modName: 'Programming Methodology', 
   //   //modCredits: 4, 
   //   //professor: 'TAN SOON HUAT, GARY', 

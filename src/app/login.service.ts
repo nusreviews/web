@@ -1,25 +1,33 @@
-import { Injectable } from '@angular/core';
-import { FacebookService, InitParams, LoginResponse, LoginOptions } from 'ngx-facebook';
+import { Injectable } from "@angular/core";
+import { Headers, Http } from "@angular/http";
+import { FacebookService, InitParams, LoginResponse, LoginOptions } from "ngx-facebook";
+import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class LoginService {
 
   public fbService: FacebookService;
   public fbProfile: any = null;
+  public userProfile: any = null;
 
+  public fbToken: any = null;
+  public jwtToken: any = null;
+  private http: Http;
+  
   private options: LoginOptions = {
-    scope: 'public_profile, user_friends, email',
+    scope: "public_profile, user_friends, email",
     return_scopes: true,
     enable_profile_selector: true
   };
 
-  constructor(fbService: FacebookService) { 
+  constructor(fbService: FacebookService, http: Http) { 
     this.fbService = fbService;
+    this.http = http;
 
     let initParams: InitParams = {
-      appId: '113701052652102',
+      appId: "113701052652102",
       xfbml: true,
-      version: 'v2.8'
+      version: "v2.8"
     };
 
     this.fbService.init(initParams);
@@ -32,38 +40,94 @@ export class LoginService {
     });
   }
 
-  getFacebookProfile() {
-    return this.fbProfile;
-  }
-
-  toggleFacebookLogin() {
-    if (this.fbProfile === null) {
-      this._loginWithFacebook();
+  getProfile() {
+    if (this.userProfile === null || this.fbProfile === null) {
+      return null;
     } else {
-      this._logoutFromFacebook();
+      return {
+        nusreviews: this.userProfile,
+        facebook: this.fbProfile
+      };
     }
   }
 
-  _loginWithFacebook() {
+  toggleFacebookLogin() {
+    if (this.fbProfile === null || this.userProfile === null) {
+      this.loginWithFacebook();
+    } else {
+      this.logoutFromFacebook();
+    }
+  }
+
+  secureApiGet(url: string) {
+    let headers = new Headers();
+    headers.append("Authorization", "Bearer " + this.jwtToken);
+    return this.http.get(url, {
+      headers: headers
+    }).toPromise();
+  }
+
+  secureApiPost(url: string, body: string) {
+    let headers = new Headers();
+    headers.append("Authorization", "Bearer " + this.jwtToken); 
+    return this.http.post(url, body, {
+      headers: headers
+    }).toPromise();
+  }
+
+  loginWithFacebook() {
     this.fbService.login(this.options).then((response: LoginResponse) => {
-      this._fetchFacebookProfile();
+      this.fbToken = response.authResponse.accessToken;
+      return this._fetchFacebookProfile();
+    }).then((fbProfile) => {
+      return this._generateServerTokens(this.fbToken, this.fbProfile);
+    }).then((response) => {
+      let jwtToken = response.json()["token"];
+      this.jwtToken = jwtToken;
+      return this._fetchNusreviewsProfile();
+    }).then((response) => {
+      let responseJson = response.json();
+      this.userProfile = responseJson.user;
     }).catch((error: any) => {
       console.error(error);
+      this.logoutFromFacebook();
     });
   }
 
-  _logoutFromFacebook() {
+  logoutFromFacebook() {
     this.fbService.logout().then(() => {
       this.fbProfile = null;
+      this.userProfile = null;
+      this.fbToken = null;
+      this.jwtToken = null;
+    });
+  }
+
+  _fetchNusreviewsProfile() {
+    return this.secureApiGet("https://api.nusreviews.com/profile").then((res) => {
+      this.userProfile = res;
+      return this.userProfile;
+    }).catch((err) => {
+      console.error(err);
     });
   }
 
   _fetchFacebookProfile() {
-    this.fbService.api('/me?fields=id,email,name,picture').then((res) => {
+    return this.fbService.api("/me?fields=id,email,name,picture").then((res) => {
       this.fbProfile = res;
+      return this.fbProfile;
     }).catch((err) => {
       console.error(err);
     });
+  }
+
+  _generateServerTokens(fbToken: string, fbProfile: any) {
+    let url = "https://api.nusreviews.com/generateServerToken";
+    let query = "?fbToken=" + fbToken +
+                "&email=" + fbProfile.email +
+                "&name=" + fbProfile.name;
+
+    return this.http.get(url + query).toPromise();
   }
 
 }
