@@ -70,6 +70,7 @@ export class LoginService {
   secureApiPost(url: string, body: string) {
     let headers = new Headers();
     headers.append("Authorization", "Bearer " + this.jwtToken); 
+    headers.append("Content-Type", "application/json");
     return this.http.post(url, body, {
       headers: headers
     }).toPromise();
