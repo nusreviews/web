@@ -8,5 +8,7 @@
 </div>
 
 <ng-template #login>
-  Login with Facebook
+  <div id='fb-login' (click)="loginService.toggleFacebookLogin()">
+    Login with Facebook
+  </div>
 </ng-template>
