@@ -17,8 +17,12 @@ const pageSize = 20;
 
 export class DashboardComponent implements OnInit {
 
+  searchItem = '';
   modules: Module[] = null;
   selectedModule: Module = null;
+  page = 0;
+  canScroll = true;
+  searchedString = "";
 
   page = 0;
   canScroll = true;
@@ -59,7 +63,6 @@ export class DashboardComponent implements OnInit {
       this.searchedString = "";
       return
     }
-
     // Perform search
     this.searchedString = this.searchItem;
     this.loading = true;
@@ -68,7 +71,6 @@ export class DashboardComponent implements OnInit {
       this.loading = false;
       this.modules = modules;
     })
-    
   }
 
   clearSearch(): void {
