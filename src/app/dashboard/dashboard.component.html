@@ -32,9 +32,13 @@
     </div>
 </div>
 <ng-template #loading>
-  <div>
-      <ngx-loading [show]="true" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-  </div>
+  <div class="loading-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px', backdropBackgroundColour: 'rgba(55,55,55,0.3)', 
+    primaryColour: '#ccccff', secondaryColour: '#aaaaff', tertiaryColour: '#5555ff' }"></ngx-loading>
   </div>
 </ng-template>
-<ng-template #no_modules>There are no such modules</ng-template>
+<ng-template #no_modules>
+  <div class="empty-container">
+    <span class="vcenter"><strong>There are no such modules</strong></span>
+  </div>
+</ng-template>

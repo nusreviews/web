@@ -12,6 +12,8 @@ export class ReviewListComponent implements OnInit, AfterViewInit {
 
   reviews: Review[] = null;
   searchItem: string = "";
+  
+  public loading: boolean = true;
 
   constructor(
     private reviewsService: ReviewsService,

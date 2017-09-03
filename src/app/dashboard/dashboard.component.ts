@@ -17,12 +17,16 @@ const pageSize = 20;
 
 export class DashboardComponent implements OnInit {
 
-  searchItem = '';
   modules: Module[] = null;
   selectedModule: Module = null;
+
   page = 0;
   canScroll = true;
+
+  searchItem = '';
   searchedString = "";
+
+  public loading = true;
 
   constructor(
     private moduleService: ModuleService,

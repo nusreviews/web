@@ -24,10 +24,10 @@ export class ModuleService {
         // }) 
         .catch(this.handleError);
     }
-    getModulesSlowly(): Promise<Module[]> {
+    getModulesSlowly(offset, limit): Promise<Module[]> {
         return new Promise(resolve => {
             // Simulate server latency with 1 second delay
-            setTimeout(() => resolve(this.getModules(0, 20)), 1000);
+            setTimeout(() => resolve(this.getModules(offset, limit)), 3000);
         });
     }
     getModulesById(modId: string, strict: boolean, offset: number, limit: number): Promise<Module[]> {
@@ -39,7 +39,6 @@ export class ModuleService {
         .catch(this.handleError);
     }
     
-    // UNUSED 
     private deserialiseJSONToModules(response): Module[] {
         let modules: Module[] = [];
         let jsonArray: [JSON] = response.json()['modules'];
