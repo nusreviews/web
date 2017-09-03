@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
 import { FacebookService, InitParams, LoginResponse, LoginOptions } from 'ngx-facebook';
+import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class LoginService {
 
   public fbService: FacebookService;
   public fbProfile: any = null;
+  public jwtToken: any = null;
+  private http: Http;
 
   private options: LoginOptions = {
     scope: 'public_profile, user_friends, email',
@@ -13,8 +17,9 @@ export class LoginService {
     enable_profile_selector: true
   };
 
-  constructor(fbService: FacebookService) { 
+  constructor(fbService: FacebookService, http: Http) { 
     this.fbService = fbService;
+    this.http = http;
 
     let initParams: InitParams = {
       appId: '113701052652102',
@@ -44,9 +49,27 @@ export class LoginService {
     }
   }
 
+  secureApiGet(url: string) {
+    let headers = new Headers();
+    headers.append('Authorization', this.jwtToken); 
+    return this.http.get(url).toPromise();
+  }
+
+  secureApiPost(url: string, body: string) {
+    let headers = new Headers();
+    headers.append('Authorization', this.jwtToken); 
+    return this.http.post(url, body).toPromise();
+  }
+
   _loginWithFacebook() {
     this.fbService.login(this.options).then((response: LoginResponse) => {
-      this._fetchFacebookProfile();
+      return this._fetchFacebookProfile();
+    }).then(() => {
+      return this.http.get('https://api.nusreviews.com/auth/facebook/start').toPromise();
+    }).then((response) => {
+      let jwtToken = response.json()["token"];
+      this.jwtToken = jwtToken;
+      return jwtToken;
     }).catch((error: any) => {
       console.error(error);
     });
@@ -55,12 +78,14 @@ export class LoginService {
   _logoutFromFacebook() {
     this.fbService.logout().then(() => {
       this.fbProfile = null;
+      this.jwtToken = null;
     });
   }
 
   _fetchFacebookProfile() {
-    this.fbService.api('/me?fields=id,email,name').then((res) => {
+    return this.fbService.api('/me?fields=id,email,name').then((res) => {
       this.fbProfile = res;
+      return this.fbProfile;
     }).catch((err) => {
       console.error(err);
     });
