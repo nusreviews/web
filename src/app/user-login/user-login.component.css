@@ -6,3 +6,15 @@
   background: rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
+
+#fb-login-content {
+  align-items: center;
+  display: flex;
+}
+
+.fb-profile-image {
+  border-radius: 50%;
+  height: 40px;
+  margin-left: 10px;
+  width: 40px;
+}
