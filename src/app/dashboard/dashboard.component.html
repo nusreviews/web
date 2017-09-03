@@ -2,7 +2,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <div class="container">
-
     <div class="row">
       <form class="card">
         <div class="input-field">
@@ -12,15 +11,17 @@
         </div>
       </form>
     </div>
-
     <div class="row">
       <div *ngIf="modules;else loading">
-        <ul class="modules">
-          <li *ngFor="let module of modules" (click)="onSelect(module)" class="fit-height">
-              <app-module-card [module]="module"></app-module-card>
-          </li>
-        </ul>
+        <div *ngIf="modules.length>0;else no_modules">
+          <ul class="modules">
+            <li *ngFor="let module of modules" (click)="onSelect(module)" class="fit-height">
+                <app-module-card [module]="module"></app-module-card>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 </div>
 <ng-template #loading>Loading Modules...</ng-template>
+<ng-template #no_modules>There are no such modules</ng-template>

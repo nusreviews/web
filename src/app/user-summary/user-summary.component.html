@@ -1,0 +1,19 @@
+<div class='container'>
+  <div class="row">
+    <div *ngIf="user;else no_such_user">
+      <ul class="modules">
+        <h2>{{user.username}}'s Profile</h2>
+        <div *ngIf="reviews;else loading_reviews">
+          <div *ngIf="reviews.length>0;else no_reviews">
+            <li *ngFor="let review of reviews">
+              <app-review-list-item [review]="review" [showModName]="true"></app-review-list-item>
+            </li>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+<ng-template #no_such_user>No such User :(</ng-template>
+<ng-template #loading_reviews>Loading Reviews ...</ng-template>
+<ng-template #no_reviews>This User has no reviews yet!</ng-template>

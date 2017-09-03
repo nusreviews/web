@@ -6,6 +6,7 @@ import { AboutComponent } from '../about/about.component';
 import { PrivacyPageComponent } from '../privacy-page/privacy-page.component';
 import { TermsOfServicePageComponent } from '../terms-of-service-page/terms-of-service-page.component';
 import { ModuleDetailComponent }   from '../module-detail/module-detail.component';
+import { UserSummaryComponent } from '../user-summary/user-summary.component';
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'privacy', component: PrivacyPageComponent },
   { path: 'tos', component: TermsOfServicePageComponent },
   { path: 'moduledetail/:id', component: ModuleDetailComponent },
+  { path: 'user/:id', component: UserSummaryComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
