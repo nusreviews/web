@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private moduleService: ModuleService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {

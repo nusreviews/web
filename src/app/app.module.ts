@@ -16,6 +16,7 @@ import { ModuleService } from './module.service';
 import { ReviewsService } from './reviews.service';
 import { UserService } from './user.service';
 
+import { LoginService } from './login.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ModuleCardComponent } from './module-card/module-card.component';
 import { HeaderBarComponent } from './header-bar/header-bar.component';
@@ -67,6 +68,7 @@ import { RoundWholePipe } from './round-whole.pipe';
     ModuleService,
     ReviewsService,
     UserService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
