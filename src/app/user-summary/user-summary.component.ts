@@ -18,6 +18,8 @@ export class UserSummaryComponent implements OnInit {
   @Input() user: User;
   @Input() reviews: Review[];
 
+  public loading: boolean = true;
+
   constructor(
     private userService: UserService,
     private reviewsService: ReviewsService,

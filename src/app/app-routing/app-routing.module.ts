@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'tos', component: TermsOfServicePageComponent },
   { path: 'moduledetail/:id', component: ModuleDetailComponent },
   { path: 'user/:id', component: UserSummaryComponent },
+  { path: '404', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

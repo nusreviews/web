@@ -21,9 +21,13 @@ export class ModuleCardComponent implements OnInit {
 
   }
 
-  loadModuleByCode(code: string) {
-    this.moduleService.getModuleByCode(code)
-    .then(mod => this.module = mod);
+  loadModuleById(modId: string) {
+    this.moduleService.getModulesById(modId, true, 0, 1)
+    .then(modules => {
+      if (modules.length > 0) {
+        this.module = modules[0];
+      }
+    })
   }
 
 }

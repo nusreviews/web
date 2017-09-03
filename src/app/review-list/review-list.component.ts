@@ -15,6 +15,8 @@ export class ReviewListComponent implements OnInit {
   userId: number = null; // null for now. Should use api to retrieve 
 
   @Input() moduleId: string;
+  
+  public loading: boolean = true;
 
   constructor(
     private reviewsService: ReviewsService,

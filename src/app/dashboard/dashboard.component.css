@@ -1,14 +1,12 @@
 .search-bar-container {
 	margin: auto;
 }
-
 .container {
 	margin: auto;
 	margin-top: 4em;
 	width: 100%;
 	text-align: center;
 }
-
 .selected {
 	background-color: #CFD8DC;
 	color: white;
