@@ -1,19 +1,12 @@
-<div>
-  <div id="fb-login-content" *ngIf="loginService.getFacebookProfile(); else login">
-    <div class="fb-content">
-      <a class="valign-wrapper" [routerLink]="['/user/' + loginService.getFacebookProfile().id]">
-      <img class="fb-profile-image" [src]="loginService.getFacebookProfile().picture.data.url">
-      {{loginService.getFacebookProfile().name}}
-      </a>
-    </div>
-    <div class="fb-content" (click)="loginService.toggleFacebookLogin()">
-      Logout
-    </div>
+<div id="fb-login" (click)="loginService.toggleFacebookLogin()">
+  <div id="fb-login-content" *ngIf="loginService.getProfile(); else login">
+    <span>
+      Logout from {{loginService.getProfile().facebook.name}}
+    </span>
+    <img class="fb-profile-image" [src]="loginService.getProfile().facebook.picture.data.url">
   </div>
 </div>
 
 <ng-template #login>
-  <div id='fb-login' (click)="loginService.toggleFacebookLogin()">
-    Login with Facebook
-  </div>
+  Login with Facebook
 </ng-template>

@@ -3,7 +3,7 @@ export class Module {
     code: string;
     modName: string;
     //modCredits: number;
-    description: string;
+    //////////////////////description: string;
     //professor: string;
     //lastTaught: string;
     lastReviewed: string;
@@ -25,7 +25,7 @@ export class Module {
                 workloadRating: number) {
                     this.id = id;
                     this.modName = modName;
-                    this.description = description;
+                    //this.description = description;
                     this.lastReviewed = lastReviewed;
                     this.percentageRecommend = percentageRecommend;
                     this.teachingRating = teachingRating;
