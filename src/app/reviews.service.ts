@@ -13,7 +13,7 @@ export class ReviewsService {
 	// If modId != null, returns a list of reviews for that module
 	// If userId != null, returns a list of reviews, with information on whether
 	// the input userId has liked the reviews or not.
-	getReviews(modId: string, userId: string): Promise<Review[]> {
+	getReviews(modId: string, userId: number): Promise<Review[]> {
 		let url = 'https://api.nusreviews.com/getReviews?';
 		
 		if (modId != null) {
@@ -53,7 +53,7 @@ export class ReviewsService {
 
 
 	// Return list of reviews written by the input user
-	getReviewsByUserId(userId: string): Promise<Review[]> {
+	getReviewsByUserId(userId: number): Promise<Review[]> {
 		return this.http.get('https://api.nusreviews.com/getReviews?user=' + userId)
         .toPromise()
         .then(response => {
