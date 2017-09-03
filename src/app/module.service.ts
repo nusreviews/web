@@ -10,12 +10,18 @@ export class ModuleService {
   constructor(private http: Http) { }
 
   getModules(): Promise<Module[]> {
-    this.http.get('https://api.nusreviews.com/getModulesFullAttribute')
+    return this.http.get('https://api.nusreviews.com/getModulesFullAttribute')
              .toPromise()
-             .then(response => console.log(response.json()))
+             .then(response => {
+                let jsonArray = response.json()["modules"];
+                let modules = jsonArray.map(function(x) {
+                  let deserialisedModule = Module.deserialiseJson(x);
+                  return deserialisedModule;
+                });
+                console.log(modules);
+                return modules;
+              }) 
              .catch(this.handleError);
-
-    return Promise.resolve(MODULES);
   }
   getModulesSlowly(): Promise<Module[]> {
     return new Promise(resolve => {

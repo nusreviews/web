@@ -23,8 +23,11 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.moduleService.getModulesSlowly()
-      .then(modules => this.modules = modules);
+    this.moduleService.getModules()
+      .then(modules => {
+        console.log(modules);
+        this.modules = modules
+      });
   }
 
   onSelect(module: Module): void {
