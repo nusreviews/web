@@ -42,6 +42,10 @@ export class Module {
         }
     }
 
+    private getRoundedPercentage() {
+        return Math.round(this.percentageRecommend);
+    }
+
     public static deserialiseJson(jsonObject: JSON) {
         let module = new Module(jsonObject['modId'],
                                 jsonObject['name'],
