@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   selectedModule: Module = null;
   page = 0;
   canScroll = true;
-  searchInvoked = false;
+  searchedString = "";
 
   constructor(
     private moduleService: ModuleService,
@@ -50,21 +50,21 @@ export class DashboardComponent implements OnInit {
       this.canScroll = true;
     } else {
       this.searchItem = "";
-      this.searchInvoked = false;
+      this.searchedString = "";
       return
     }
     this.moduleService.getModulesById(this.searchItem, false, 0, pageSize)
     .then(modules => {
       this.modules = modules;
     })
-    this.searchInvoked = true;
+    this.searchedString = this.searchItem;
   }
 
   clearSearch(): void {
     this.searchItem = "";
     this.canScroll = true;
     this.page = 0;
-    this.searchInvoked = false;
+    this.searchedString = "";
     var offset = this.page * pageSize;
     this.moduleService.getModules(offset, pageSize)
       .then(modules => {
