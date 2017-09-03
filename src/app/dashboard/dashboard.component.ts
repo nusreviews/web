@@ -4,6 +4,8 @@ import { Module } from '../module';
 import { ModuleService } from '../module.service';
 import { ModuleCardComponent } from '../module-card/module-card.component';
 
+const pageSize = 20;
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -12,10 +14,12 @@ import { ModuleCardComponent } from '../module-card/module-card.component';
     '../../structure.css'
   ]
 })
+
 export class DashboardComponent implements OnInit {
 
   modules: Module[] = null;
   selectedModule: Module = null;
+  page = 0;
 
   constructor(
     private moduleService: ModuleService,
@@ -23,10 +27,10 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.moduleService.getModules()
+    var offset = this.page * pageSize;
+    this.moduleService.getModules(offset, pageSize)
       .then(modules => {
-        console.log(modules);
-        this.modules = modules
+        this.modules = modules;
       });
   }
 
@@ -37,5 +41,14 @@ export class DashboardComponent implements OnInit {
 
   submit(searchItem: string): void {
     console.log(searchItem);
+  }
+
+  onScroll(): void {
+    this.page += 1;
+    var offset = this.page * pageSize;
+    this.moduleService.getModules(offset, pageSize)
+      .then(modules => {
+        this.modules = this.modules.concat(modules);
+      });
   }
 }

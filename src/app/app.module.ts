@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { StarRatingModule } from 'angular-star-rating';
 import { MaterializeModule } from 'ng2-materialize';
@@ -52,7 +53,7 @@ import { RoundWholePipe } from './round-whole.pipe';
     LikeButtonComponent,
     FooterBarComponent,
     UserSummaryComponent,
-    RoundWholePipe
+    RoundWholePipe,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +63,8 @@ import { RoundWholePipe } from './round-whole.pipe';
     BrowserAnimationsModule,
     StarRatingModule.forRoot(),
     MaterializeModule.forRoot(),
-    FacebookModule.forRoot()
+    FacebookModule.forRoot(),
+    InfiniteScrollModule,
   ],
   providers: [
     ModuleService,

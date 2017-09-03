@@ -14,11 +14,16 @@
     <div class="row">
       <div *ngIf="modules;else loading">
         <div *ngIf="modules.length>0;else no_modules">
-          <ul class="modules">
-            <li *ngFor="let module of modules" (click)="onSelect(module)" class="fit-height">
-                <app-module-card [module]="module"></app-module-card>
-            </li>
-          </ul>
+          <div infiniteScroll
+          [infiniteScrollDistance]="2"
+          [infiniteScrollThrottle]="300"
+          (scrolled)="onScroll()">
+            <ul class="modules">
+              <li *ngFor="let module of modules" (click)="onSelect(module)" class="fit-height">
+                  <app-module-card [module]="module"></app-module-card>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

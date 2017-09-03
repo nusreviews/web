@@ -9,8 +9,8 @@ export class ModuleService {
     
     constructor(private http: Http) { }
     
-    getModules(): Promise<Module[]> {
-        return this.http.get('https://api.nusreviews.com/getModulesFullAttribute')
+    getModules(offset, limit): Promise<Module[]> {
+        return this.http.get('https://api.nusreviews.com/getModulesFullAttribute?offset=' + offset + '&limit=' + limit)
         .toPromise()
         .then(response => {
             let jsonArray = response.json()["modules"];
@@ -26,7 +26,7 @@ export class ModuleService {
     getModulesSlowly(): Promise<Module[]> {
         return new Promise(resolve => {
             // Simulate server latency with 1 second delay
-            setTimeout(() => resolve(this.getModules()), 1000);
+            setTimeout(() => resolve(this.getModules(0, 20)), 1000);
         });
     }
     getModuleById(id: string): Promise<Module> {
@@ -53,7 +53,7 @@ export class ModuleService {
     
     // UNUSED 
     getModuleByCode(code: string): Promise<Module> {
-        return this.getModules().then(modules => modules.find(module => module.code === name));
+        return this.getModules(0, 20).then(modules => modules.find(module => module.code === name));
     }
     
     private handleError(error: any): Promise<any> {
