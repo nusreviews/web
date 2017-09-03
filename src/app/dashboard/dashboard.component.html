@@ -5,20 +5,28 @@
     <div class="row">
       <form class="card">
         <div class="input-field">
-          <input id="search" type="search" required placeholder="Search modules">
+          <input id="searchbar" name="searchbar" #search type="search" (keyup.enter)="submit(search.value); search.blur();" [(ngModel)]="searchItem" required placeholder="Enter a module code here (Eg: CS2100)">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons" style="padding-top:0.25em">close</i>
+          <i class="material-icons" style="padding-top:0.25em" (click)="clearSearch()">close</i>
+          <div *ngIf="searchedString.length > 0">
+            <span>Searching for '{{searchedString}}'</span>
+          </div>
         </div>
       </form>
     </div>
     <div class="row">
       <div *ngIf="modules;else loading">
         <div *ngIf="modules.length>0;else no_modules">
-          <ul class="modules">
-            <li *ngFor="let module of modules" (click)="onSelect(module)" class="fit-height">
-                <app-module-card [module]="module"></app-module-card>
-            </li>
-          </ul>
+          <div infiniteScroll
+          [infiniteScrollDistance]="2"
+          [infiniteScrollThrottle]="300"
+          (scrolled)="onScroll()">
+            <ul class="modules">
+              <li *ngFor="let module of modules" (click)="onSelect(module)" class="fit-height">
+                  <app-module-card [module]="module"></app-module-card>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
