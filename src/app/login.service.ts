@@ -1,18 +1,20 @@
-import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
-import { FacebookService, InitParams, LoginResponse, LoginOptions } from 'ngx-facebook';
-import 'rxjs/add/operator/toPromise';
+import { Injectable } from "@angular/core";
+import { Headers, Http } from "@angular/http";
+import { FacebookService, InitParams, LoginResponse, LoginOptions } from "ngx-facebook";
+import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class LoginService {
 
   public fbService: FacebookService;
-  public fbProfile: any = null;
+  public fbProfile: string = null;
+
+  public fbToken: any = null;
   public jwtToken: any = null;
   private http: Http;
-
+  
   private options: LoginOptions = {
-    scope: 'public_profile, user_friends, email',
+    scope: "public_profile, user_friends, email",
     return_scopes: true,
     enable_profile_selector: true
   };
@@ -22,9 +24,9 @@ export class LoginService {
     this.http = http;
 
     let initParams: InitParams = {
-      appId: '113701052652102',
+      appId: "113701052652102",
       xfbml: true,
-      version: 'v2.8'
+      version: "v2.8"
     };
 
     this.fbService.init(initParams);
@@ -51,21 +53,26 @@ export class LoginService {
 
   secureApiGet(url: string) {
     let headers = new Headers();
-    headers.append('Authorization', this.jwtToken); 
-    return this.http.get(url).toPromise();
+    headers.append("Authorization", this.jwtToken);
+    return this.http.get(url, {
+      headers: headers
+    }).toPromise();
   }
 
   secureApiPost(url: string, body: string) {
     let headers = new Headers();
-    headers.append('Authorization', this.jwtToken); 
-    return this.http.post(url, body).toPromise();
+    headers.append("Authorization", this.jwtToken); 
+    return this.http.post(url, body, {
+      headers: headers
+    }).toPromise();
   }
 
   _loginWithFacebook() {
     this.fbService.login(this.options).then((response: LoginResponse) => {
+      this.fbToken = response.authResponse.accessToken;
       return this._fetchFacebookProfile();
-    }).then(() => {
-      return this.http.get('https://api.nusreviews.com/auth/facebook/start').toPromise();
+    }).then((fbProfile) => {
+      return this._generateServerTokens(this.fbToken, this.fbProfile);
     }).then((response) => {
       let jwtToken = response.json()["token"];
       this.jwtToken = jwtToken;
@@ -78,17 +85,27 @@ export class LoginService {
   _logoutFromFacebook() {
     this.fbService.logout().then(() => {
       this.fbProfile = null;
+      this.fbToken = null;
       this.jwtToken = null;
     });
   }
 
   _fetchFacebookProfile() {
-    return this.fbService.api('/me?fields=id,email,name').then((res) => {
+    return this.fbService.api("/me?fields=id,email,name").then((res) => {
       this.fbProfile = res;
       return this.fbProfile;
     }).catch((err) => {
       console.error(err);
     });
+  }
+
+  _generateServerTokens(fbToken: string, fbProfile: any) {
+    let url = "https://api.nusreviews.com/generateServerToken";
+    let query = "?fbToken=" + fbToken +
+                "&email=" + fbProfile.email +
+                "&name=" + fbProfile.name;
+
+    return this.http.get(url + query).toPromise();
   }
 
 }
