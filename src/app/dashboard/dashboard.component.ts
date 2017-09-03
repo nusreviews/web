@@ -25,7 +25,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.moduleService.getModules()
       .then(modules => {
-        console.log(modules);
         this.modules = modules
       });
   }
