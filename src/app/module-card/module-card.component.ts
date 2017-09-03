@@ -22,8 +22,8 @@ export class ModuleCardComponent implements OnInit {
   }
 
   loadModuleByCode(code: string) {
-    this.moduleService.getModuleByCode(code)
-    .then(mod => this.module = mod);
+    // this.moduleService.getModuleByCode(code)
+    // .then(mod => this.module = mod);
   }
 
 }

@@ -5,9 +5,12 @@
     <div class="row">
       <form class="card">
         <div class="input-field">
-          <input id="search" #search type="search" (keyup.enter)="submit(search.value)" required placeholder="Enter a module code here (Eg: CS2100)">
+          <input id="searchbar" name="searchbar" #search type="search" (keyup.enter)="submit(search.value)" [(ngModel)]="searchItem" required placeholder="Enter a module code here (Eg: CS2100)">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons" style="padding-top:0.25em">close</i>
+          <i class="material-icons" style="padding-top:0.25em" (click)="clearSearch()">close</i>
+          <div *ngIf="searchInvoked">
+            <span>Searching for '{{searchItem}}'</span>
+          </div>
         </div>
       </form>
     </div>

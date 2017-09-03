@@ -21,9 +21,9 @@ export class ModuleDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => this.moduleService.getModuleById(params.get('id')))
-      .subscribe(module => this.module = module);
+    // this.route.paramMap
+    //   .switchMap((params: ParamMap) => this.moduleService.getModuleById(params.get('id')))
+    //   .subscribe(module => this.module = module);
   }
 }
 

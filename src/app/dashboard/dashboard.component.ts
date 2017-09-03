@@ -17,9 +17,12 @@ const pageSize = 20;
 
 export class DashboardComponent implements OnInit {
 
+  searchItem = '';
   modules: Module[] = null;
   selectedModule: Module = null;
   page = 0;
+  canScroll = true;
+  searchInvoked = false;
 
   constructor(
     private moduleService: ModuleService,
@@ -39,16 +42,59 @@ export class DashboardComponent implements OnInit {
     this.selectedModule = module;
   }
 
+  // Commit a search
   submit(searchItem: string): void {
-    console.log(searchItem);
+    if (searchItem.trim().toUpperCase().length > 0) {
+      this.searchItem = searchItem;
+      this.page = 0;
+      this.canScroll = true;
+    } else {
+      this.searchItem = "";
+      this.searchInvoked = false;
+      return
+    }
+    this.moduleService.getModulesById(this.searchItem, false, 0, pageSize)
+    .then(modules => {
+      this.modules = modules;
+    })
+    this.searchInvoked = true;
   }
 
-  onScroll(): void {
-    this.page += 1;
+  clearSearch(): void {
+    this.searchItem = "";
+    this.canScroll = true;
+    this.page = 0;
+    this.searchInvoked = false;
     var offset = this.page * pageSize;
     this.moduleService.getModules(offset, pageSize)
       .then(modules => {
-        this.modules = this.modules.concat(modules);
+        this.modules = modules;
       });
+  }
+
+  onScroll(): void {
+    if (this.canScroll) {
+      this.page += 1;
+      var offset = this.page * pageSize;
+      if (this.searchItem.length > 0) {
+        this.moduleService.getModulesById(this.searchItem, false, offset, pageSize)
+          .then(modules => {
+            if (modules.length > 0) {
+              this.modules = this.modules.concat(modules);
+            } else {
+              this.canScroll = false;
+            }
+          })
+      } else {
+        this.moduleService.getModules(offset, pageSize)
+          .then(modules => {
+            if (modules.length > 0) {
+              this.modules = this.modules.concat(modules);
+            } else {
+              this.canScroll = false;
+            }
+          });
+      }
+    }
   }
 }
