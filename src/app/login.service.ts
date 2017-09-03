@@ -53,7 +53,7 @@ export class LoginService {
 
   secureApiGet(url: string) {
     let headers = new Headers();
-    headers.append("Authorization", this.jwtToken);
+    headers.append("Authorization", "Bearer " + this.jwtToken);
     return this.http.get(url, {
       headers: headers
     }).toPromise();
@@ -61,7 +61,7 @@ export class LoginService {
 
   secureApiPost(url: string, body: string) {
     let headers = new Headers();
-    headers.append("Authorization", this.jwtToken); 
+    headers.append("Authorization", "Bearer " + this.jwtToken); 
     return this.http.post(url, body, {
       headers: headers
     }).toPromise();
