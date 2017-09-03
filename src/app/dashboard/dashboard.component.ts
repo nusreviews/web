@@ -38,6 +38,7 @@ export class DashboardComponent implements OnInit {
     this.moduleService.getModules(offset, pageSize)
       .then(modules => {
         this.modules = modules;
+        this.loading = false;
       });
   }
 
@@ -48,6 +49,7 @@ export class DashboardComponent implements OnInit {
 
   // Commit a search
   submit(searchItem: string): void {
+    // Validate search item
     if (searchItem.trim().toUpperCase().length > 0) {
       this.searchItem = searchItem;
       this.page = 0;
@@ -57,11 +59,16 @@ export class DashboardComponent implements OnInit {
       this.searchedString = "";
       return
     }
+
+    // Perform search
+    this.searchedString = this.searchItem;
+    this.loading = true;
     this.moduleService.getModulesById(this.searchItem, false, 0, pageSize)
     .then(modules => {
+      this.loading = false;
       this.modules = modules;
     })
-    this.searchedString = this.searchItem;
+    
   }
 
   clearSearch(): void {
@@ -70,8 +77,12 @@ export class DashboardComponent implements OnInit {
     this.page = 0;
     this.searchedString = "";
     var offset = this.page * pageSize;
+
+    // Reinit modules
+    this.loading = true;
     this.moduleService.getModules(offset, pageSize)
       .then(modules => {
+        this.loading = false;
         this.modules = modules;
       });
   }
@@ -80,9 +91,13 @@ export class DashboardComponent implements OnInit {
     if (this.canScroll) {
       this.page += 1;
       var offset = this.page * pageSize;
+
+      // Perform subsequent fetch
+      this.loading = true;
       if (this.searchItem.length > 0) {
         this.moduleService.getModulesById(this.searchItem, false, offset, pageSize)
           .then(modules => {
+            this.loading = false;
             if (modules.length > 0) {
               this.modules = this.modules.concat(modules);
             } else {
@@ -92,6 +107,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.moduleService.getModules(offset, pageSize)
           .then(modules => {
+            this.loading = false;
             if (modules.length > 0) {
               this.modules = this.modules.concat(modules);
             } else {
