@@ -19,6 +19,9 @@ export class ReviewsService {
   getReviewById(id: number): Promise<Review> {
       return this.getReviews().then(Reviews => Reviews.find(Review => Review.id === id));
   }
+  getReviewsByUserId(userId: string): Promise<Review[]> {
+    return this.getReviews().then(reviews => reviews.filter(review => review.userId === userId));
+  }
   
 }
 

@@ -1,5 +1,6 @@
 .author-label {
     font-weight: bold;
+    padding-bottom: 1.25em;
 }
 .recommend-text {
     color: #4caf50; /* Materialize Green */
@@ -29,6 +30,10 @@
     float: right;
 }
 
+.share-button-label {
+    font-weight: 500;
+}
+
 .date-container {
     margin: 1em 0em 1em 0em;
     text-align: right;
@@ -41,6 +46,7 @@
 .rating-label {
     font-size: 1.25em;
     font-weight: 500;
+    padding-bottom:1em;
 }
 
 .star-rating-container {

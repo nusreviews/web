@@ -38,23 +38,12 @@
     content: url("../../assets/images/thumbs-down.png");
 }
 
-.ratings-bar {
-    display: block;
-    margin: auto;
-    width: 50em;
-    height: 3em;
+.ratings-container {
+    padding-bottom: 1em;
 }
 
-.ratings-bar-recommend {
-    float: left;
-    height: 100%;
-    background-color: #4caf50; /* Materialize Green */
-}
-
-.ratings-bar-not-recommend {
-    float: right;
-    height: 100%;
-    background-color: #e53935; /* Materialize Red Darken-1 */
+.ratings-label {
+    font-size: 1.25em;
 }
 
 .divider {
@@ -69,4 +58,8 @@
 .module-detail-section-header {
     font-size: 1.5em;
     color: #7D7D7D;
+}
+
+.description-text {
+    font-size: 1.25em;
 }

@@ -13,10 +13,6 @@ export class HeaderBarComponent implements OnInit {
 
   public navOptions: NavOption[] = [
     {
-      name: "Modules",
-      link: "/dashboard"
-    },
-    {
       name: "About",
       link: "/about"
     }, 
@@ -27,7 +23,11 @@ export class HeaderBarComponent implements OnInit {
     {
       name: "Terms", 
       link: "/tos"
-    }
+    },
+    {
+      name: "Modules",
+      link: "/dashboard"
+    },
   ];
 
   ngOnInit() {

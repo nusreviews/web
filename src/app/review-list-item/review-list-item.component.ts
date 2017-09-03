@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Review } from '../review';
 
+import { MODULES } from '../mock-modules';
+
 @Component({
   selector: 'app-review-list-item',
   templateUrl: './review-list-item.component.html',
@@ -9,10 +11,15 @@ import { Review } from '../review';
 export class ReviewListItemComponent implements OnInit {
   
   @Input() review: Review;
+  @Input() showModName: boolean = false;
+
+  moduleName: string;
 
   constructor() { }
 
   ngOnInit() {
+    // Temp hack to get module name
+    this.moduleName = MODULES[this.review.moduleId-1].modName;
   }
 
 }
