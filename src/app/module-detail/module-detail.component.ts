@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Module } from '../module';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import { ModuleService } from '../module.service';
@@ -17,13 +17,21 @@ export class ModuleDetailComponent implements OnInit {
   constructor(
     private moduleService: ModuleService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) { }
 
   ngOnInit(): void {
-    // this.route.paramMap
-    //   .switchMap((params: ParamMap) => this.moduleService.getModuleById(params.get('id')))
-    //   .subscribe(module => this.module = module);
+    this.route.paramMap
+      .switchMap((params: ParamMap) => this.moduleService.getModulesById(params.get('id'), true, 0, 1))
+      .subscribe(modules => {
+        if (modules.length > 0) {
+          this.module = modules[0];
+        } else {
+          // Reroute out if module is not found
+          this.router.navigate(['/404']);
+        }
+      });
   }
 }
 
