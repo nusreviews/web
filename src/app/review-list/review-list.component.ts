@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { Review } from '../review';
 import { ReviewsService } from '../reviews.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,9 @@ export class ReviewListComponent implements OnInit {
 
   reviews: Review[] = null;
   searchItem: string = "";
+  userId: number = null; // null for now. Should use api to retrieve 
+
+  @Input() moduleId: string;
 
   constructor(
     private reviewsService: ReviewsService,
@@ -19,7 +22,7 @@ export class ReviewListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.reviewsService.getReviewsSlowly()
+    this.reviewsService.getReviews(this.moduleId, this.userId)
       .then(reviews => this.reviews = reviews);
   }
 
