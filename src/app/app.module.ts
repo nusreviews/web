@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { MaterializeModule } from 'ng2-materialize';
 import { FacebookModule } from 'ngx-facebook';
+import { LoadingModule } from 'ngx-loading';
 
 import { ModuleService } from './module.service';
 import { ReviewsService } from './reviews.service';
@@ -60,6 +61,7 @@ import { RoundWholePipe } from './round-whole.pipe';
     HttpModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    LoadingModule,
     StarRatingModule.forRoot(),
     MaterializeModule.forRoot(),
     FacebookModule.forRoot()

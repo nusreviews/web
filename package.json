@@ -27,6 +27,7 @@
     "mdi": "^2.0.46",
     "ng2-materialize": "^1.5.1",
     "ngx-facebook": "^2.4.0",
+    "ngx-loading": "^1.0.7",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
