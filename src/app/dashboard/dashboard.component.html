@@ -5,7 +5,7 @@
     <div class="row">
       <form class="card">
         <div class="input-field">
-          <input id="search" type="search" required placeholder="Search modules">
+          <input id="search" #search type="search" (keyup.enter)="submit(search.value)" required placeholder="Enter a module code here (Eg: CS2100)">
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons" style="padding-top:0.25em">close</i>
         </div>

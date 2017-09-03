@@ -31,4 +31,8 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/moduledetail', module.id]);
     this.selectedModule = module;
   }
+
+  submit(searchItem: string): void {
+    console.log(searchItem);
+  }
 }
