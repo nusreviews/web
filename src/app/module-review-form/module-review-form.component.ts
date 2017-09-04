@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-
+import { LoginService } from '../login.service';
+import { ReviewsService } from '../reviews.service';
+import { MzModalService } from 'ng2-materialize';
+import { FbLoginModalComponent } from '../fb-login-modal/fb-login-modal.component';
+import { Router } from '@angular/router';
 import { forEach } from 'lodash';
 
 import { Module } from '../module';
@@ -7,7 +11,7 @@ import { Module } from '../module';
 @Component({
   selector: 'module-review-form',
   templateUrl: './module-review-form.component.html',
-  styleUrls: ['./module-review-form.component.css']
+  styleUrls: ['./module-review-form.component.css'],
 })
 export class ModuleReviewFormComponent implements OnInit {
 
@@ -19,16 +23,38 @@ export class ModuleReviewFormComponent implements OnInit {
 
   @Input() module: Module;
 
-  constructor() {}
+  public submitDisabled = true;
+  public recommend: boolean = null;
+
+  constructor(
+    private loginService: LoginService,
+    private reviewsService: ReviewsService,
+    private modalService: MzModalService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {}
 
-  onSubmit() {
+  onRatingChange(event) {
+    // Check if form is ready
+    if(this.checkFormIsReady()) {
+      this.submitDisabled = false;
+    }
+  }
+
+  setRecommend(recommend) {
+    this.recommend = recommend;
+    if(this.checkFormIsReady()) {
+      this.submitDisabled = false;
+    }
+  }
+
+  checkFormIsReady(): boolean {
     var unfilledRatingNames = [];
     var ratingNamesToValue = {};
     forEach(this, (rating, ratingName) => {
       // Skip non-rating keys
-      if (ratingName === "comments") {
+      if (ratingName === "comments" || ratingName === "submitDisabled" || ratingName === "recommend") {
         return;
       }
 
@@ -39,18 +65,37 @@ export class ModuleReviewFormComponent implements OnInit {
       ratingNamesToValue[ratingName] = ratingValue;
     });
 
-    var alertMessage = "";
     if (unfilledRatingNames.length > 0) {
-      alertMessage = 
-        "Please fill up the following ratings: \n" + 
-        unfilledRatingNames.join("\n");
-    } else {
-      alertMessage = 
-        "Success! Your ratings are: \n" + 
-        JSON.stringify(ratingNamesToValue) + "\n" +
-        "Comments: " + this.comments.nativeElement.value;
+      return false;
     }
-    alert(alertMessage);
+    if (this.recommend == null) {
+      return false;
+    }
+    
+    return true;
   }
 
+  onSubmit() {
+    // Check for login to FB first
+    if (!this.loginService.getProfile()) {
+      console.log("please login first");
+      this.modalService.open(FbLoginModalComponent);
+      return;
+    }
+
+    // Check if form is ready
+    if (this.checkFormIsReady()) {
+      var newReview = {
+        teaching: this.staffQualityRating.ratingAsInteger,
+        difficulty: this.staffQualityRating.ratingAsInteger,
+        enjoyability: this.staffQualityRating.ratingAsInteger,
+        workload: this.staffQualityRating.ratingAsInteger,
+        recommend: this.recommend,
+        comments: this.comments.nativeElement.value,
+        modId: this.module.id,
+      };
+      this.reviewsService.postNewReview(newReview);
+      // Hide this form?
+    }
+  }
 }

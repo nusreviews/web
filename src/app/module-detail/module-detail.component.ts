@@ -22,6 +22,7 @@ export class ModuleDetailComponent implements OnInit {
   @Input() reviews: Review[];
   public loading = true;
   private isLoggedInSubscription: Subscription;
+  private reviewsSubscription: Subscription;
   private page: number = 0;
   private canScroll = false;
 
@@ -44,6 +45,10 @@ export class ModuleDetailComponent implements OnInit {
         this.fetchReviews(null);
       }
     });
+    // Listen for updates to review list
+    this.reviewsSubscription = this.reviewsService.getReviewsObservable().subscribe(next => {
+      this.initFetchReviews();
+    })
   }
 
   ngOnInit(): void {
@@ -53,7 +58,7 @@ export class ModuleDetailComponent implements OnInit {
       .subscribe(modules => {
         if (modules.length > 0) {
           this.module = modules[0];
-          console.log(this.module);
+          //console.log(this.module);
           if (this.loginService.getProfile()) {
             // If user is already logged in
             this.fetchReviews(this.loginService.getProfile().nusreviews.userId);
@@ -65,6 +70,32 @@ export class ModuleDetailComponent implements OnInit {
           this.router.navigate(['/404']);
         }
       });
+  }
+
+  initFetchReviews() {
+    //Reinit
+    this.loading = true;
+    this.page = 0;
+    this.reviews = null;
+    this.canScroll = false;
+    // Fetch
+    this.route.paramMap
+    .switchMap((params: ParamMap) => this.moduleService.getModulesById(params.get('id'), true, 0, 1))
+    .subscribe(modules => {
+      if (modules.length > 0) {
+        this.module = modules[0];
+        //console.log(this.module);
+        if (this.loginService.getProfile()) {
+          // If user is already logged in
+          this.fetchReviews(this.loginService.getProfile().nusreviews.userId);
+        } else {
+          this.fetchReviews(null);
+        }
+      } else {
+        // Reroute out if module is not found
+        this.router.navigate(['/404']);
+      }
+    });
   }
 
   onScroll() {

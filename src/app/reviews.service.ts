@@ -3,11 +3,20 @@ import { Headers, Http } from '@angular/http';
 import { Review } from './review';
 import { REVIEWS } from './mock-reviews';
 import 'rxjs/add/operator/toPromise';
+import { Observable, Subject } from 'rxjs';
+import { LoginService } from './login.service';
+import { MzToastService } from 'ng2-materialize';
 
 @Injectable()
 export class ReviewsService {
+
+	private reviewsObservable = new Subject<number>();
 	
-	constructor(private http: Http) { }
+	constructor(
+		private http: Http,
+		private loginService: LoginService,
+		private toastService: MzToastService,
+	) { }
 	
 	// Retrieves list of reviews
 	// If modId != null, returns a list of reviews for that module
@@ -49,6 +58,21 @@ export class ReviewsService {
 		});
 	}
 
+	postNewReview(newReview) {
+		this.loginService.secureApiPost("https://api.nusreviews.com/review/new", JSON.stringify(newReview)).then((res) => {
+			if (res.ok) {
+				this.reviewsObservable.next();
+				this.showToast('Review Submitted!', 3000, 'green');
+			} else {
+				this.showToast('An error occured!', 3000, 'red');
+			}	
+		});
+	}
+
+	getReviewsObservable(): Observable<number> {
+		return this.reviewsObservable.asObservable();
+	}
+
 	private deserialiseJSONToReviews(json): Review[] {
 		let jsonArray = json.json()['reviews'];
 		let reviews = jsonArray.map(reviewJSON => {
@@ -62,6 +86,10 @@ export class ReviewsService {
 	private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
-    }
+	}
+
+	private showToast(msg, time, color) {
+		this.toastService.show(msg, time, color);
+	  }
 }
 
