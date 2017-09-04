@@ -10,7 +10,7 @@ import { LoginService } from '../login.service';
 import { ModuleReviewFormComponent } from '../module-review-form/module-review-form.component';
 import { Subscription } from 'rxjs';
 
-const pageSize = 20;
+const pageSize = 10;
 
 @Component({
   selector: 'app-module-detail',
@@ -23,6 +23,7 @@ export class ModuleDetailComponent implements OnInit {
   public loading = true;
   private isLoggedInSubscription: Subscription;
   private page: number = 0;
+  private canScroll = false;
 
   constructor(
     private moduleService: ModuleService,
@@ -34,16 +35,18 @@ export class ModuleDetailComponent implements OnInit {
   ) { 
     this.loginService = loginService;
     this.isLoggedInSubscription = this.loginService.getLoggedInObservable().subscribe(isLoggedIn => {
-      //this.isLoggedIn = isLoggedIn;
+      this.reviews = null;
+      this.loading = true;
+      this.page = 0;
+      if (isLoggedIn) {
+        this.fetchReviews(this.loginService.getProfile().nusreviews.userId);
+      } else {
+        this.fetchReviews(null);
+      }
     });
   }
 
   ngOnInit(): void {
-    // Check if user is already logged in
-    if (this.loginService.getProfile()) {
-      //this.isLoggedIn = true
-    }
-
     // Fetch Module from url
     this.route.paramMap
       .switchMap((params: ParamMap) => this.moduleService.getModulesById(params.get('id'), true, 0, 1))
@@ -53,23 +56,53 @@ export class ModuleDetailComponent implements OnInit {
           console.log(this.module);
           if (this.loginService.getProfile()) {
             // If user is already logged in
-            this.reviewsService.getReviews(this.module.code, this.loginService.getProfile().nusreviews.userId,
-          this.page * pageSize, pageSize).then(reviews => {
-            this.reviews = reviews;
-            this.loading = false;
-          })
+            this.fetchReviews(this.loginService.getProfile().nusreviews.userId);
           } else {
-            // If user is not logged in yet
-            this.reviewsService.getReviews(this.module.code, null, this.page * pageSize, pageSize).then(reviews => {
-              this.reviews = reviews;
-              this.loading = false;
-            })
+            this.fetchReviews(null);
           }
         } else {
           // Reroute out if module is not found
           this.router.navigate(['/404']);
         }
       });
+  }
+
+  onScroll() {
+    if (this.canScroll) {
+      console.log("onscroll");
+      this.page += 1;
+      this.loading = true;
+      if (this.loginService.getProfile()) {
+        this.concatReviews(this.loginService.getProfile().nusreviews.userId);
+      } else {
+        this.concatReviews(null);
+      }
+    }
+  }
+
+  private fetchReviews(userId: number) {
+    this.reviewsService.getReviews(this.module.id, userId,
+                                  this.page * pageSize, pageSize)
+    .then(reviews => {
+      this.reviews = reviews;
+      this.loading = false;
+      if (reviews.length < pageSize) {
+        this.canScroll = false;
+      } else {
+        this.canScroll = true;
+      }
+    })
+  }
+
+  private concatReviews(userId: number) {
+    this.reviewsService.getReviews(this.module.id, userId, this.page * pageSize, pageSize)
+    .then(reviews => {
+      this.reviews = this.reviews.concat(reviews);
+      this.loading = false;
+      if (reviews.length == 0) {
+        this.canScroll = false;
+      }
+    })
   }
 }
 

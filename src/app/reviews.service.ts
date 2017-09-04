@@ -26,7 +26,7 @@ export class ReviewsService {
 
 		url = url + "&offset=" + offset + "&limit=" + limit;
 
-		console.log(url);
+		//console.log(url);
 
 		return this.http.get(url)
         .toPromise()
