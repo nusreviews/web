@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http } from "@angular/http";
 import { FacebookService, InitParams, LoginResponse, LoginOptions } from "ngx-facebook";
+import { Observable, Subject } from 'rxjs';
 import "rxjs/add/operator/toPromise";
 
 @Injectable()
@@ -14,6 +15,8 @@ export class LoginService {
   public jwtToken: any = null;
   private http: Http;
   
+  private loggedIn = new Subject<boolean>();
+
   private options: LoginOptions = {
     scope: "public_profile, user_friends, email",
     return_scopes: true,
@@ -89,6 +92,7 @@ export class LoginService {
     }).then((response) => {
       let responseJson = response.json();
       this.userProfile = responseJson.user;
+      this.loggedIn.next(true);
     }).catch((error: any) => {
       console.error(error);
       this.logoutFromFacebook();
@@ -97,11 +101,16 @@ export class LoginService {
 
   logoutFromFacebook() {
     this.fbService.logout().then(() => {
+      this.loggedIn.next(false);
       this.fbProfile = null;
       this.userProfile = null;
       this.fbToken = null;
       this.jwtToken = null;
     });
+  }
+
+  getLoggedInObservable(): Observable<boolean> {
+    return this.loggedIn.asObservable();
   }
 
   _fetchNusreviewsProfile() {

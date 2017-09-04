@@ -13,15 +13,6 @@ export class ModuleService {
         return this.http.get('https://api.nusreviews.com/getModulesFullAttribute?offset=' + offset + '&limit=' + limit)
         .toPromise()
         .then(this.deserialiseJSONToModules)
-        // .then(response => {
-        //     let jsonArray = response.json()["modules"];
-        //     let modules = jsonArray.map(function(x) {
-        //         let deserialisedModule = Module.deserialiseJson(x);
-        //         return deserialisedModule;
-        //     });
-        //     console.log(modules);
-        //     return modules;
-        // }) 
         .catch(this.handleError);
     }
     getModulesSlowly(offset, limit): Promise<Module[]> {
