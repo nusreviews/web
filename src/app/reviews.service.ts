@@ -3,11 +3,18 @@ import { Headers, Http } from '@angular/http';
 import { Review } from './review';
 import { REVIEWS } from './mock-reviews';
 import 'rxjs/add/operator/toPromise';
+import { Observable, Subject } from 'rxjs';
+import { LoginService } from './login.service';
 
 @Injectable()
 export class ReviewsService {
+
+	private reviewsObservable = new Subject<number>();
 	
-	constructor(private http: Http) { }
+	constructor(
+		private http: Http,
+		private loginService: LoginService
+	) { }
 	
 	// Retrieves list of reviews
 	// If modId != null, returns a list of reviews for that module
@@ -49,6 +56,17 @@ export class ReviewsService {
 		});
 	}
 
+	postNewReview(newReview) {
+		this.loginService.secureApiPost("https://api.nusreviews.com/review/new", JSON.stringify(newReview)).then((res) => {
+			//console.log(res);
+			this.reviewsObservable.next();
+		});
+	}
+
+	getReviewsObservable(): Observable<number> {
+		return this.reviewsObservable.asObservable();
+	}
+
 	private deserialiseJSONToReviews(json): Review[] {
 		let jsonArray = json.json()['reviews'];
 		let reviews = jsonArray.map(reviewJSON => {
@@ -62,6 +80,6 @@ export class ReviewsService {
 	private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
-    }
+	}
 }
 

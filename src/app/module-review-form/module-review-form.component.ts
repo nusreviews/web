@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { LoginService } from '../login.service';
+import { ReviewsService } from '../reviews.service';
 import { MzModalService } from 'ng2-materialize';
 import { FbLoginModalComponent } from '../fb-login-modal/fb-login-modal.component';
 import { Router } from '@angular/router';
@@ -27,6 +28,7 @@ export class ModuleReviewFormComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
+    private reviewsService: ReviewsService,
     private modalService: MzModalService,
     private router: Router,
   ) {}
@@ -92,12 +94,8 @@ export class ModuleReviewFormComponent implements OnInit {
         comments: this.comments.nativeElement.value,
         modId: this.module.id,
       };
-      this.loginService.secureApiPost("https://api.nusreviews.com/review/new", JSON.stringify(newReview)).then((res) => {
-        console.log(res);
-        // Have to refresh the page for now
-
-        this.router.navigate(['/moduledetail', this.module.id]);
-      });      
+      this.reviewsService.postNewReview(newReview);
+      // Hide this form?
     }
   }
 }
