@@ -19,7 +19,7 @@ export class ReviewListItemComponent implements OnInit {
 
   ngOnInit() {
     // Temp hack to get module name
-    this.moduleName = MODULES[this.review.moduleId-1].modName;
+    //this.moduleName = MODULES[this.review.moduleId-1].modName;
   }
 
 }

@@ -19,10 +19,8 @@ export class DashboardComponent implements OnInit {
 
   modules: Module[] = null;
   selectedModule: Module = null;
-
   page = 0;
   canScroll = true;
-
   searchItem = '';
   searchedString = "";
 
@@ -59,7 +57,6 @@ export class DashboardComponent implements OnInit {
       this.searchedString = "";
       return
     }
-
     // Perform search
     this.searchedString = this.searchItem;
     this.loading = true;
@@ -68,7 +65,6 @@ export class DashboardComponent implements OnInit {
       this.loading = false;
       this.modules = modules;
     })
-    
   }
 
   clearSearch(): void {

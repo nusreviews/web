@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Review } from '../review';
 
 @Component({
   selector: 'like-button',
@@ -7,13 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LikeButtonComponent implements OnInit {
 
-  isActive: boolean = false;
-  iconName: string = "favorite_border";
-  numLikes: number = 0;
+  isActive: boolean;
+  iconName: string;
+  numLikes: number;
+
+  @Input() review: Review;
 
   constructor() { }
 
   ngOnInit() {
+    this.numLikes = this.review.numLikes;
+    this.isActive = this.review.hasUserLiked;
+    if (this.isActive) {
+      this.iconName = 'favorite';
+    } else {
+      this.iconName = 'favorite_border';
+    }
   }
 
   onClick(): void {
@@ -22,9 +32,12 @@ export class LikeButtonComponent implements OnInit {
     if (this.isActive) {
       this.iconName = "favorite"; 
       this.numLikes++;
+      // api call
+
     } else {
       this.iconName = "favorite_border";
       this.numLikes--;
+      // api call
     }
 
   }
