@@ -5,6 +5,7 @@ import { REVIEWS } from './mock-reviews';
 import 'rxjs/add/operator/toPromise';
 import { Observable, Subject } from 'rxjs';
 import { LoginService } from './login.service';
+import { MzToastService } from 'ng2-materialize';
 
 @Injectable()
 export class ReviewsService {
@@ -13,7 +14,8 @@ export class ReviewsService {
 	
 	constructor(
 		private http: Http,
-		private loginService: LoginService
+		private loginService: LoginService,
+		private toastService: MzToastService,
 	) { }
 	
 	// Retrieves list of reviews
@@ -58,8 +60,12 @@ export class ReviewsService {
 
 	postNewReview(newReview) {
 		this.loginService.secureApiPost("https://api.nusreviews.com/review/new", JSON.stringify(newReview)).then((res) => {
-			//console.log(res);
-			this.reviewsObservable.next();
+			if (res.ok) {
+				this.reviewsObservable.next();
+				this.showToast('Review Submitted!', 3000, 'green');
+			} else {
+				this.showToast('An error occured!', 3000, 'red');
+			}	
 		});
 	}
 
@@ -81,5 +87,9 @@ export class ReviewsService {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
 	}
+
+	private showToast(msg, time, color) {
+		this.toastService.show(msg, time, color);
+	  }
 }
 

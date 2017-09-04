@@ -47,7 +47,6 @@ export class ModuleDetailComponent implements OnInit {
     });
     // Listen for updates to review list
     this.reviewsSubscription = this.reviewsService.getReviewsObservable().subscribe(next => {
-      console.log("new reviews!");
       this.initFetchReviews();
     })
   }
