@@ -1,11 +1,7 @@
 export class Module {
-    id: number;
-    code: string;
+    id: string;
     modName: string;
-    //modCredits: number;
-    //////////////////////description: string;
-    //professor: string;
-    //lastTaught: string;
+    description: string;
     lastReviewed: string;
     overallVerdict: string; // recommend, not-recommend
     percentageRecommend: number;
@@ -13,8 +9,12 @@ export class Module {
     enjoyabilityRating: number;
     difficultyRating: number;
     workloadRating: number;
+    code: string; // not used
+    modCredits: number; // not used
+    professor: string; // not used
+    lastTaught: string; // not used
 
-    constructor(id: number, 
+    constructor(id: string, 
                 modName: string,
                 description: string,
                 lastReviewed: string,
@@ -25,7 +25,7 @@ export class Module {
                 workloadRating: number) {
                     this.id = id;
                     this.modName = modName;
-                    //this.description = description;
+                    this.description = description;
                     this.lastReviewed = lastReviewed;
                     this.percentageRecommend = percentageRecommend;
                     this.teachingRating = teachingRating;
