@@ -22,6 +22,7 @@ export class UserSummaryComponent implements OnInit {
 
   public loading: boolean = true;
   private page: number = 0;
+  private canScroll = false;
 
   constructor(
     private userService: UserService,
@@ -41,6 +42,7 @@ export class UserSummaryComponent implements OnInit {
     //       .then(reviews => this.reviews = reviews)
     //   });
 
+    this.loading = true;
     // Temporal Placeholder
     this.user = new User();
     this.user.username = "Placeholder User Name";
@@ -50,8 +52,26 @@ export class UserSummaryComponent implements OnInit {
       .switchMap((params: ParamMap) => this.reviewsService.getReviewsByUserId(+params.get('id'), this.page * pageSize, pageSize))
       .subscribe(reviews => {
         this.reviews = reviews;
-        console.log(reviews);
+        this.loading = false;
+        if (reviews.length == pageSize) {
+          this.canScroll = true;
+        }
       });
   }
 
+  onScroll() {
+    if (this.canScroll) {
+      this.page += 1;
+      this.loading = true;
+      this.route.paramMap
+      .switchMap((params: ParamMap) => this.reviewsService.getReviewsByUserId(+params.get('id'), this.page * pageSize, pageSize))
+      .subscribe(reviews => {
+        this.reviews = this.reviews.concat(reviews);
+        this.loading = false;
+        if (reviews.length == 0) {
+          this.canScroll = false;
+        }
+      })
+    }
+  }
 }
