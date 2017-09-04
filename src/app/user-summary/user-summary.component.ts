@@ -8,6 +8,8 @@ import { UserService } from '../user.service';
 import { Review } from '../review';
 import { ReviewsService } from '../reviews.service';
 
+const pageSize = 20;
+
 @Component({
   selector: 'user-summary',
   templateUrl: './user-summary.component.html',
@@ -19,6 +21,7 @@ export class UserSummaryComponent implements OnInit {
   @Input() reviews: Review[];
 
   public loading: boolean = true;
+  private page: number = 0;
 
   constructor(
     private userService: UserService,
@@ -32,7 +35,7 @@ export class UserSummaryComponent implements OnInit {
       .switchMap((params: ParamMap) => this.userService.getUserById(+params.get('id')))
       .subscribe(user => {
         this.user = user;
-        this.reviewsService.getReviewsByUserId(this.user.id)
+        this.reviewsService.getReviewsByUserId(this.user.id, this.page * pageSize, pageSize)
           .then(reviews => this.reviews = reviews)
       });
     

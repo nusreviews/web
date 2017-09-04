@@ -3,6 +3,8 @@ import { Review } from '../review';
 import { ReviewsService } from '../reviews.service';
 import { Router } from '@angular/router';
 
+const pageSize = 20;
+
 @Component({
   selector: 'app-review-list',
   templateUrl: './review-list.component.html',
@@ -17,6 +19,7 @@ export class ReviewListComponent implements OnInit {
   @Input() moduleId: string;
   
   public loading: boolean = true;
+  private page: number = 0;
 
   constructor(
     private reviewsService: ReviewsService,
@@ -24,7 +27,7 @@ export class ReviewListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.reviewsService.getReviews(this.moduleId, this.userId)
+    this.reviewsService.getReviews(this.moduleId, this.userId, this.page * pageSize, pageSize)
       .then(reviews => this.reviews = reviews);
   }
 
