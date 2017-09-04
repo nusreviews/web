@@ -35,6 +35,7 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { LikeButtonComponent } from './like-button/like-button.component';
 import { UserSummaryComponent } from './user-summary/user-summary.component';
 import { RoundWholePipe } from './round-whole.pipe';
+import { FbLoginModalComponent } from './fb-login-modal/fb-login-modal.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { RoundWholePipe } from './round-whole.pipe';
     FooterBarComponent,
     UserSummaryComponent,
     RoundWholePipe,
+    FbLoginModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +76,9 @@ import { RoundWholePipe } from './round-whole.pipe';
     UserService,
     LoginService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    FbLoginModalComponent,
+  ],
 })
 export class AppModule { }
