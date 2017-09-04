@@ -58,7 +58,6 @@
     <div class="card-title author-label flow-text">
         {{review.author}} 
         <span [ngClass]="review.isRecommend === true ?'recommend-text':'not-recommend-text'">{{review.isRecommend === true ? "recommends" : "does not recommend"}}</span>
-        <!-- <a [routerLink]="['/moduledetail', review.moduleId, 'true']">{{moduleName}}</a> -->
-        <a routerLink='/moduledetail/{{review.moduleId}}' fragment="{{'review' + review.id}}">{{moduleName}}</a>
+        <a routerLink='/moduledetail/{{review.moduleId}}' fragment="{{'review' + review.id}}">{{review.moduleId}}</a>
     </div>
 </ng-template>
