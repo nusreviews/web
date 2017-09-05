@@ -22,7 +22,7 @@
           [infiniteScrollThrottle]="300"
           (scrolled)="onScroll()">
             <ul class="modules">
-              <li *ngFor="let module of modules" (click)="onSelect(module)" class="fit-height">
+              <li *ngFor="let module of modules" (click)="onSelect(module)" class="fit-height hvr-grow">
                   <app-module-card [module]="module"></app-module-card>
               </li>
             </ul>

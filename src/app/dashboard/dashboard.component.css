@@ -26,15 +26,23 @@
 	height: 1.6em;
 	border-radius: 4px;
 }
-.modules li.selected:hover {
-	background-color: #DBF8FC;
-	color: white;
+
+.hvr-grow {
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	transform: translateZ(0);
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-filter: blur(0);
+	-webkit-font-smoothing: subpixel-antialiased;
+    transition-duration: 0.3s;
+    transition-property: transform;
 }
-.modules li:hover {
-	color: #607D8B;
-	background-color: #e5e5e5;
-	left: .1em;
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    transform: scale(1.01);
 }
+
 .modules .text {
 	position: relative;
 	top: -3px;
