@@ -14,6 +14,8 @@ import { MaterializeModule } from 'ng2-materialize';
 import { FacebookModule } from 'ngx-facebook';
 import { LoadingModule } from 'ngx-loading';
 
+import { MomentModule } from 'angular2-moment';
+
 import { ModuleService } from './module.service';
 import { ReviewsService } from './reviews.service';
 import { UserService } from './user.service';
@@ -69,6 +71,7 @@ import { FbLoginModalComponent } from './fb-login-modal/fb-login-modal.component
     MaterializeModule.forRoot(),
     FacebookModule.forRoot(),
     InfiniteScrollModule,
+    MomentModule,
   ],
   providers: [
     ModuleService,
