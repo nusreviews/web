@@ -13,10 +13,10 @@
       
       <div class="col s3 l3">
         <div class="row">
-          <span class="flow-text last-review-label">Last Reviewed On</span>
+          <span class="flow-text last-review-label">Last Reviewed</span>
         </div>
         <div class="row">
-          <span class="flow-text date-label">{{module.lastReviewed == null ? '-' : module.lastReviewed}}</span>
+          <span class="flow-text date-label">{{module.lastReviewed == null ? '-' : (module.lastReviewed | amLocal | amTimeAgo) }}</span>
         </div>
       </div>
       

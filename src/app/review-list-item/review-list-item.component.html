@@ -38,7 +38,7 @@
                 <span class="comments-text flow-text">{{review.comments}}</span>
             </div>
             <div class="date-container">
-                <span class="date-label">Last updated on {{review.dateLastEdited}}</span>
+                <span class="date-label">Last updated {{review.dateLastEdited | amLocal | amTimeAgo}}</span>
             </div>
             
         </div> 
