@@ -51,7 +51,7 @@ export class Review {
             jsonObject['reviewId'],
             jsonObject['modId'],
             jsonObject['reviewBy'],
-            "User Name Placeholder",
+            jsonObject['reviewer'],
             jsonObject['comments'],
             jsonObject['createdAt'],
             jsonObject['updatedAt'],

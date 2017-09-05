@@ -1,0 +1,15 @@
+.empty-container {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    text-align: center;
+}
+.no-review-image {
+    margin: auto;
+    width: 12%;
+    display: block;
+    opacity: 0.75;
+}
+.no-review-text {
+    margin-top: 1.5em;
+    font-size: 1.2em;
+}

@@ -16,3 +16,15 @@
 .row .col{
   padding: 0;
 }
+
+.button-margin-left-right {
+  margin: 0px 10px 0px 10px;
+}
+
+.btn-active-red {
+  background: red;
+}
+
+.btn-inactive {
+  background: #989898;
+}

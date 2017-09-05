@@ -9,34 +9,55 @@
       <span class="flow-text col s5 push-s1">
         Quality of Teaching Staffs: 
       </span>
-      <star-rating-comp class="col s6" [starType]="'svg'" [staticColor]="'ok'" #staff_quality_rating></star-rating-comp>
+      <star-rating-comp class="col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #staff_quality_rating></star-rating-comp>
     </div>
     <div class="row valign-wrapper card-content-item">
       <span class="flow-text col s5 push-s1">
         Difficulty Level of Module: 
       </span>
-      <star-rating-comp class="col s6" [starType]="'svg'" [staticColor]="'ok'" #module_difficulty_rating></star-rating-comp>
+      <star-rating-comp class="col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #module_difficulty_rating></star-rating-comp>
     </div>
     <div class="row valign-wrapper card-content-item">
       <span class="flow-text  col s5 push-s1">
         Enjoyability Level of Module: 
       </span>
-      <star-rating-comp class="col col s6" [starType]="'svg'" [staticColor]="'ok'" #module_enjoyability_rating></star-rating-comp>
+      <star-rating-comp class="col col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #module_enjoyability_rating></star-rating-comp>
     </div>
     <div class="row valign-wrapper card-content-item">
       <span class="flow-text col s5 push-s1">
         Workload of Module: 
       </span>
-      <star-rating-comp class="col s6"[starType]="'svg'" [staticColor]="'ok'" #module_workload_rating></star-rating-comp>
+      <star-rating-comp class="col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #module_workload_rating></star-rating-comp>
     </div>
     <div class="row card-content-item">
       <label for="module-comments-input" class="flow-text col s10 push-s1">Comments: </label>
       <input name="module-comments-input" type="text" class="col s10 push-s1" #comments>
     </div>
+    <div class="row card-content-item">
+      <div *ngIf="recommend; else recommend_inactive">
+        <button mz-button (click)="setRecommend(true)" class="col s3 offset-s3 button-margin-left-right">Recommend</button>
+      </div>
+      <div *ngIf="recommend == false; else not_recommend_inactive">
+        <button mz-button (click)="setRecommend(false)" class="col s3 button-margin-left-right btn-active-red">Not Recommend</button>
+      </div>
+    </div>
   </mz-card-content>
   <mz-card-action class="card-action">
-    <button mz-button (click)="onSubmit()">
-      Submit
-    </button>
+    <div *ngIf="submitDisabled; else submit_enabled">
+      <button disabled mz-button>
+        Submit
+      </button>
+    </div>
   </mz-card-action>
 </mz-card>
+<ng-template #submit_enabled>
+  <button mz-button (click)="onSubmit()">
+    Submit
+  </button>
+</ng-template>
+<ng-template #recommend_inactive>
+  <button mz-button (click)="setRecommend(true)" class="col s3 offset-s3 button-margin-left-right btn-inactive">Recommend</button>
+</ng-template>
+<ng-template #not_recommend_inactive>
+  <button mz-button (click)="setRecommend(false)" class="col s3 button-margin-left-right btn-inactive">Not Recommend</button>
+</ng-template>

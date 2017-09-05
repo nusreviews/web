@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Headers, Http } from "@angular/http";
 import { FacebookService, InitParams, LoginResponse, LoginOptions } from "ngx-facebook";
+import { Observable, Subject } from 'rxjs';
+import { MzToastService } from 'ng2-materialize';
 import "rxjs/add/operator/toPromise";
 
 @Injectable()
@@ -14,13 +16,15 @@ export class LoginService {
   public jwtToken: any = null;
   private http: Http;
   
+  private loggedIn = new Subject<boolean>();
+
   private options: LoginOptions = {
     scope: "public_profile, user_friends, email",
     return_scopes: true,
     enable_profile_selector: true
   };
 
-  constructor(fbService: FacebookService, http: Http) { 
+  constructor(fbService: FacebookService, private toastService: MzToastService, http: Http) { 
     this.fbService = fbService;
     this.http = http;
 
@@ -89,6 +93,8 @@ export class LoginService {
     }).then((response) => {
       let responseJson = response.json();
       this.userProfile = responseJson.user;
+      this.loggedIn.next(true);
+      this.showToast('You are logged in!', 3000, 'green');
     }).catch((error: any) => {
       console.error(error);
       this.logoutFromFacebook();
@@ -97,11 +103,17 @@ export class LoginService {
 
   logoutFromFacebook() {
     this.fbService.logout().then(() => {
+      this.loggedIn.next(false);
       this.fbProfile = null;
       this.userProfile = null;
       this.fbToken = null;
       this.jwtToken = null;
+      this.showToast('You have logged out!', 3000, 'red');
     });
+  }
+
+  getLoggedInObservable(): Observable<boolean> {
+    return this.loggedIn.asObservable();
   }
 
   _fetchNusreviewsProfile() {
@@ -131,4 +143,8 @@ export class LoginService {
     return this.http.get(url + query).toPromise();
   }
 
+
+  private showToast(msg, time, color) {
+    this.toastService.show(msg, time, color);
+  }
 }
