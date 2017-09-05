@@ -87,9 +87,9 @@ export class ModuleReviewFormComponent implements OnInit {
     if (this.checkFormIsReady()) {
       var newReview = {
         teaching: this.staffQualityRating.ratingAsInteger,
-        difficulty: this.staffQualityRating.ratingAsInteger,
-        enjoyability: this.staffQualityRating.ratingAsInteger,
-        workload: this.staffQualityRating.ratingAsInteger,
+        difficulty: this.moduleDifficultyRating.ratingAsInteger,
+        enjoyability: this.moduleEnjoyabilityRating.ratingAsInteger,
+        workload: this.moduleWorkloadRating.ratingAsInteger,
         recommend: this.recommend,
         comments: this.comments.nativeElement.value,
         modId: this.module.id,
