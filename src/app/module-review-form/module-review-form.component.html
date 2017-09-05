@@ -1,63 +1,98 @@
+<head><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></head>
+
 <mz-card [backgroundClass]="'grey lighten-4'">
   <mz-card-title>
     <span class="flow-text card-title center-align">
-      <strong>Write a review for </strong>{{module.id}}: {{module.modName}}
+      <strong>Write a review for {{module.id}}: {{module.modName}}</strong>
     </span>
   </mz-card-title>
   <mz-card-content class="card-content">
-    <div class="row valign-wrapper card-content-item">
-      <span class="flow-text col s5 push-s1">
-        Quality of Teaching Staffs: 
+    
+    <!-- Ratings -->
+    <div class="row valign-wrapper star-row-container">
+      <div class="col s12">
+        <div class="flow-text row rating-label">Quality of Teaching Staff</div>
+        <star-rating-comp class="row" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'" #staff_quality_rating></star-rating-comp> 
+      </div>
+      <div class="col s12">  
+        <div class="flow-text row rating-label">Difficulty Level of Module</div>
+        <star-rating-comp class="row" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'" #module_difficulty_rating></star-rating-comp>
+      </div>
+    </div>
+    
+    <div class="row valign-wrapper star-row-container">
+      <div class="col s12 m6">
+        <div class="flow-text row rating-label"> Enjoyability Level of Module</div>
+        <star-rating-comp class="row" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'" #module_enjoyability_rating></star-rating-comp>
+      </div>
+      <div class="col s12 m6">
+        <div class="flow-text row rating-label">Workload of Module</div>
+        <star-rating-comp class="row" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'" #module_workload_rating></star-rating-comp>
+      </div>
+    </div>
+    
+    
+    <!-- <div class="row valign-wrapper card-content-item">
+      <span class="flow-text col s5 push-s1 rating-label">
+        Quality of Teaching Staffs
       </span>
       <star-rating-comp class="col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #staff_quality_rating></star-rating-comp>
     </div>
     <div class="row valign-wrapper card-content-item">
-      <span class="flow-text col s5 push-s1">
-        Difficulty Level of Module: 
+      <span class="flow-text col s5 push-s1 rating-label">
+        Difficulty Level of Module 
       </span>
       <star-rating-comp class="col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #module_difficulty_rating></star-rating-comp>
     </div>
     <div class="row valign-wrapper card-content-item">
-      <span class="flow-text  col s5 push-s1">
-        Enjoyability Level of Module: 
+      <span class="flow-text  col s5 push-s1 rating-label">
+        Enjoyability Level of Module 
       </span>
       <star-rating-comp class="col col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #module_enjoyability_rating></star-rating-comp>
     </div>
     <div class="row valign-wrapper card-content-item">
-      <span class="flow-text col s5 push-s1">
-        Workload of Module: 
+      <span class="flow-text col s5 push-s1 rating-label">
+        Workload of Module
       </span>
       <star-rating-comp class="col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #module_workload_rating></star-rating-comp>
+    </div> -->
+    
+    <!-- Comments Box -->
+    <div class="input-field row card-content-item">
+      <label for="module-comments-input" class="comments-input-label flow-text col s10 push-s1">Comments (Optional) </label>
+      <textarea id="module-comments-input" class="materialize-textarea col s10 push-s1" #comments></textarea>
     </div>
-    <div class="row card-content-item">
-      <label for="module-comments-input" class="flow-text col s10 push-s1">Comments: </label>
-      <input name="module-comments-input" type="text" class="col s10 push-s1" #comments>
+    
+    <!-- Verdict Buttons -->
+    <div class="row card-content-item" style="text-align: center">
+      <span class="flow-text recommend-header">Do you recommend this module?</span>
     </div>
+    
     <div class="row card-content-item">
       <div *ngIf="recommend; else recommend_inactive">
-        <button mz-button (click)="setRecommend(true)" class="col s3 offset-s3 button-margin-left-right">Recommend</button>
+        <button mz-button (click)="setRecommend(true)" class="col s3 offset-s3 button-margin-left-right green waves-effect waves-light">Yes</button>
       </div>
       <div *ngIf="recommend == false; else not_recommend_inactive">
-        <button mz-button (click)="setRecommend(false)" class="col s3 button-margin-left-right btn-active-red">Not Recommend</button>
+        <button mz-button (click)="setRecommend(false)" class="col s3 button-margin-left-right red darken-1 waves-effect waves-light">No</button>
       </div>
     </div>
   </mz-card-content>
+  
+  <!-- Submit Button -->
   <mz-card-action class="card-action">
     <div *ngIf="submitDisabled; else submit_enabled">
-      <button disabled mz-button>
-        Submit
-      </button>
+      <button disabled class="btn">Submit<i class="material-icons right">send</i></button>
     </div>
   </mz-card-action>
 </mz-card>
+
+<!-- NG Templates -->
 <ng-template #submit_enabled>
-  <button mz-button (click)="onSubmit()">
-    Submit
-  </button>
+  <button class="btn yellow darken-2 waves-light waves-effect" (click)="onSubmit()"><i class="material-icons right">send</i>Submit</button>
 </ng-template>
 <ng-template #recommend_inactive>
-  <button mz-button (click)="setRecommend(true)" class="col s3 offset-s3 button-margin-left-right btn-inactive">Recommend</button>
+  <button (click)="setRecommend(true)" class="btn col s3 offset-s3 button-margin-left-right btn-inactive">Yes</button>
 </ng-template>
 <ng-template #not_recommend_inactive>
-  <button mz-button (click)="setRecommend(false)" class="col s3 button-margin-left-right btn-inactive">Not Recommend</button>
+  <button (click)="setRecommend(false)" class="btn col s3 button-margin-left-right btn-inactive">No</button>
 </ng-template>

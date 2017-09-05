@@ -7,6 +7,7 @@
 
 .card-title {
   padding: 12px;
+  font-size: 0.85em;
 }
 
 .row .col.s5 {
@@ -17,14 +18,31 @@
   padding: 0;
 }
 
+.star-row-container {
+  padding: .5em 2em .5em 2em;
+  margin: .5em 2em .5em 2em;
+  text-align: center;
+}
+
 .button-margin-left-right {
   margin: 0px 10px 0px 10px;
 }
 
-.btn-active-red {
-  background: red;
+.btn-inactive {
+  background: grey;
 }
 
-.btn-inactive {
-  background: #989898;
+.recommend-header {
+  font-size: 1.25em;
+  font-weight: 400;
+}
+
+.comments-input-label {
+  font-size: 1.25em;
+}
+
+.rating-label {
+  font-size: 1.25em;
+  margin: 0;
+  font-weight: 400;
 }
