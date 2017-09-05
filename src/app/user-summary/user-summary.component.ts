@@ -32,30 +32,18 @@ export class UserSummaryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // Waiting for user service apis
-
-    // this.route.paramMap
-    //   .switchMap((params: ParamMap) => this.userService.getUserById(+params.get('id')))
-    //   .subscribe(user => {
-    //     this.user = user;
-    //     this.reviewsService.getReviewsByUserId(this.user.id, this.page * pageSize, pageSize)
-    //       .then(reviews => this.reviews = reviews)
-    //   });
-
-    this.loading = true;
-    // Temporal Placeholder
-    this.user = new User();
-    this.user.username = "Placeholder User Name";
-
-    // Temporal Reviews Fetch
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.reviewsService.getReviewsByUserId(+params.get('id'), this.page * pageSize, pageSize))
-      .subscribe(reviews => {
-        this.reviews = reviews;
-        this.loading = false;
-        if (reviews.length == pageSize) {
-          this.canScroll = true;
-        }
+      .switchMap((params: ParamMap) => this.userService.getUserById(+params.get('id')))
+      .subscribe(user => {
+        this.user = user;
+        this.reviewsService.getReviewsByUserId(this.user.id, this.page * pageSize, pageSize)
+          .then(reviews => {
+            this.reviews = reviews;
+            this.loading = false;
+            if (reviews.length == pageSize) {
+              this.canScroll = true;
+            }
+          })
       });
   }
 
