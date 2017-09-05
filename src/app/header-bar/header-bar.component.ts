@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavOption } from '../navOption';
 import { UserLoginComponent } from '../user-login/user-login.component';
 
@@ -10,6 +11,7 @@ import { UserLoginComponent } from '../user-login/user-login.component';
 export class HeaderBarComponent implements OnInit {
 
   public appName: string = "NUS REVIEWS";
+  private router: Router;
 
   public navOptions: NavOption[] = [
     {
@@ -30,7 +32,15 @@ export class HeaderBarComponent implements OnInit {
     },
   ];
 
+  constructor(router: Router) {
+    this.router = router;
+  }
+
   ngOnInit() {
+  }
+
+  redirectHome() {
+    this.router.navigate(['/dashboard']);
   }
 
 }
