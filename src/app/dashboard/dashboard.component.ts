@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   canScroll = true;
   searchItem = '';
   searchedString = "";
+  canSearch = false;
 
   public loading = true;
 
@@ -43,6 +44,13 @@ export class DashboardComponent implements OnInit {
   onSelect(module: Module): void {
     this.router.navigate(['/moduledetail', module.id]);
     this.selectedModule = module;
+  }
+
+  // Fired off for every key press and executes search
+  onInputChange(value) {
+    //console.log(e.target.value);
+    this.canSearch = value != "";
+    this.submit(value);
   }
 
   // Commit a search

@@ -1,14 +1,15 @@
 
 .module-code {
     color: #000000;
-    left: .1em;
     text-align: center;
+    font-size: 2.5em;
+    font-weight: 600;
 }
 
 .module-name {
     color: #000000;
-    left: .1em;
     text-align: center;
+    font-size: 2.2em;
 }
 
 .verdict-container {
@@ -23,11 +24,13 @@
     margin: auto;
     text-align: center;
     display: inline-block;
+    font-size: 2.5em;
+    padding: 0em .25em 0em .25em;
 }
 
 .verdict-image {
     display: inline-block;
-    height: 2.7em;
+    height: 2.5em;
 }
 
 .thumbs-up-image {
