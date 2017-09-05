@@ -1,8 +1,10 @@
 .header-label {
+    cursor: pointer;
     padding-left: 0.5em;
 }
 
 .logo-image {
+    cursor: pointer;
     height: 4em;
     margin: auto;
     padding-left: 0.5em;

@@ -5,7 +5,7 @@ import { UserLoginComponent } from '../user-login/user-login.component';
 
 @Component({
   selector: 'header-bar',
-  templateUrl: './header-bar.component',
+  templateUrl: './header-bar.component.html',
   styleUrls: ['./header-bar.component.css']
 })
 export class HeaderBarComponent implements OnInit {
@@ -40,7 +40,7 @@ export class HeaderBarComponent implements OnInit {
   }
 
   redirectHome() {
-    this.router.navigate(['./dashboard']);
+    this.router.navigate(['/dashboard']);
   }
 
 }
