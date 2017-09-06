@@ -37,6 +37,11 @@ export class LikeButtonComponent implements OnInit {
       this.iconName = 'favorite_border';
     }
     this.likeSubscription = this.likeService.getLikeObservable().subscribe(res => {
+      // Check if review Id is this review's
+      if (res['reviewId'] != this.review.id) {
+        return;
+      }
+      
       if (res['ready']) {
         this.isLikeReady = true;
       }

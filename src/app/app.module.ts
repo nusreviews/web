@@ -39,6 +39,7 @@ import { LikeButtonComponent } from './like-button/like-button.component';
 import { UserSummaryComponent } from './user-summary/user-summary.component';
 import { RoundWholePipe } from './round-whole.pipe';
 import { FbLoginModalComponent } from './fb-login-modal/fb-login-modal.component';
+import { CreditsComponent } from './credits/credits.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { FbLoginModalComponent } from './fb-login-modal/fb-login-modal.component
     UserSummaryComponent,
     RoundWholePipe,
     FbLoginModalComponent,
+    CreditsComponent,
   ],
   imports: [
     BrowserModule,

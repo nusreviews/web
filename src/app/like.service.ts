@@ -18,7 +18,7 @@ export class LikeService {
   likeReview(reviewId) {
     if (!this.userIsLoggedIn()) {
       this.toastService.show("Please Login first!", 3000, 'red');
-      this.likeObservable.next({ ready: true, effect: 'none'});
+      this.likeObservable.next({ reviewId: reviewId, ready: true, effect: 'none'});
       return;
     }
 
@@ -27,7 +27,7 @@ export class LikeService {
     };
     
     this.loginService.secureApiPost("https://api.nusreviews.com/like/new", JSON.stringify(likeBody)).then((res) => {
-      this.likeObservable.next({ ready: true, effect: 'like'})
+      this.likeObservable.next({ reviewId: reviewId, ready: true, effect: 'like'})
       if (res.json()['status'] == 'success') {
         this.toastService.show("You've liked a review!", 3000, 'green');
       } else {
@@ -40,14 +40,14 @@ export class LikeService {
     if (!this.userIsLoggedIn()) {
       // Shouldn't happen
       this.toastService.show("Please Login first!", 3000, 'red');
-      this.likeObservable.next({ ready: true, effect: 'none'});
+      this.likeObservable.next({ reviewId: reviewId, ready: true, effect: 'none'});
       return;
     }
 
     this.loginService.secureApiDelete("https://api.nusreviews.com/like/" + reviewId).then((res) => {
-      this.likeObservable.next({ ready: true, effect: 'unlike'})
+      this.likeObservable.next({ reviewId: reviewId, ready: true, effect: 'unlike'})
       if (res.json()['status'] == 'success') {
-        this.toastService.show("You've unliked a review!", 3000, 'yellow');
+        this.toastService.show("You've unliked a review!", 3000, 'darkyellow');
       } else {
         this.toastService.show("An error occured!", 3000, 'red');
       }
