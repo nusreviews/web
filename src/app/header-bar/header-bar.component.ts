@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavOption } from '../navOption';
+import { LoginService } from '../login.service';
+import { Subscription } from 'rxjs';
 import { UserLoginComponent } from '../user-login/user-login.component';
 
 @Component({
@@ -9,38 +11,47 @@ import { UserLoginComponent } from '../user-login/user-login.component';
   styleUrls: ['./header-bar.component.css']
 })
 export class HeaderBarComponent implements OnInit {
-
+  
   public appName: string = "NUS REVIEWS";
-  private router: Router;
-
-  public navOptions: NavOption[] = [
-    {
-      name: "About",
-      link: "/about"
-    }, 
-    {
-      name: "Privacy", 
-      link: "/privacy"
-    },
-    {
-      name: "Terms", 
-      link: "/tos"
-    },
-    {
-      name: "Modules",
-      link: "/dashboard"
-    },
-  ];
-
-  constructor(router: Router) {
+  isLoggedIn: boolean = false;
+  isLoggedInSubscription;
+  
+  constructor(private router: Router, private loginService: LoginService,) {
     this.router = router;
+    this.loginService = loginService;
+    this.isLoggedInSubscription = this.loginService.getLoggedInObservable().subscribe(isLoggedIn => {
+      isLoggedIn = this.isLoggedIn;
+    });
   }
-
+  
   ngOnInit() {
-  }
+    $(".button-collapse").sideNav();
 
+    // Check if user is logged in first, as Reactive does not detect inital states
+    this.isLoggedIn = this.loginService.getProfile() != null;
+  }
+  
   redirectHome() {
     this.router.navigate(['/dashboard']);
   }
+  
+  onLoginClick() {
+    console.log("Login!");
+    this.loginService.toggleFacebookLogin();
+  }
+  
+  onLogoutClick() {
+    console.log("Logout!");
+    this.loginService.toggleFacebookLogin();
+  }
+  
+  onProfileClick(){
+    console.log("Go to Profile!");
+    this.router.navigate(['/user/' + this.loginService.getProfile().nusreviews.userId]);
+  }
 
+  getProfilePicture() {
+    return this.loginService.getProfile().facebook.picture.data.url
+  }
+  
 }
