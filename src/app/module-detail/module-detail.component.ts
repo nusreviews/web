@@ -21,6 +21,7 @@ export class ModuleDetailComponent implements OnInit {
   @Input() module: Module;
   @Input() reviews: Review[];
   public loading = true;
+  public userReview: Review = null;
   private isLoggedInSubscription: Subscription;
   private reviewsSubscription: Subscription;
   private page: number = 0;
@@ -41,6 +42,7 @@ export class ModuleDetailComponent implements OnInit {
       this.page = 0;
       if (isLoggedIn) {
         this.fetchReviews(this.loginService.getProfile().nusreviews.userId);
+        this.fetchUserReview(this.loginService.getProfile().nusreviews.userId);
       } else {
         this.fetchReviews(null);
       }
@@ -48,6 +50,7 @@ export class ModuleDetailComponent implements OnInit {
     // Listen for updates to review list
     this.reviewsSubscription = this.reviewsService.getReviewsObservable().subscribe(next => {
       this.initFetchReviews();
+      this.fetchUserReview(this.loginService.getProfile().nusreviews.userId);
     })
   }
 
@@ -62,6 +65,7 @@ export class ModuleDetailComponent implements OnInit {
           if (this.loginService.getProfile()) {
             // If user is already logged in
             this.fetchReviews(this.loginService.getProfile().nusreviews.userId);
+            this.fetchUserReview(this.loginService.getProfile().nusreviews.userId);
           } else {
             this.fetchReviews(null);
           }
@@ -99,7 +103,7 @@ export class ModuleDetailComponent implements OnInit {
   }
 
   onScroll() {
-    if (this.canScroll) {
+    if (this.canScroll && !this.loading) {
       console.log("onscroll");
       this.page += 1;
       this.loading = true;
@@ -122,6 +126,13 @@ export class ModuleDetailComponent implements OnInit {
       } else {
         this.canScroll = true;
       }
+    })
+  }
+
+  private fetchUserReview(userId: number) {
+    this.reviewsService.getReviewsByUserIdByModuleId(userId, this.module.id)
+    .then(review => {
+      this.userReview = review;
     })
   }
 
