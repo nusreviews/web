@@ -59,6 +59,7 @@
 }
 
 .no-module-image {
+	padding: 1.5em;
     margin: auto;
     width: 12%;
     display: block;
