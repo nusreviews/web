@@ -61,7 +61,7 @@ export class Review {
             jsonObject['difficulty'],
             jsonObject['recommend'],
             jsonObject['totalLikes'],
-            jsonObject['hasUserLiked']
+            jsonObject['hasUserLike']
         ) 
         return review;
     }

@@ -45,7 +45,7 @@ export class ReviewsService {
 
 	// Return list of reviews written by the input user
 	getReviewsByUserId(userId: number, offset: number, limit: number): Promise<Review[]> {
-		return this.http.get('https://api.nusreviews.com/getReviews?user=' + userId + "&offset=" + offset + "&limit=" + limit)
+		return this.http.get('https://api.nusreviews.com/getReviews?user=' + userId + "&likedBy=" + userId + "&offset=" + offset + "&limit=" + limit)
         .toPromise()
         .then(this.deserialiseJSONToReviews)
         .catch(this.handleError);
