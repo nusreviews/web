@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { forEach } from 'lodash';
 
 import { Module } from '../module';
+import { Review } from '../review';
 
 @Component({
   selector: 'module-review-form',
@@ -22,9 +23,11 @@ export class ModuleReviewFormComponent implements OnInit {
   @ViewChild('comments') comments;
 
   @Input() module: Module;
+  @Input() userReview: Review;
 
   public submitDisabled = true;
   public recommend: boolean = null;
+  public loading: boolean = false;
 
   constructor(
     private loginService: LoginService,
@@ -43,6 +46,11 @@ export class ModuleReviewFormComponent implements OnInit {
   }
 
   setRecommend(recommend) {
+    // Temporary block is user has already reviewed
+    if (this.userReview) {
+      return;
+    }
+
     this.recommend = recommend;
     if(this.checkFormIsReady()) {
       this.submitDisabled = false;
@@ -52,11 +60,13 @@ export class ModuleReviewFormComponent implements OnInit {
   checkFormIsReady(): boolean {
     var unfilledRatingNames = [];
     var ratingNamesToValue = {};
-    forEach(this, (rating, ratingName) => {
+    forEach([this.staffQualityRating, this.moduleDifficultyRating, this.moduleEnjoyabilityRating, this.moduleWorkloadRating], 
+      (rating, ratingName) => {
       // Skip non-rating keys
-      if (ratingName === "comments" || ratingName === "submitDisabled" || ratingName === "recommend") {
-        return;
-      }
+      //if (ratingName != "staffQualityRating" || ratingName != "moduleDifficultyRating"
+      //   || ratingName != "moduleEnjoyabilityRating" || ratingName != "moduleWorkloadRating") {
+      //  return;
+      //}
 
       var ratingValue = rating.ratingAsInteger;
       if (ratingValue === 0) {
@@ -95,7 +105,8 @@ export class ModuleReviewFormComponent implements OnInit {
         modId: this.module.id,
       };
       this.reviewsService.postNewReview(newReview);
-      // Hide this form?
+      // Engage loading block
+      this.loading = true;
     }
   }
 }

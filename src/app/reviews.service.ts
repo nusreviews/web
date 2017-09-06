@@ -51,6 +51,13 @@ export class ReviewsService {
         .catch(this.handleError);
 	}
 
+	getReviewsByUserIdByModuleId(userId: number, moduleId: string): Promise<Review> {
+		return this.http.get('https://api.nusreviews.com/getReviews?user=' + userId + "&module=" + moduleId)
+		.toPromise()
+		.then(this.deserialiseJSONToReview)
+		.catch(this.handleError);
+	}
+
 	getReviewsSlowly(modId: string, userId: number, offset: number, limit: number): Promise<Review[]> {
 		return new Promise(resolve => {
 			// Simulate server latency with 1 second delay
@@ -60,10 +67,11 @@ export class ReviewsService {
 
 	postNewReview(newReview) {
 		this.loginService.secureApiPost("https://api.nusreviews.com/review/new", JSON.stringify(newReview)).then((res) => {
-			if (res.ok) {
+			//console.log(res.json()['status']);
+			if (res.json()['status'] == 'success') {
 				this.reviewsObservable.next();
 				this.showToast('Review Submitted!', 3000, 'green');
-			} else {
+			} else if (res.json()['status'] == 'error') {
 				this.showToast('An error occured!', 3000, 'red');
 			}	
 		});
@@ -81,6 +89,20 @@ export class ReviewsService {
 		});
 		//console.log(reviews);
 		return reviews;
+	}
+
+	private deserialiseJSONToReview(json): Review {
+		let jsonArray = json.json()['reviews'];
+		let reviews: Review[] = jsonArray.map(reviewJSON => {
+			let deserialisedReview = Review.deserialiseJson(reviewJSON);
+			return deserialisedReview;
+		});
+		//console.log(reviews);
+		if (reviews.length > 0) {
+			return reviews[0];
+		} else {
+			return null;
+		}
 	}
 
 	private handleError(error: any): Promise<any> {

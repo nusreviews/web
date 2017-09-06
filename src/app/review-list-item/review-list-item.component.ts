@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { FacebookService, UIParams, UIResponse } from 'ngx-facebook';
 import { Review } from '../review';
 
 @Component({
@@ -13,10 +14,26 @@ export class ReviewListItemComponent implements OnInit {
 
   moduleName: string;
 
-  constructor() { }
+  constructor(
+    private fb: FacebookService,
+  ) { }
 
   ngOnInit() {
-    
+  }
+
+  share(fragment: number) {
+    let url = document.location.href + '#review' + fragment.toString();
+    console.log(url);
+
+    let params: UIParams = {
+      href: url,
+      method: 'share',
+    };
+  
+    this.fb.ui(params)
+      .then((res: UIResponse) => console.log(res))
+      .catch((e: any) => console.error(e));
+  
   }
 
 }
