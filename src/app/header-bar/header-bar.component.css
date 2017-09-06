@@ -1,14 +1,41 @@
 .header-label {
     cursor: pointer;
-    padding-left: 0.5em;
+    margin: .5em;
+    margin-left: 1em;
+    
 }
 
 .logo-image {
     cursor: pointer;
-    height: 4em;
-    margin: auto;
-    padding-left: 0.5em;
-    padding-top: 0.5em;
+    height: 3em;
+    margin: .5em;
+    margin-left: 2em;
+}
+
+.mobile-bar {
+    width: inherit;
+}
+
+.desktop-bar {
+    margin-right: 2em;
+}
+
+.fb-profile-img {
+    border-radius: 50%;
+    height: 2.5em;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.fb-name {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.button-collapse {
+    cursor: pointer;
 }
 
 /* .navbar {
