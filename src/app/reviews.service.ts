@@ -60,10 +60,11 @@ export class ReviewsService {
 
 	postNewReview(newReview) {
 		this.loginService.secureApiPost("https://api.nusreviews.com/review/new", JSON.stringify(newReview)).then((res) => {
-			if (res.ok) {
+			//console.log(res.json()['status']);
+			if (res.json()['status'] == 'success') {
 				this.reviewsObservable.next();
 				this.showToast('Review Submitted!', 3000, 'green');
-			} else {
+			} else if (res.json()['status'] == 'error') {
 				this.showToast('An error occured!', 3000, 'red');
 			}	
 		});

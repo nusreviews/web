@@ -1,7 +1,7 @@
 <div class="container">
     <div *ngIf="module">
-        <h2 class="module-code">{{module.id}}</h2>
-        <h2 class="module-name">{{module.modName}}</h2>
+        <h2 class="flow-text module-code">{{module.id}}</h2>
+        <h2 class="flow-text module-name">{{module.modName}}</h2>
         <div class="row verdict-container center-align">
             <div *ngIf="module.percentageRecommend">
                 <h3 class=" verdict-label" [ngClass]="module.getRoundedPercentage() < 50 ? 'red-text' : 'green-text'">{{module.percentageRecommend | roundWhole}}%</h3>
@@ -10,21 +10,21 @@
             <span *ngIf="module.percentageRecommend == null" class="flow-text no-reviews-label">No Reviews Yet</span>
         </div>
         
-        <div class="row ratings-container center-align">
-            <div class="col m6 l3">
-                <star-rating-comp class="row star-rating-container" [readOnly]="true" [(rating)]="module.teachingRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+        <div class="row ratings-container center-align" style="text-align:center">
+            <div class="col s12 m6 l3">
+                <star-rating-comp class="row star-rating-container nofocus" [readOnly]="true" [(rating)]="module.teachingRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
                 <div class="row flow-text ratings-label ">Teaching Staff</div>
             </div>
-            <div class="col m6 l3">
-                <star-rating-comp class="row star-rating-container" [readOnly]="true" [(rating)]="module.difficultyRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+            <div class="col s12 m6 l3">
+                <star-rating-comp class="row star-rating-container nofocus" [readOnly]="true" [(rating)]="module.difficultyRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
                 <div class="row flow-text ratings-label">Difficulty</div>
             </div>
-            <div class="col m6 l3">
-                <star-rating-comp class="row star-rating-container" [readOnly]="true" [(rating)]="module.enjoyabilityRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+            <div class="col s12 m6 l3">
+                <star-rating-comp class="row star-rating-container nofocus" [readOnly]="true" [(rating)]="module.enjoyabilityRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
                 <div class="row flow-text ratings-label ">Enjoyability</div>
             </div>
-            <div class="col m6 l3">
-                <star-rating-comp class="row star-rating-container" [readOnly]="true" [(rating)]="module.workloadRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+            <div class="col s12 m6 l3">
+                <star-rating-comp class="row star-rating-container nofocus" [readOnly]="true" [(rating)]="module.workloadRating" [size]="'large'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
                 <div class="row flow-text ratings-label ">Workload</div>
             </div>
         </div>

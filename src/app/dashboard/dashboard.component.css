@@ -50,3 +50,31 @@
 .modules .fit-height {
 	height: 100%;
 }
+
+.empty-container {
+    margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	padding-bottom: 1em;
+    text-align: center;
+}
+
+.no-module-image {
+    margin: auto;
+    width: 12%;
+    display: block;
+    opacity: 0.75;
+}
+
+.no-module-text {
+    margin-top: 1.5em;
+    font-size: 1.2em;
+}
+
+.search-info-label {
+	font-size: 1em;
+	color: grey;
+}
+
+.search-info-container {
+	padding-bottom: 1em;
+}
