@@ -35,5 +35,4 @@ export class ReviewListItemComponent implements OnInit {
       .catch((e: any) => console.error(e));
   
   }
-
 }

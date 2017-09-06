@@ -14,13 +14,18 @@ export class HeaderBarComponent implements OnInit {
   
   public appName: string = "NUS REVIEWS";
   isLoggedIn: boolean = false;
-  isLoggedInSubscription;
+  isLoggedInSubscription: Subscription;
+  username: string;
   
   constructor(private router: Router, private loginService: LoginService,) {
     this.router = router;
     this.loginService = loginService;
     this.isLoggedInSubscription = this.loginService.getLoggedInObservable().subscribe(isLoggedIn => {
-      isLoggedIn = this.isLoggedIn;
+      console.log(isLoggedIn);
+      this.isLoggedIn = isLoggedIn;
+      if (this.isLoggedIn) {
+        this.username = this.loginService.getProfile().facebook.name;
+      }
     });
   }
   
