@@ -80,6 +80,14 @@ export class LoginService {
     }).toPromise();
   }
 
+  secureApiDelete(url: string) {
+    let headers = new Headers();
+    headers.append("Authorization", "Bearer " + this.jwtToken); 
+    return this.http.delete(url, {
+      headers: headers
+    }).toPromise();
+  }
+
   loginWithFacebook() {
     this.fbService.login(this.options).then((response: LoginResponse) => {
       this.fbToken = response.authResponse.accessToken;
