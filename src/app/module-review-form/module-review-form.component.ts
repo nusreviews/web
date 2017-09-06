@@ -46,6 +46,11 @@ export class ModuleReviewFormComponent implements OnInit {
   }
 
   setRecommend(recommend) {
+    // Temporary block is user has already reviewed
+    if (this.userReview) {
+      return;
+    }
+
     this.recommend = recommend;
     if(this.checkFormIsReady()) {
       this.submitDisabled = false;
@@ -55,12 +60,13 @@ export class ModuleReviewFormComponent implements OnInit {
   checkFormIsReady(): boolean {
     var unfilledRatingNames = [];
     var ratingNamesToValue = {};
-    forEach(this, (rating, ratingName) => {
+    forEach([this.staffQualityRating, this.moduleDifficultyRating, this.moduleEnjoyabilityRating, this.moduleWorkloadRating], 
+      (rating, ratingName) => {
       // Skip non-rating keys
-      if (ratingName === "comments" || ratingName === "submitDisabled"
-         || ratingName === "recommend" || ratingName === "loading") {
-        return;
-      }
+      //if (ratingName != "staffQualityRating" || ratingName != "moduleDifficultyRating"
+      //   || ratingName != "moduleEnjoyabilityRating" || ratingName != "moduleWorkloadRating") {
+      //  return;
+      //}
 
       var ratingValue = rating.ratingAsInteger;
       if (ratingValue === 0) {
@@ -99,6 +105,7 @@ export class ModuleReviewFormComponent implements OnInit {
         modId: this.module.id,
       };
       this.reviewsService.postNewReview(newReview);
+      // Engage loading block
       this.loading = true;
     }
   }

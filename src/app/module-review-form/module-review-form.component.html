@@ -1,5 +1,10 @@
 <head><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></head>
 
+<div *ngIf="!userReview; else edit_review_block">
+<div class="loading-container-review" *ngIf="loading">
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px', backdropBackgroundColour: 'rgba(55,55,55,0.3)', 
+  primaryColour: '#ccccff', secondaryColour: '#aaaaff', tertiaryColour: '#5555ff' }"></ngx-loading>
+</div>
 <mz-card [backgroundClass]="'grey lighten-4'">
   <mz-card-title>
     <span class="flow-text card-title center-align">
@@ -85,6 +90,7 @@
     </div>
   </mz-card-action>
 </mz-card>
+</div>
 
 <!-- NG Templates -->
 <ng-template #submit_enabled>
@@ -95,4 +101,74 @@
 </ng-template>
 <ng-template #not_recommend_inactive>
   <button (click)="setRecommend(false)" class="btn col s3 button-margin-left-right btn-inactive">No</button>
+</ng-template>
+<ng-template #loading_block>
+  <div class="loading-container">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px', backdropBackgroundColour: 'rgba(55,55,55,0.3)', 
+    primaryColour: '#ccccff', secondaryColour: '#aaaaff', tertiaryColour: '#5555ff' }"></ngx-loading>
+  </div>
+</ng-template>
+<!-- Edit Review (WIP) -->
+<ng-template #edit_review_block>
+  <mz-card [backgroundClass]="'grey lighten-4'">
+    <mz-card-title>
+      <span class="flow-text card-title center-align">
+        <strong>Your review for {{module.id}}: {{module.modName}}</strong>
+      </span>
+    </mz-card-title>
+    <mz-card-content class="card-content">
+      
+      <!-- Ratings -->
+      <div class="row card-content-item star-row-container">
+        <div class="col s12 m6">
+          <div class="flow-text row rating-label">Quality of Teaching Staff</div>
+          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" 
+          [staticColor]="'ok'" [readOnly]="true" [rating]="userReview.teachingTeamRating" #staff_quality_rating></star-rating-comp> 
+        </div>
+        <div class="col s12 m6">  
+          <div class="flow-text row rating-label">Difficulty Level of Module</div>
+          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" 
+          [staticColor]="'ok'" [readOnly]="true" [rating]="userReview.difficultyRating" #module_difficulty_rating></star-rating-comp>
+        </div>
+      </div>
+      
+      <div class="row card-content-item star-row-container">
+        <div class="col s12 m6">
+          <div class="flow-text row rating-label"> Enjoyability Level of Module</div>
+          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" 
+          [staticColor]="'ok'" [readOnly]="true" [rating]="userReview.enjoyabilityRating" #module_enjoyability_rating></star-rating-comp>
+        </div>
+        <div class="col s12 m6">
+          <div class="flow-text row rating-label">Workload of Module</div>
+          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" 
+          [staticColor]="'ok'" [readOnly]="true" [rating]="userReview.workloadRating" #module_workload_rating></star-rating-comp>
+        </div>
+      </div>
+      
+      <!-- Comments Box -->
+      <div class="input-field row card-content-item">
+        <label for="module-comments-input" class="comments-input-label flow-text col s10 push-s1 active">Comments (Optional) </label>
+        <textarea id="module-comments-input" class="materialize-textarea col s10 push-s1" readonly #comments>{{userReview.comments}}</textarea>
+      </div>
+
+      <!-- Verdict Buttons -->
+      <div class="row card-content-item" style="text-align: center">
+        <span class="flow-text recommend-header">Do you recommend this module?</span>
+      </div>
+      
+      <div class="row card-content-item">
+        <div *ngIf="userReview.isRecommend; else recommend_inactive">
+          <button mz-button (click)="setRecommend(true)" class="col s3 offset-s3 button-margin-left-right green waves-effect waves-light">Yes</button>
+        </div>
+        <div *ngIf="userReview.isRecommend == false; else not_recommend_inactive">
+          <button mz-button (click)="setRecommend(false)" class="col s3 button-margin-left-right red darken-1 waves-effect waves-light">No</button>
+        </div>
+      </div>
+    </mz-card-content>
+    
+    <!-- Edit Button -->
+    <!-- <mz-card-action class="card-action">
+      <button disabled class="btn">Edit<i class="material-icons right">send</i></button>
+    </mz-card-action> -->
+  </mz-card>
 </ng-template>

@@ -6,7 +6,7 @@
         <div class="card-content">
             <div *ngIf="!showModName;else show_modName">
                 <div class="card-title author-label flow-text">
-                    {{review.author}} 
+                    <a [routerLink]="['/user/' + review.userId]">{{review.author}}</a>
                     <span [ngClass]="review.isRecommend === true ?'recommend-text':'not-recommend-text'">{{review.isRecommend === true ? "recommends" : "does not recommend"}}</span>
                     this module
                 </div>
@@ -45,7 +45,7 @@
         <div class="card-action">
             <div class="row" style="margin-bottom: 0em">
                 <a class="col s6 l3 action-label" style="margin-right: 0em"><like-button [review]="review"></like-button></a>
-                <a class="col s6 l2 waves-effect btn-flat center-align" style="margin-right: 0em">
+                <a class="col s6 l2 waves-effect btn-flat center-align" style="margin-right: 0em" (click)="share(review.id)">
                     <span class="blue-text lighten-1 share-button-label">Share</span>
                 </a>
             </div>

@@ -44,3 +44,13 @@
   margin: 0;
   font-weight: 400;
 }
+
+.loading-container-review {
+  position: absolute;
+  height: 705px;
+  border-radius: 10px;
+  z-index: 10;
+  background-color: black;
+  width: 70%;
+  opacity: 0.5;
+}
