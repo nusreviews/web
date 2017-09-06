@@ -9,8 +9,8 @@
         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
         <!-- <i *ngIf="canSearch" class="material-icons" style="padding-top:0.25em" (click)="submit(search.value)">send</i> -->
         <i class="material-icons" style="padding-top:0.25em" (click)="clearSearch()">close</i>
-        <div *ngIf="searchedString.length > 0" class="row search-info-container">
-          <span class="flow-text search-info-label">Showing results for '{{searchedString}}'</span>
+        <div *ngIf="searchItem.length > 0" class="row search-info-container">
+          <span class="flow-text search-info-label">Showing results for '{{searchItem}}'</span>
         </div>
       </div>
     </form>
@@ -30,7 +30,7 @@
       </div>
     </div>
   </div>
-  <div class="loading-container">
+  <div *ngIf="loading" class="loading-container">
     <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px', backdropBackgroundColour: 'rgba(55,55,55,0.3)', 
     primaryColour: '#ccccff', secondaryColour: '#aaaaff', tertiaryColour: '#5555ff' }"></ngx-loading>
   </div>

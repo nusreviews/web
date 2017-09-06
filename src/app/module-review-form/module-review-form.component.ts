@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { forEach } from 'lodash';
 
 import { Module } from '../module';
+import { Review } from '../review';
 
 @Component({
   selector: 'module-review-form',
@@ -22,9 +23,11 @@ export class ModuleReviewFormComponent implements OnInit {
   @ViewChild('comments') comments;
 
   @Input() module: Module;
+  @Input() userReview: Review;
 
   public submitDisabled = true;
   public recommend: boolean = null;
+  public loading: boolean = false;
 
   constructor(
     private loginService: LoginService,
@@ -54,7 +57,8 @@ export class ModuleReviewFormComponent implements OnInit {
     var ratingNamesToValue = {};
     forEach(this, (rating, ratingName) => {
       // Skip non-rating keys
-      if (ratingName === "comments" || ratingName === "submitDisabled" || ratingName === "recommend") {
+      if (ratingName === "comments" || ratingName === "submitDisabled"
+         || ratingName === "recommend" || ratingName === "loading") {
         return;
       }
 
@@ -95,7 +99,7 @@ export class ModuleReviewFormComponent implements OnInit {
         modId: this.module.id,
       };
       this.reviewsService.postNewReview(newReview);
-      // Hide this form?
+      this.loading = true;
     }
   }
 }

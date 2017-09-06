@@ -22,7 +22,6 @@ export class DashboardComponent implements OnInit {
   page = 0;
   canScroll = true;
   searchItem = '';
-  searchedString = "";
   canSearch = false;
 
   public loading = true;
@@ -48,9 +47,11 @@ export class DashboardComponent implements OnInit {
 
   // Fired off for every key press and executes search
   onInputChange(value) {
-    //console.log(e.target.value);
-    this.canSearch = value != "";
-    this.submit(value);
+    if (value == "") {
+      this.clearSearch();
+    } else {
+      this.submit(value);
+    }
   }
 
   // Commit a search
@@ -62,11 +63,9 @@ export class DashboardComponent implements OnInit {
       this.canScroll = true;
     } else {
       this.searchItem = "";
-      this.searchedString = "";
       return
     }
     // Perform search
-    this.searchedString = this.searchItem;
     this.loading = true;
     this.moduleService.getModulesById(this.searchItem, false, 0, pageSize)
     .then(modules => {
@@ -79,7 +78,6 @@ export class DashboardComponent implements OnInit {
     this.searchItem = "";
     this.canScroll = true;
     this.page = 0;
-    this.searchedString = "";
     var offset = this.page * pageSize;
 
     // Reinit modules
