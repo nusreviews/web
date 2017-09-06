@@ -63,8 +63,9 @@ export class DashboardComponent implements OnInit {
       this.canScroll = true;
     } else {
       this.searchItem = "";
-      return
+      return;
     }
+
     // Perform search
     this.loading = true;
     this.moduleService.getModulesById(this.searchItem, false, 0, pageSize)
@@ -90,7 +91,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onScroll(): void {
-    if (this.canScroll) {
+    if (this.canScroll && !this.loading) {
       this.page += 1;
       var offset = this.page * pageSize;
 

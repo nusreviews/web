@@ -48,7 +48,7 @@ export class UserSummaryComponent implements OnInit {
   }
 
   onScroll() {
-    if (this.canScroll) {
+    if (this.canScroll && !this.loading) {
       this.page += 1;
       this.loading = true;
       this.route.paramMap

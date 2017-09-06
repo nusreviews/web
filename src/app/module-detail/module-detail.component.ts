@@ -99,7 +99,7 @@ export class ModuleDetailComponent implements OnInit {
   }
 
   onScroll() {
-    if (this.canScroll) {
+    if (this.canScroll && !this.loading) {
       console.log("onscroll");
       this.page += 1;
       this.loading = true;
