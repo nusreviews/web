@@ -1,3 +1,4 @@
+<head><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></head>
 <!-- <div class="navbar">
   <h1>{{appName}}</h1>
   <nav *ngFor="let option of navOptions" class="nav-option-container">
@@ -37,7 +38,11 @@
             </a>
           </li>
           <li><a routerLink="/dashboard">Modules</a></li> 
-          <li><a (click)="onLogoutClick()">Logout</a></li>
+          <li><a routerLink="/about">About</a></li> 
+          <li><a routerLink="/tos">Terms</a></li> 
+          <li><a routerLink="/privacy">Privacy</a></li> 
+          <li><a routerLink="/credit">Credits</a></li>   
+          <li><a style="font-weight: 600" (click)="onLogoutClick()">Logout</a></li>
         </div>
       </ul>
       
@@ -54,7 +59,11 @@
             <div class="divider"></div>
           </li>
           <li><a routerLink="/dashboard">Modules</a></li> 
-          <li><a (click)="onLogoutClick()">Logout</a></li>
+          <li><a routerLink="/about">About</a></li> 
+          <li><a routerLink="/tos">Terms</a></li> 
+          <li><a routerLink="/privacy">Privacy</a></li> 
+          <li><a routerLink="/credit">Credits</a></li>   
+          <li><a style="font-weight: 600" (click)="onLogoutClick()">Logout</a></li>
         </div>
       </ul>
     </div>
@@ -63,6 +72,10 @@
   <router-outlet></router-outlet>
 
   <ng-template #login_block>
-    <li ><a (click)="onLoginClick()">Login</a></li>
-    <li><a routerLink="/dashboard">Modules</a></li>
+    <li ><a style="font-weight: 600" (click)="onLoginClick()">Login</a></li>
+    <li><a routerLink="/dashboard">Modules</a></li> 
+    <li><a routerLink="/about">About</a></li> 
+    <li><a routerLink="/tos">Terms</a></li> 
+    <li><a routerLink="/privacy">Privacy</a></li> 
+    <li><a routerLink="/credit">Credits</a></li> 
   </ng-template>
