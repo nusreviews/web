@@ -39,19 +39,19 @@
   <div *ngIf="shouldShowRatingsBar" [@enterAnimation] class="row card grey lighten-3 module-ratings-container">
     <div class="row">
       <div class="col m3 s6">
-        <star-rating-comp class="row star-rating-container" [readOnly]="true" [(rating)]="module.teachingRating" [size]="'tiny'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+        <star-rating-comp class="row star-rating-container nofocus" [readOnly]="true" [(rating)]="module.teachingRating" [size]="'tiny'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
         <div class="row flow-text ratings-label ">Teaching</div>
       </div>
       <div class="col m3 s6">
-        <star-rating-comp class="row star-rating-container" [readOnly]="true" [(rating)]="module.difficultyRating" [size]="'tiny'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+        <star-rating-comp class="row star-rating-container nofocus" [readOnly]="true" [(rating)]="module.difficultyRating" [size]="'tiny'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
         <div class="row flow-text ratings-label ">Difficulty</div>
       </div>
       <div class="col m3 s6">
-        <star-rating-comp class="row star-rating-container" [readOnly]="true" [(rating)]="module.enjoyabilityRating" [size]="'tiny'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+        <star-rating-comp class="row star-rating-container nofocus" [readOnly]="true" [(rating)]="module.enjoyabilityRating" [size]="'tiny'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
         <div class="row flow-text ratings-label ">Enjoyability</div>
       </div>
       <div class="col m3 s6">
-        <star-rating-comp class="row star-rating-container" [readOnly]="true" [(rating)]="module.workloadRating" [size]="'tiny'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
+        <star-rating-comp class="row star-rating-container nofocus" [readOnly]="true" [(rating)]="module.workloadRating" [size]="'tiny'" [starType]="'svg'" [staticColor]="'ok'"></star-rating-comp>
         <div class="row flow-text ratings-label ">Workload</div>
       </div>
     </div>
