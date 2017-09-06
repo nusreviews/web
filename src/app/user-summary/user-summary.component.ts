@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
+import { LoginService } from '../login.service';
+import { Subscription } from 'rxjs';
 import 'rxjs/add/operator/switchMap';
 
 import { User } from '../user';
@@ -24,14 +26,28 @@ export class UserSummaryComponent implements OnInit {
   private page: number = 0;
   private canScroll = false;
 
+  private isLoggedInSubscription: Subscription;
+
   constructor(
     private userService: UserService,
     private reviewsService: ReviewsService,
+    private loginService: LoginService,
     private route: ActivatedRoute,
     private location: Location
   ) { }
 
   ngOnInit() {
+    this.isLoggedInSubscription = this.loginService.getLoggedInObservable().subscribe(isLoggedIn => {
+      // Re-fetch when detect login/logout
+      this.reviewsService.getReviewsByUserId(this.user.id, this.page * pageSize, pageSize)
+      .then(reviews => {
+        this.reviews = reviews;
+        this.loading = false;
+        if (reviews.length == pageSize) {
+          this.canScroll = true;
+        }
+      })
+    })
     this.route.paramMap
       .switchMap((params: ParamMap) => this.userService.getUserById(+params.get('id')))
       .subscribe(user => {
