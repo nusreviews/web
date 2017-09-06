@@ -7,13 +7,19 @@
 
 ul#horizontal-list {
   padding-top: 1px;
-list-style: none;
+  list-style: none;
 }
+
 ul#horizontal-list li {
-      display: inline;
-      padding: 1.5em;
-      font-size: .75em;
-  }
+  display: inline;
+  padding: 1.5em;
+  font-size: .75em;
+  color: white;
+}
+
+ul#horizontal-list li a:hover {
+  font-weight: bold;
+}
 
 .list-item-text {
   font-size: 1.2em;
