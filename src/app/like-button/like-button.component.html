@@ -2,8 +2,17 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<a class="btn-flat" style="margin-right: 0em" (click)="onClick()">
-  <i class="material-icons left icon-pink">{{iconName}}</i>
-  <span class="black-text">{{numLikes}} Likes</span>
-</a>
+<div *ngIf="isLikeReady; else loading_block">
+  <a class="btn-flat" style="margin-right: 0em" (click)="onClick()">
+    <i class="material-icons left icon-pink">{{iconName}}</i>
+    <span class="black-text">{{numLikes}} Likes</span>
+  </a>
+</div>
+
+<ng-template #loading_block>
+  <a class="btn-flat" style="margin-right: 0em; opacity: 0.5;">
+    <i class="material-icons left icon-pink">{{iconName}}</i>
+    <span class="black-text">{{numLikes}} Likes</span>
+  </a>
+</ng-template>
 

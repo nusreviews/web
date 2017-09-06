@@ -26,36 +26,44 @@
       <img class="logo-image responsive-img" src="../../assets/images/nusreviews_logo.png" (click)="redirectHome()">          
       <h1 class="flow-text brand-logo header-label" (click)="redirectHome()">NUSReviews</h1>
       <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      
+
       <ul class="right hide-on-med-and-down desktop-bar">
-        <li *ngIf="!isLoggedIn"><a (click)="onLoginClick()">Login</a></li>
-        <li *ngIf="isLoggedIn">
-          <a (click)="onProfileClick()">
-            <div>
-              <img class="fb-profile-img responsive-img" [src]="getProfilePicture()">
-              <span class="fb-name">User</span>
-            </div>
-          </a>
-        </li>
-        <li><a routerLink="/dashboard">Modules</a></li> 
-        <li *ngIf="isLoggedIn"><a (click)="onLogoutClick()">Logout</a></li>
+        <div *ngIf="isLoggedIn; else login_block">
+          <li>
+            <a (click)="onProfileClick()">
+              <div>
+                <img class="fb-profile-img responsive-img" [src]="getProfilePicture()">
+                <span class="fb-name">{{username}}</span>
+              </div>
+            </a>
+          </li>
+          <li><a routerLink="/dashboard">Modules</a></li> 
+          <li><a (click)="onLogoutClick()">Logout</a></li>
+        </div>
       </ul>
       
+      
       <ul class="side-nav mobile-bar" id="mobile-demo">
-        <li *ngIf="!isLoggedIn"><a (click)="onLoginClick()">Login</a></li>
-        <li *ngIf="isLoggedIn">
-          <a (click)="onProfileClick()">
-            <div>
-              <img class="fb-profile-img responsive-img" [src]="getProfilePicture()">
-              <span class="fb-name">Welcome, User!</span>
-            </div>
-          </a>
-          <div class="divider"></div>
-        </li>
-        <li><a routerLink="/dashboard">Modules</a></li> 
-        <li *ngIf="isLoggedIn"><a (click)="onLogoutClick()">Logout</a></li>
+        <div *ngIf="isLoggedIn; else login_block">
+          <li>
+            <a (click)="onProfileClick()">
+              <div>
+                <img class="fb-profile-img responsive-img" [src]="getProfilePicture()">
+                <span class="fb-name">Welcome, {{username}}!</span>
+              </div>
+            </a>
+            <div class="divider"></div>
+          </li>
+          <li><a routerLink="/dashboard">Modules</a></li> 
+          <li><a (click)="onLogoutClick()">Logout</a></li>
+        </div>
       </ul>
     </div>
   </nav>
   
   <router-outlet></router-outlet>
+
+  <ng-template #login_block>
+    <li ><a (click)="onLoginClick()">Login</a></li>
+    <li><a routerLink="/dashboard">Modules</a></li>
+  </ng-template>

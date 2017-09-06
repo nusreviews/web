@@ -20,6 +20,7 @@ import { ModuleService } from './module.service';
 import { ReviewsService } from './reviews.service';
 import { UserService } from './user.service';
 import { LoginService } from './login.service';
+import { LikeService } from './like.service';
 import { GoogleAnalyticsEventsService } from './google-analytics-events.service';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -38,6 +39,7 @@ import { LikeButtonComponent } from './like-button/like-button.component';
 import { UserSummaryComponent } from './user-summary/user-summary.component';
 import { RoundWholePipe } from './round-whole.pipe';
 import { FbLoginModalComponent } from './fb-login-modal/fb-login-modal.component';
+import { CreditsComponent } from './credits/credits.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { FbLoginModalComponent } from './fb-login-modal/fb-login-modal.component
     UserSummaryComponent,
     RoundWholePipe,
     FbLoginModalComponent,
+    CreditsComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +81,7 @@ import { FbLoginModalComponent } from './fb-login-modal/fb-login-modal.component
     ReviewsService,
     UserService,
     LoginService,
+    LikeService,
     GoogleAnalyticsEventsService,
   ],
   bootstrap: [AppComponent],
