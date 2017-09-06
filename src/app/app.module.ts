@@ -19,15 +19,15 @@ import { MomentModule } from 'angular2-moment';
 import { ModuleService } from './module.service';
 import { ReviewsService } from './reviews.service';
 import { UserService } from './user.service';
-
 import { LoginService } from './login.service';
+import { GoogleAnalyticsEventsService } from './google-analytics-events.service';
+
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ModuleCardComponent } from './module-card/module-card.component';
 import { HeaderBarComponent } from './header-bar/header-bar.component';
 import { FooterBarComponent } from './footer-bar/footer-bar.component';
 import { AboutComponent } from './about/about.component';
 import { ModuleDetailComponent } from './module-detail/module-detail.component';
-
 import { ReviewListItemComponent } from './review-list-item/review-list-item.component';
 import { ReviewListComponent } from './review-list/review-list.component';
 import { ModuleReviewFormComponent } from './module-review-form/module-review-form.component';
@@ -77,7 +77,8 @@ import { FbLoginModalComponent } from './fb-login-modal/fb-login-modal.component
     ModuleService,
     ReviewsService,
     UserService,
-    LoginService
+    LoginService,
+    GoogleAnalyticsEventsService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
