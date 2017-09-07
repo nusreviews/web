@@ -1,3 +1,7 @@
+:host {
+    flex:  0 0 auto;
+}
+
 .header-label {
     cursor: pointer;
     margin: .5em;
