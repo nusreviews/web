@@ -16,9 +16,9 @@ export class UserLoginComponent implements OnInit {
     this.loginService = loginService;
     this.isLoggedIn = this.loginService.getLoggedInObservable().subscribe(isLoggedIn => {
       if (isLoggedIn) {
-        console.log('is logged in!');
+        //console.log('is logged in!');
       } else {
-        console.log('has logged out!');
+        //console.log('has logged out!');
       }
     });
   }

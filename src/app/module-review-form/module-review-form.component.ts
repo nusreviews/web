@@ -5,6 +5,7 @@ import { MzModalService } from 'ng2-materialize';
 import { FbLoginModalComponent } from '../fb-login-modal/fb-login-modal.component';
 import { Router } from '@angular/router';
 import { forEach } from 'lodash';
+import { Subscription } from 'rxjs';
 
 import { Module } from '../module';
 import { Review } from '../review';
@@ -28,6 +29,9 @@ export class ModuleReviewFormComponent implements OnInit {
   public submitDisabled = true;
   public recommend: boolean = null;
   public loading: boolean = false;
+  public changesDetected: boolean = false;
+  public recommendChangesDetected: boolean = false;
+  private reviewsSubscription: Subscription;
 
   constructor(
     private loginService: LoginService,
@@ -36,18 +40,35 @@ export class ModuleReviewFormComponent implements OnInit {
     private router: Router,
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.reviewsSubscription = this.reviewsService.getReviewsObservable().subscribe(next => {
+      this.loading = false;
+    })
+  }
 
   onRatingChange(event) {
     // Check if form is ready
-    if(this.checkFormIsReady()) {
+    if (this.checkFormIsReady()) {
       this.submitDisabled = false;
     }
   }
 
+  onRatingChangeEdit(event) {
+    this.changesDetected = this.checkForChanges();
+  }
+
+  onCommentsEdit() {
+    this.changesDetected = this.checkForChanges();
+  }
+
   setRecommend(recommend) {
-    // Temporary block is user has already reviewed
+    // Skip check if is for edit
     if (this.userReview) {
+      if (this.userReview != recommend) {
+        this.recommendChangesDetected = !this.recommendChangesDetected;
+        this.userReview.isRecommend = recommend;
+        this.changesDetected = this.checkForChanges();
+      }
       return;
     }
 
@@ -85,10 +106,28 @@ export class ModuleReviewFormComponent implements OnInit {
     return true;
   }
 
+  checkForChanges(): boolean {
+    if (this.staffQualityRating.ratingAsInteger != this.userReview.teachingTeamRating) {
+      return true;
+    }
+    if (this.moduleDifficultyRating.ratingAsInteger != this.userReview.difficultyRating) {
+      return true;
+    }
+    if (this.moduleEnjoyabilityRating.ratingAsInteger != this.userReview.enjoyabilityRating) {
+      return true;
+    }
+    if (this.moduleWorkloadRating.ratingAsInteger != this.userReview.workloadRating) {
+      return true;
+    }
+    if (this.comments.nativeElement.value != this.userReview.comments) {
+      return true;
+    }
+    return this.recommendChangesDetected;
+  }
+
   onSubmit() {
     // Check for login to FB first
     if (!this.loginService.getProfile()) {
-      console.log("please login first");
       this.modalService.open(FbLoginModalComponent);
       return;
     }
@@ -108,5 +147,27 @@ export class ModuleReviewFormComponent implements OnInit {
       // Engage loading block
       this.loading = true;
     }
+  }
+
+  saveChanges() {
+    // Check for login to FB first
+    if (!this.loginService.getProfile()) {
+      this.modalService.open(FbLoginModalComponent);
+      return;
+    }
+
+    var editReview = {
+      teaching: this.staffQualityRating.ratingAsInteger,
+      difficulty: this.moduleDifficultyRating.ratingAsInteger,
+      enjoyability: this.moduleEnjoyabilityRating.ratingAsInteger,
+      workload: this.moduleWorkloadRating.ratingAsInteger,
+      recommend: this.userReview.isRecommend,
+      comments: this.comments.nativeElement.value,
+      modId: this.module.id,
+    };
+
+    this.reviewsService.postEditReview(editReview);
+    // Engage loading block
+    this.loading = true;
   }
 }
