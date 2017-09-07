@@ -81,6 +81,17 @@ export class ReviewsService {
 		});
 	}
 
+	postEditReview(editReview) {
+		this.loginService.secureApiPost("https://api.nusreviews.com/review/edit", JSON.stringify(editReview)).then((res) => {
+			if (res.json()['status'] == 'success') {
+				this.reviewsObservable.next();
+				this.showToast('Changes Saved!', 3000, 'green');
+			} else if (res.json()['status'] == 'error') {
+				this.showToast('An error occured!', 3000, 'red');
+			}	
+		});
+	}
+
 	getReviewsObservable(): Observable<number> {
 		return this.reviewsObservable.asObservable();
 	}

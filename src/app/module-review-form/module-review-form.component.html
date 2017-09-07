@@ -36,32 +36,6 @@
       </div>
     </div>
     
-    
-    <!-- <div class="row valign-wrapper card-content-item">
-      <span class="flow-text col s5 push-s1 rating-label">
-        Quality of Teaching Staffs
-      </span>
-      <star-rating-comp class="col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #staff_quality_rating></star-rating-comp>
-    </div>
-    <div class="row valign-wrapper card-content-item">
-      <span class="flow-text col s5 push-s1 rating-label">
-        Difficulty Level of Module 
-      </span>
-      <star-rating-comp class="col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #module_difficulty_rating></star-rating-comp>
-    </div>
-    <div class="row valign-wrapper card-content-item">
-      <span class="flow-text  col s5 push-s1 rating-label">
-        Enjoyability Level of Module 
-      </span>
-      <star-rating-comp class="col col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #module_enjoyability_rating></star-rating-comp>
-    </div>
-    <div class="row valign-wrapper card-content-item">
-      <span class="flow-text col s5 push-s1 rating-label">
-        Workload of Module
-      </span>
-      <star-rating-comp class="col s6" (onRatingChange)="onRatingChange($event)" [starType]="'svg'" [staticColor]="'ok'" #module_workload_rating></star-rating-comp>
-    </div> -->
-    
     <!-- Comments Box -->
     <div class="input-field row card-content-item">
       <label for="module-comments-input" class="comments-input-label flow-text col s10 push-s1">Comments (Optional) </label>
@@ -108,7 +82,7 @@
     primaryColour: '#ccccff', secondaryColour: '#aaaaff', tertiaryColour: '#5555ff' }"></ngx-loading>
   </div>
 </ng-template>
-<!-- Edit Review (WIP) -->
+<!-- Edit Review -->
 <ng-template #edit_review_block>
   <mz-card [backgroundClass]="'grey lighten-4'">
     <mz-card-title>
@@ -122,33 +96,33 @@
       <div class="row card-content-item star-row-container">
         <div class="col s12 m6">
           <div class="flow-text row rating-label">Quality of Teaching Staff</div>
-          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" 
-          [staticColor]="'ok'" [readOnly]="true" [rating]="userReview.teachingTeamRating" #staff_quality_rating></star-rating-comp> 
+          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChangeEdit($event)" [size]="'large'" [starType]="'svg'" 
+          [staticColor]="'ok'" [rating]="userReview.teachingTeamRating" #staff_quality_rating></star-rating-comp> 
         </div>
         <div class="col s12 m6">  
           <div class="flow-text row rating-label">Difficulty Level of Module</div>
-          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" 
-          [staticColor]="'ok'" [readOnly]="true" [rating]="userReview.difficultyRating" #module_difficulty_rating></star-rating-comp>
+          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChangeEdit($event)" [size]="'large'" [starType]="'svg'" 
+          [staticColor]="'ok'" [rating]="userReview.difficultyRating" #module_difficulty_rating></star-rating-comp>
         </div>
       </div>
       
       <div class="row card-content-item star-row-container">
         <div class="col s12 m6">
           <div class="flow-text row rating-label"> Enjoyability Level of Module</div>
-          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" 
-          [staticColor]="'ok'" [readOnly]="true" [rating]="userReview.enjoyabilityRating" #module_enjoyability_rating></star-rating-comp>
+          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChangeEdit($event)" [size]="'large'" [starType]="'svg'" 
+          [staticColor]="'ok'" [rating]="userReview.enjoyabilityRating" #module_enjoyability_rating></star-rating-comp>
         </div>
         <div class="col s12 m6">
           <div class="flow-text row rating-label">Workload of Module</div>
-          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChange($event)" [size]="'large'" [starType]="'svg'" 
-          [staticColor]="'ok'" [readOnly]="true" [rating]="userReview.workloadRating" #module_workload_rating></star-rating-comp>
+          <star-rating-comp class="row nofocus" (onRatingChange)="onRatingChangeEdit($event)" [size]="'large'" [starType]="'svg'" 
+          [staticColor]="'ok'" [rating]="userReview.workloadRating" #module_workload_rating></star-rating-comp>
         </div>
       </div>
       
       <!-- Comments Box -->
       <div class="input-field row card-content-item">
         <label for="module-comments-input" class="comments-input-label flow-text col s10 push-s1 active">Comments (Optional) </label>
-        <textarea id="module-comments-input" class="materialize-textarea col s10 push-s1" readonly #comments>{{userReview.comments}}</textarea>
+        <textarea id="module-comments-input" class="materialize-textarea col s10 push-s1" (input)="onCommentsEdit()" #comments>{{userReview.comments}}</textarea>
       </div>
 
       <!-- Verdict Buttons -->
@@ -167,8 +141,15 @@
     </mz-card-content>
     
     <!-- Edit Button -->
-    <!-- <mz-card-action class="card-action">
-      <button disabled class="btn">Edit<i class="material-icons right">send</i></button>
-    </mz-card-action> -->
+    <div *ngIf="changeDetected; else enable_edit">
+      <mz-card-action class="card-action">
+        <button disabled class="btn">Save Changes<i class="material-icons right">send</i></button>
+      </mz-card-action>
+    </div>
   </mz-card>
+</ng-template>
+<ng-template #enable_edit>
+  <mz-card-action class="card-action">
+    <button (click)="saveChanges()" class="btn">Save Changes<i class="material-icons right">send</i></button>
+  </mz-card-action>
 </ng-template>

@@ -28,6 +28,7 @@ export class ModuleReviewFormComponent implements OnInit {
   public submitDisabled = true;
   public recommend: boolean = null;
   public loading: boolean = false;
+  public changesDetected: boolean = false;
 
   constructor(
     private loginService: LoginService,
@@ -40,14 +41,30 @@ export class ModuleReviewFormComponent implements OnInit {
 
   onRatingChange(event) {
     // Check if form is ready
-    if(this.checkFormIsReady()) {
+    if (this.checkFormIsReady()) {
       this.submitDisabled = false;
     }
   }
 
+  onRatingChangeEdit(event) {
+    if (!this.changesDetected) {
+      this.changesDetected = true;
+    }
+  }
+
+  onCommentsEdit() {
+    if (!this.changesDetected) {
+      this.changesDetected = true;
+    }
+  }
+
   setRecommend(recommend) {
-    // Temporary block is user has already reviewed
+    // Skip check if is for edit
     if (this.userReview) {
+      this.recommend = recommend;
+      if (!this.changesDetected) {
+        this.changesDetected = true;
+      }
       return;
     }
 
@@ -88,7 +105,6 @@ export class ModuleReviewFormComponent implements OnInit {
   onSubmit() {
     // Check for login to FB first
     if (!this.loginService.getProfile()) {
-      console.log("please login first");
       this.modalService.open(FbLoginModalComponent);
       return;
     }
@@ -108,5 +124,28 @@ export class ModuleReviewFormComponent implements OnInit {
       // Engage loading block
       this.loading = true;
     }
+  }
+
+  saveChanges() {
+    // Check for login to FB first
+    if (!this.loginService.getProfile()) {
+      this.modalService.open(FbLoginModalComponent);
+      return;
+    }
+
+    var editReview = {
+      teaching: this.staffQualityRating.ratingAsInteger,
+      difficulty: this.moduleDifficultyRating.ratingAsInteger,
+      enjoyability: this.moduleEnjoyabilityRating.ratingAsInteger,
+      workload: this.moduleWorkloadRating.ratingAsInteger,
+      recommend: this.recommend,
+      comments: this.comments.nativeElement.value,
+      modId: this.module.id,
+    };
+
+    console.log(editReview);
+    // this.reviewsService.postNewReview(editReview);
+    // // Engage loading block
+    // this.loading = true;
   }
 }
