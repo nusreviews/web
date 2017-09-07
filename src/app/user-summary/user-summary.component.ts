@@ -59,7 +59,7 @@ export class UserSummaryComponent implements OnInit {
             if (reviews.length == pageSize) {
               this.canScroll = true;
             }
-          })
+          });
       });
   }
 
