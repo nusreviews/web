@@ -42,36 +42,16 @@
     cursor: pointer;
 }
 
-/* .navbar {
-    display: flex;
-    position: fixed;
-    z-index: 1000;
-    background-color: #607D8B;
-    color: white;
-    min-width: 100%;
-    max-height: 80px;
-    margin: -10px 0 0 -10px;
-    padding: 0 0 0 10px;
+@media (max-width: 390px) 
+{
+	.logo-image {
+        height: 2.6em;
+    }
+
+    .header-label {
+        font-size: 1.6em;
+        margin-top: .75em;
+        margin-left: 1.7em;
+    }
 }
-.nav-option-container {
-    display: inline;
-    margin-left: 5em;
-    padding: 1em 0.5em 0.5em 0.5em;
-}
-.nav-option {
-    display: inline-block;
-    color: white;
-    line-height: 40px;
-    padding: 6px 6px 18px 6px;
-    border-radius: 10px 10px 0 0;
-    text-decoration: none;
-    white-space: nowrap;
-    position: relative;
-    transition: background-color cubic-bezier(.165, .84, .44, 1) .25s,border-bottom-color ease-in-out .25s;
-}
-.nav-option:hover {
-    background-color: #eff0f1;
-    color: #242729;
-    text-decoration: none;
-    outline: none;
-} */
+
