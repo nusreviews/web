@@ -146,7 +146,8 @@ export class LoginService {
     let url = "https://api.nusreviews.com/generateServerToken";
     let query = "?fbToken=" + fbToken +
                 "&email=" + fbProfile.email +
-                "&name=" + fbProfile.name;
+                "&name=" + fbProfile.name + 
+                "&fid=" + fbProfile.id;
 
     return this.http.get(url + query).toPromise();
   }
