@@ -21,7 +21,7 @@ export class HeaderBarComponent implements OnInit {
     this.router = router;
     this.loginService = loginService;
     this.isLoggedInSubscription = this.loginService.getLoggedInObservable().subscribe(isLoggedIn => {
-      console.log(isLoggedIn);
+      //console.log(isLoggedIn);
       this.isLoggedIn = isLoggedIn;
       if (this.isLoggedIn) {
         this.username = this.loginService.getProfile().facebook.name;
@@ -41,17 +41,17 @@ export class HeaderBarComponent implements OnInit {
   }
   
   onLoginClick() {
-    console.log("Login!");
+    //console.log("Login!");
     this.loginService.toggleFacebookLogin();
   }
   
   onLogoutClick() {
-    console.log("Logout!");
+    //console.log("Logout!");
     this.loginService.toggleFacebookLogin();
   }
   
   onProfileClick(){
-    console.log("Go to Profile!");
+    //console.log("Go to Profile!");
     this.router.navigate(['/user/' + this.loginService.getProfile().nusreviews.userId]);
   }
 

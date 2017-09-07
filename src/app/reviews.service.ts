@@ -10,7 +10,7 @@ import { MzToastService } from 'ng2-materialize';
 @Injectable()
 export class ReviewsService {
 
-	private reviewsObservable = new Subject<number>();
+	private reviewsObservable = new Subject<Object>();
 	
 	constructor(
 		private http: Http,
@@ -73,7 +73,7 @@ export class ReviewsService {
 		this.loginService.secureApiPost("https://api.nusreviews.com/review/new", JSON.stringify(newReview)).then((res) => {
 			//console.log(res.json()['status']);
 			if (res.json()['status'] == 'success') {
-				this.reviewsObservable.next();
+				this.reviewsObservable.next({type: "new"});
 				this.showToast('Review Submitted!', 3000, 'green');
 			} else if (res.json()['status'] == 'error') {
 				this.showToast('An error occured!', 3000, 'red');
@@ -84,15 +84,15 @@ export class ReviewsService {
 	postEditReview(editReview) {
 		this.loginService.secureApiPost("https://api.nusreviews.com/review/edit", JSON.stringify(editReview)).then((res) => {
 			if (res.json()['status'] == 'success') {
-				this.reviewsObservable.next();
-				this.showToast('Changes Saved!', 3000, 'green');
+				this.reviewsObservable.next({type: "edit"});
+				this.showToast('Changes Submitted!', 3000, 'green');
 			} else if (res.json()['status'] == 'error') {
 				this.showToast('An error occured!', 3000, 'red');
 			}	
 		});
 	}
 
-	getReviewsObservable(): Observable<number> {
+	getReviewsObservable(): Observable<Object> {
 		return this.reviewsObservable.asObservable();
 	}
 

@@ -104,7 +104,7 @@ export class ModuleDetailComponent implements OnInit {
 
   onScroll() {
     if (this.canScroll && !this.loading) {
-      console.log("onscroll");
+      //console.log("onscroll");
       this.page += 1;
       this.loading = true;
       if (this.loginService.getProfile()) {

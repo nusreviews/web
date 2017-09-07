@@ -23,7 +23,7 @@ export class ReviewListItemComponent implements OnInit {
 
   share(fragment: number) {
     let url = document.location.href + '#review' + fragment.toString();
-    console.log(url);
+    //console.log(url);
 
     let params: UIParams = {
       href: url,

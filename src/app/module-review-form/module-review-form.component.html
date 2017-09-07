@@ -1,10 +1,11 @@
 <head><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></head>
 
-<div *ngIf="!userReview; else edit_review_block">
 <div class="loading-container-review" *ngIf="loading">
   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px', backdropBackgroundColour: 'rgba(55,55,55,0.3)', 
   primaryColour: '#ccccff', secondaryColour: '#aaaaff', tertiaryColour: '#5555ff' }"></ngx-loading>
 </div>
+
+<div *ngIf="!userReview; else edit_review_block">
 <mz-card [backgroundClass]="'grey lighten-4'">
   <mz-card-title>
     <span class="flow-text card-title center-align">
@@ -87,7 +88,8 @@
   <mz-card [backgroundClass]="'grey lighten-4'">
     <mz-card-title>
       <span class="flow-text card-title center-align">
-        <strong>Your review for {{module.id}}: {{module.modName}}</strong>
+        <strong>You reviewed this module on {{userReview.lastUpdated | amLocal | amDateFormat:"LL"}}</strong>
+        <br><small><i>You may edit your review below</i></small>
       </span>
     </mz-card-title>
     <mz-card-content class="card-content">
@@ -139,17 +141,14 @@
         </div>
       </div>
     </mz-card-content>
-    
     <!-- Edit Button -->
-    <div *ngIf="changeDetected; else enable_edit">
-      <mz-card-action class="card-action">
+    <mz-card-action class="card-action" >
+      <div *ngIf="!checkForChanges(); else enable_edit">
         <button disabled class="btn">Save Changes<i class="material-icons right">send</i></button>
-      </mz-card-action>
-    </div>
+      </div>
+    </mz-card-action>
   </mz-card>
 </ng-template>
 <ng-template #enable_edit>
-  <mz-card-action class="card-action">
-    <button (click)="saveChanges()" class="btn">Save Changes<i class="material-icons right">send</i></button>
-  </mz-card-action>
+  <button (click)="saveChanges()" class="btn">Save Changes<i class="material-icons right">send</i></button>
 </ng-template>
