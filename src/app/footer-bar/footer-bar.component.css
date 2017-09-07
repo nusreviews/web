@@ -1,3 +1,7 @@
+:host {
+  flex:  0 0 auto;
+}
+
 /* .footer {
   align-items: center;
   display: flex;

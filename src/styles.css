@@ -19,4 +19,5 @@
 .nofocus > div:focus {
   outline:  none;
 }
+
 @import "~css-star-rating/dist/css/star-rating.min.css";
