@@ -41,10 +41,6 @@ export class ModuleReviewFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    $(function () {
-      $('#comments').trigger('autoresize');
-    });
-    
     this.reviewsSubscription = this.reviewsService.getReviewsObservable().subscribe(next => {
       this.loading = false;
     })
